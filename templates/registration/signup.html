@@ -1,0 +1,63 @@
+{% extends '_base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+
+{% block page_title %}{% trans 'Sign up' %}{% endblock page_title %}
+
+
+{% block content %}
+
+    <!-- Breadcrumb area Start -->
+    <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6" style="text-align: right">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
+                        <h1 class="page-title" style="margin: 0 auto">{% trans 'Account' %}</h1>
+                        <ul class="breadcrumb">
+                            <li class="current"><span>{% trans 'Login or Register' %}</span></li>
+                            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb area End -->
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper">
+        <div class="page-content-inner pt--75 pb--80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="register-box">
+                            <h4 class="heading__tertiary mb--30">{% trans 'Login or Register' %}</h4>
+                            <form class="form" method="POST">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <!-- Submit button -->
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                        class="btn btn-primary btn-lg btn-block">{% trans 'Submit' %}
+                                </button>
+                                <div class="divider d-flex align-items-center my-4">
+                                    <p class="text-center fw-bold mx-3 mb-0 text-muted">{% trans 'OR' %}</p>
+                                </div>
+                                <p style="text-align: center">{% trans "Already have an account ?" %}</p>
+                                <a data-mdb-ripple-init class="btn btn-primary btn-lg btn-block"
+                                   href="{% url 'login' %}"
+                                   role="button">
+                                    <i class="fab fa-facebook-f me-2"></i>{% trans 'Login' %}
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper Start -->
+
+{% endblock content %}

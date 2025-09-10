@@ -1,0 +1,323 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-05 16:06+0330\n"
+"PO-Revision-Date: 2025-09-05 16:06+0330\n"
+"Last-Translator:   <mehdii.dev@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\404.html:5
+msgid "Page not found"
+msgstr "صفحه مورد نظر یافت نشد"
+
+#: .\404.html:21 .\_base.html:248 .\home.html:7
+#: .\registration\password_reset_done.html:25
+msgid "Home"
+msgstr "خانه"
+
+#: .\404.html:41
+msgid "Page Not Found :("
+msgstr "صفحه مورد نظر یافت نشد :("
+
+#: .\404.html:42
+msgid ""
+"We couldn't find the page you were looking for. It may have been moved or "
+"deleted, or you may have typed the URL incorrectly."
+msgstr ""
+"ما نتوانستیم صفحه مورد نظر شما را پیدا کنیم. ممکن است منتقل یا حذف شده باشد،"
+" یا ممکن است آدرس URL را اشتباه تایپ کرده باشید."
+
+#: .\404.html:45
+msgid "BACK TO HOME"
+msgstr "بازگشت به خانه"
+
+#: .\503.html:5
+msgid "Updating!"
+msgstr "درحال بروز رسانی"
+
+#: .\503.html:19
+msgid "We are updating :)"
+msgstr "ما درحال بروز رسانی هستیم :)"
+
+#: .\503.html:21
+msgid "Website will be available soon..."
+msgstr "وبسایت به زودی در دسترس خواهد بود..."
+
+#: .\_base.html:66
+msgid "Contact Us"
+msgstr "ارتباط با ما"
+
+#: .\_base.html:71
+msgid "Blog"
+msgstr "وبلاگ"
+
+#: .\_base.html:113
+msgid "Products"
+msgstr "محصولات"
+
+#: .\registration\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Hello from %(site_name)s\n"
+"\n"
+"%(user_display)s\n"
+"If you requested this email please click on the link below:\n"
+"%(activate_url)s\n"
+"\n"
+msgstr ""
+"\n"
+"سلام از %(site_name)s\n"
+"\n"
+"%(user_display)s\n"
+"اگر این ایمیل را درخواست کردید، لطفا روی لینک زیر کلیک کنید:\n"
+"%(activate_url)s\n"
+
+#: .\registration\email\email_confirmation_subject.txt:3
+msgid "Please confirm email"
+msgstr "لطفا ایمیل را تایید کنید"
+
+#: .\registration\email_confirm.html:5 .\registration\email_confirm.html:9
+msgid "Confirm Email Address"
+msgstr "لطفا آدرس ایمیل را تایید کنید"
+
+#: .\registration\email_confirm.html:15
+#, python-format
+msgid ""
+"Please confirm that\n"
+"                    <a href=\"mailto:%(email)s\">%(email)s</a> is an email address for user %(user_display)s.\n"
+"                "
+msgstr ""
+"لطفا تایید کنید\n"
+"<a href=\"mailto:%(email)s\">%(email)s</a> یک آدرس ایمیل برای کاربر %(user_display)s است."
+
+#: .\registration\email_confirm.html:25
+msgid "Confirm"
+msgstr "تایید"
+
+#: .\registration\email_confirm.html:31
+#, python-format
+msgid ""
+"Unable to confirm %(email)s because it is already confirmed by a different account.\n"
+"                "
+msgstr "تأیید %(email)s ممکن نیست زیرا قبلاً توسط حساب دیگری تأیید شده است."
+
+#: .\registration\email_confirm.html:38
+#, python-format
+msgid ""
+"This email confirmation link expired or is invalid. Please\n"
+"                <a href=\"%(email_url)s\">issue a new email confirmation request</a>."
+msgstr ""
+"این پیوند تأیید ایمیل منقضی شده یا نامعتبر است. لطفا\n"
+"<a href=\"%(email_url)s\">یک درخواست تأیید ایمیل جدید صادر کنید</a>."
+
+#: .\registration\login.html:7 .\registration\login.html:33
+#: .\registration\password_change_done.html:24 .\registration\signup.html:33
+msgid "Login"
+msgstr "ورود"
+
+#: .\registration\login.html:26
+msgid "Remember me"
+msgstr "مرا بخاطر بسپار"
+
+#: .\registration\login.html:28
+msgid "Forgot password?"
+msgstr "رمز عبور را فراموش کرده اید؟"
+
+#: .\registration\login.html:36 .\registration\signup.html:27
+msgid "OR"
+msgstr "یا اینکه"
+
+#: .\registration\login.html:38
+msgid "Don't have an account ?"
+msgstr "حساب کاربری ندارید؟"
+
+#: .\registration\login.html:42
+msgid "Signup"
+msgstr "ثبت نام"
+
+#: .\registration\password_change_done.html:7
+#: .\registration\password_change_form.html:7
+#: .\registration\password_reset_complete.html:7
+#: .\registration\password_reset_done.html:7
+msgid "Password change"
+msgstr "تغییر کلمه عبور"
+
+#: .\registration\password_change_done.html:20
+msgid "Password changed successfully!"
+msgstr "رمز عبور با موفقیت تغییر کرد!"
+
+#: .\registration\password_change_done.html:21
+msgid ""
+"Your password has been successfully changed. Please visit the login page to "
+"access the website."
+msgstr ""
+"رمز عبور شما با موفقیت تغییر کرده است. لطفا برای ورود به وب سایت به صفحه "
+"ورود مراجعه کنید."
+
+#: .\registration\password_change_form.html:24 .\registration\signup.html:24
+msgid "Submit"
+msgstr "ثبت"
+
+#: .\registration\password_reset_confirm.html:7
+#: .\registration\password_reset_form.html:7
+msgid "Password reset"
+msgstr "بازنشانی کلمه عبور"
+
+#: .\registration\password_reset_done.html:21
+msgid "Email sent!"
+msgstr "ایمیل ارسال شد!"
+
+#: .\registration\password_reset_done.html:22
+msgid ""
+"An email containing password change instructions has been sent to you. "
+"Please check your inbox."
+msgstr ""
+"یک ایمیل حاوی دستورالعمل های تغییر رمز عبور برای شما ارسال شده است. لطفا "
+"صندوق ورودی خود را بررسی کنید."
+
+#: .\registration\password_reset_form.html:24
+msgid "Send"
+msgstr "ارسال"
+
+#: .\registration\signup.html:7
+msgid "Sign up"
+msgstr "ثبت نام"
+
+#: .\registration\signup.html:29
+msgid "Already have an account ?"
+msgstr "حساب کاربری دارید؟"
+
+#~ msgid "Places & Services"
+#~ msgstr "خدمات و مکان ها"
+
+#~ msgid "About us"
+#~ msgstr "درباره ما"
+
+#~ msgid "Profile"
+#~ msgstr "پروفایل"
+
+#~ msgid "Add new Service"
+#~ msgstr "ایجاد سرویس جدید"
+
+#~ msgid "Persisch Tor"
+#~ msgstr "پرزیشـــــطور"
+
+#~ msgid "Gate for easy access!"
+#~ msgstr "دروازه ای برای دسترسی آسان!"
+
+#~ msgid "Discover the Best Places and Services"
+#~ msgstr "بهترین مکان ها و خدمات را پیداکنید"
+
+#~ msgid "What Are You Looking For?"
+#~ msgstr "دنبال چی میگردی؟"
+
+#~ msgid "Search"
+#~ msgstr "جستجو"
+
+#~ msgid "Go to all Services"
+#~ msgstr "برو به تمامی خدمات"
+
+#~ msgid "How It Works"
+#~ msgstr "چطوری کار میکنه؟"
+
+#~ msgid "Let the Persisch-Tor direct you toward to top places"
+#~ msgstr "اجازه دهید پرزیشـــطور شما را به سمت مکان های برتر هدایت کند"
+
+#~ msgid ""
+#~ "Finding the right services and businesses is always a major challenge for "
+#~ "Persian speakers living in Germany. Many people, when looking for a "
+#~ "specialist doctor, a professional repairman, a suitable store or a quality "
+#~ "restaurant, etc., look for the opinions and experiences of others to make a "
+#~ "better choice. In the absence of a centralized source, this information is "
+#~ "often shared through social networks and Telegram groups, which makes it "
+#~ "difficult to find accurate and reliable answers, and it is also difficult to"
+#~ " join and check the opinions in such channels and groups."
+#~ msgstr ""
+#~ "همواره پیدا کردن خدمات و کسب‌ وکارهای مناسب یکی از چالش‌های اساسی برای "
+#~ "فارسی‌ زبانان ساکن آلمان بوده است. بسیاری از افراد هنگام جستجوی یک پزشک "
+#~ "متخصص، یک تعمیرکار حرفه‌ای، یک فروشگاه مناسب یا یک رستوران باکیفیت و ... به "
+#~ "دنبال نظرات و تجربیات دیگران هستند تا انتخاب بهتری داشته باشند. در نبود یک "
+#~ "منبع متمرکز، این اطلاعات اغلب از طریق شبکه‌های اجتماعی و گروه‌های تلگرامی به"
+#~ " اشتراک گذاشته می‌شود که یافتن پاسخ دقیق و قابل‌اعتماد را دشوار می‌کند و "
+#~ "همچینن عضویت و چک کردن نظرات در اینگونه کانال ها و گروه ها دشوار است."
+
+#~ msgid ""
+#~ "<strong>Persisch-Tor (Persisch-Tor)</strong> is designed to simplify this "
+#~ "process. Here, users can:"
+#~ msgstr ""
+#~ "<strong>پرزیشــــطور (Persisch-Tor)</strong> با هدف ساده‌تر کردن این روند "
+#~ "طراحی شده است. کاربران می‌توانند در اینجا:"
+
+#~ msgid "- Search for places and professionals based on different categories."
+#~ msgstr "- مکان‌ها و یا متخصصان را بر اساس دسته‌بندی‌های مختلف جستجو کنند."
+
+#~ msgid "- Read other people's opinions about their services and experiences."
+#~ msgstr "- نظرات دیگران را درباره خدمات و تجربه‌هایشان بخوانند."
+
+#~ msgid "- Share their experiences with other users."
+#~ msgstr "- تجربیات خود را با دیگر کاربران به اشتراک بگذارند."
+
+#~ msgid ""
+#~ "As a result, this platform is a suitable platform for collecting information"
+#~ " that is directly provided by users. Therefore, the decision to choose "
+#~ "services or places will be based on real feedback and opinions of our fellow"
+#~ " speakers who have used these services. As a result, this website not only "
+#~ "helps to find reliable services, but also provides an opportunity to share "
+#~ "useful experiences."
+#~ msgstr ""
+#~ "در نتیجه این پلتفرم، بستری مناسب برای جمع‌آوری اطلاعاتی است که مستقیماً از "
+#~ "سوی کاربران ارائه شده‌اند. بنابراین، تصمیم‌گیری در مورد انتخاب خدمات یا "
+#~ "مکان‌ها بر اساس بازخوردهای واقعی و نظرات هم زبانان ما خواهد بود که از این "
+#~ "خدمات استفاده کرده‌اند. در نتیجه، این وب‌ سایت نه‌ تنها به یافتن خدمات معتبر"
+#~ " کمک می‌کند، بلکه امکان اشتراک‌ گذاری تجربه‌ های مفید را نیز فراهم می‌آورد."
+
+#~ msgid "Everything is ready!"
+#~ msgstr "همه چی حاضره!"
+
+#~ msgid ""
+#~ "Find the right service provider for your needs by reviewing user reviews and"
+#~ " share your experience once you're done."
+#~ msgstr ""
+#~ "با بررسی نظرات کاربران، ارائه دهنده خدمات مناسب برای نیازهای خود را بیابید و"
+#~ " سپس تجربه خود را به اشتراک بگذارید."
+
+#~ msgid "Find or introduce"
+#~ msgstr "پیدا کن یا معرفی کن"
+
+#~ msgid ""
+#~ "Browse the listings, read reviews, and find the right choice. Also, share "
+#~ "your experiences about receiving services from professionals (doctors, "
+#~ "technicians, stores, etc.) with others."
+#~ msgstr ""
+#~ "فهرست ها را مرور کنید، نظرات را بخوانید و انتخاب مناسب را پیدا کنید. همچنین "
+#~ "تجربیات خود را در مورد دریافت خدمات از افراد حرفه ای (پزشکان، تکنسین ها، "
+#~ "فروشگاه ها و ...) با دیگران به اشتراک بگذارید."
+
+#~ msgid "Decide What you want"
+#~ msgstr "تصمیم بگیر چی میخوای"
+
+#~ msgid ""
+#~ "Are you looking for a good clinic, specialists in any field, a cozy hotel "
+#~ "for your stay, a restaurant for a delicious meal, or a reliable store with "
+#~ "reasonable prices for shopping?"
+#~ msgstr ""
+#~ "آیا به دنبال یک کلینیک خوب یا افراد متخصص در هر زمینه ای هستید؟ یک هتل دنج "
+#~ "برای اقامت خود، رستوران یا کافه با غذا ها و نوشیدنی های خاص و خوشمزه، یا یک "
+#~ "فروشگاه مطمئن با قیمت های مناسب برای خرید هستید؟"
+
+#~ msgid "or browse"
+#~ msgstr "یا پیدا کنید"
