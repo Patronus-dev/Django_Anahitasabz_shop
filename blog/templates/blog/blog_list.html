@@ -1,0 +1,84 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block page_title %}{% trans 'Blog' %}{% endblock page_title %}
+
+{% block content %}
+
+    <!-- Breadcrumb area Start -->
+    <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6" style="text-align: right">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
+                        <h1 class="page-title" style="margin: 0 auto">{% trans 'Blog' %}</h1>
+                        <ul class="breadcrumb">
+                            <li class="current"><span>{% trans 'Blog Grid' %}</span></li>
+                            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb area End -->
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper" style="direction: rtl">
+        <div class="page-content-inner blog-page-sidebar ptb--80">
+            <div class="container">
+                <!-- تغییر این بخش -->
+                <div class="d-flex flex-row flex-nowrap overflow-auto">
+                    {% for blog in blogs %}
+                        <div class="p-2" style="min-width: 250px;">
+                            <article class="blog blog-style-2">
+                                <div class="blog-media">
+                                    <figure class="image">
+                                        <a href="{% url 'blog_detail' blog.id %}">
+                                            <img src="{{ blog.image.url }}" alt="Blog" class="img-fluid">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="blog-info">
+                                    <h2 class="blog-title">
+                                        <a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a>
+                                    </h2>
+                                    <div class="blog-meta">
+                                        <a href="{% url 'blog_detail' blog.id %}" class="blog-meta-btn">
+{#                                            <label>{{ blog.likes }}</label> <i class="fa fa-heart-o"></i>#}
+                                        </a>
+                                            <br>
+                                            {{ blog.datetime_created|date }}
+                                        <a href="{% url 'blog_detail' blog.id %}" class="btn btn-no-bg btn-color-dark">
+                                            {% trans 'Read more' %}
+                                            <i class="fa fa-angle-double-left"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination (در صورت نیاز می‌توانید آن را نگه دارید) -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <nav class="pagination-wrap">
+                            <ul class="pagination justify-content-center">
+                                <li><a href="#" class="prev page-number"><i class="fa fa-angle-double-right"></i></a></li>
+                                <li><span class="current page-number">1</span></li>
+                                <li><a href="#" class="page-number">2</a></li>
+                                <li><a href="#" class="page-number">3</a></li>
+                                <li><a href="#" class="next page-number"><i class="fa fa-angle-double-left"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper End -->
+
+{% endblock content %}

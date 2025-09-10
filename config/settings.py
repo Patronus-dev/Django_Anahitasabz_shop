@@ -33,10 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
-    # my apps
-
-
     # third party
     'rosetta',
     'crispy_forms',
@@ -49,6 +45,11 @@ INSTALLED_APPS = [
     'cms',
     'menus',
     'treebeard',
+
+    # my apps
+    'pages',
+    'blog',
+
 
 ]
 

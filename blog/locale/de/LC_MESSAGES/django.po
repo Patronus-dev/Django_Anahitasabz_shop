@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-25 20:26+0330\n"
+"PO-Revision-Date: 2024-08-09 22:24+0330\n"
+"Last-Translator:   <mehdii.dev@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\templates\blog\blog_detail.html:5 .\templates\blog\blog_detail.html:23
+#: .\templates\blog\blog_list.html:5
+msgid "Blog"
+msgstr "Blog"
+
+#: .\templates\blog\blog_detail.html:21 .\templates\blog\blog_list.html:21
+msgid "Home"
+msgstr "Startseite"
+
+#: .\templates\blog\blog_detail.html:51 .\templates\blog\blog_list.html:62
+msgid "Author"
+msgstr "Autor"
+
+#: .\templates\blog\blog_detail.html:53 .\templates\blog\blog_detail.html:57
+#: .\templates\blog\blog_list.html:63
+msgid "Source"
+msgstr "Quelle"
+
+#: .\templates\blog\blog_detail.html:59 .\templates\blog\blog_list.html:64
+msgid "Date"
+msgstr "Datum"
+
+#: .\templates\blog\blog_list.html:37
+msgid "Blogs"
+msgstr "Blogs"
+
+#: .\templates\blog\blog_list.html:68
+msgid "Continue Reading"
+msgstr "Weiterlesen"
