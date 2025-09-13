@@ -229,29 +229,15 @@
                                 </a>
                             </li>
                             <li class="header-toolbar__item user-info">
-                                <a href="" class="header-toolbar__btn">
-                                    <i class="flaticon flaticon-user"></i>
-                                </a>
-                                <ul class="user-info-menu">
-                                    <li>
-                                        <a href="my-account.html">My Account</a>
-                                    </li>
-                                    <li>
-                                        <a href="cart.html">Shopping Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="checkout.html">Check Out</a>
-                                    </li>
-                                    <li>
-                                        <a href="wishlist.html">Wishlist</a>
-                                    </li>
-                                    <li>
-                                        <a href="order-tracking.html">Order tracking</a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html">compare</a>
-                                    </li>
-                                </ul>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'user_profile' %}" class="header-toolbar__btn">
+                                        <i class="flaticon flaticon-user"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="header-toolbar__btn">
+                                        <i class="flaticon flaticon-user"></i>
+                                    </a>
+                                {% endif %}
                             </li>
                             <li class="header-toolbar__item">
                                 <a href="#searchForm" class="header-toolbar__btn toolbar-btn">

@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from .models import CustomUser
+
 User = get_user_model()
 
 
@@ -36,3 +38,9 @@ class PhoneLoginForm(forms.Form):
 
 class VerifyOTPForm(forms.Form):
     code = forms.CharField(max_length=4, label=_("OTP code"))
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ["name", "lastname", "province", "city", "address", "postal_code"]

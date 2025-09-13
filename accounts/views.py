@@ -1,12 +1,15 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from django.views.generic.edit import FormView
+from django.views.generic import FormView, DetailView, TemplateView, UpdateView
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from .forms import PhoneLoginForm, VerifyOTPForm, CompleteProfileForm
-from .models import CustomUser, OTP
 import random
 from django.http import JsonResponse
+from django.contrib.auth import logout
+
+from .models import CustomUser, OTP
+from .forms import PhoneLoginForm, VerifyOTPForm, CompleteProfileForm, UserUpdateForm
 
 
 class PhoneLoginView(FormView):
@@ -123,3 +126,33 @@ class ResendOTPView(View):
         print(f"OTP جدید برای {user.username}: {code}")  # فقط برای تست
 
         return JsonResponse({"success": True, "message": "کد جدید ارسال شد."})
+
+
+class UserProfileView(DetailView):
+    model = CustomUser
+    template_name = "accounts/user_profile.html"
+    context_object_name = "user_profile"
+
+    def get_object(self):
+        return self.request.user
+
+
+class CustomLogoutConfirmView(TemplateView):
+    template_name = "accounts/logout.html"
+
+
+class CustomLogoutView(View):
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return redirect("home")
+
+
+class EditProfileView(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    form_class = UserUpdateForm
+    template_name = "accounts/edit_profile.html"
+    success_url = reverse_lazy("user_profile")  # بعد از ذخیره به پروفایل هدایت شود
+
+    def get_object(self, queryset=None):
+        # کاربر فعلی را برمی‌گرداند
+        return self.request.user

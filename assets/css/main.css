@@ -4370,47 +4370,42 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 .user-dashboard-tab__head {
   background-color: #f9f9f9;
   padding: 15px 0;
-  -webkit-flex-basis: 190px;
-  -moz-flex-basis: 190px;
-  -ms-flex-preferred-size: 190px;
-  flex-basis: 190px;
-  max-width: 190px;
-  margin-right: 30px; }
-  @media (max-width: 47.94em) {
-    .user-dashboard-tab__head {
-      -webkit-flex-basis: 100%;
-      -moz-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-      max-width: 100%;
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 30px;
-      padding: 0; } }
+  flex: 0 0 auto;      /* فقط به اندازه محتوا */
+  width: fit-content;  /* به اندازه محتوای داخل */
+  margin-right: 30px;
+}
+.user-dashboard-tab__head .nav-link {
+  display: block;
+  padding: 10px 30px;
+  border: none;
+  text-align: right;
+  background: transparent;
+}
+@media (max-width: 47.94em) {
+  .user-dashboard-tab__head {
+    flex: 0 0 100%; /* تو موبایل کل عرض رو بگیره */
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 30px;
+    padding: 0;
+  }
   .user-dashboard-tab__head .nav-link {
-    display: block;
-    padding: 10px 30px;
-    border: none;
-    text-align: left;
-    background: transparent; }
-    @media (max-width: 47.94em) {
-      .user-dashboard-tab__head .nav-link {
-        padding: 12px; } }
+    padding: 12px;
+  }
+}
 
 .user-dashboard-tab__content {
-  -webkit-flex-basis: calc(100% - 220px);
-  -moz-flex-basis: calc(100% - 220px);
-  -ms-flex-preferred-size: calc(100% - 220px);
-  flex-basis: calc(100% - 220px);
-  max-width: calc(100% - 220px); }
-  @media (max-width: 47.94em) {
-    .user-dashboard-tab__content {
-      -webkit-flex-basis: 100%;
-      -moz-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-      max-width: 100%;
-      width: 100%; } }
+  flex: 1;         /* باقی فضا رو پر کن */
+  min-width: 0;    /* جلوی شکستن flexbox رو می‌گیره */
+}
+@media (max-width: 47.94em) {
+  .user-dashboard-tab__content {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
   .user-dashboard-tab__content p a:hover {
     text-decoration: underline; }
 
