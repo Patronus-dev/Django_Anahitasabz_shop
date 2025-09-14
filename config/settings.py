@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     # third party
     'rosetta',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     # my apps
     'pages',
     'blog',
+    'products',
 
 
 ]
@@ -62,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'maintenance_mode.middleware.MaintenanceModeMiddleware',
+    'config.middleware.PersianDigitsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'

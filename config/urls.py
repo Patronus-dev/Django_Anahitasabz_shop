@@ -8,6 +8,8 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('blog/', include('blog.urls')),
     path('accounts/', include('accounts.urls')),
+    path("products/", include("products.urls")),
+
 
     # Rosetta
     path('rosetta/', include('rosetta.urls')),
