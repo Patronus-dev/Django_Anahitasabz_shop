@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-14 19:38+0330\n"
-"PO-Revision-Date: 2025-09-14 19:39+0330\n"
+"POT-Creation-Date: 2025-09-14 22:18+0330\n"
+"PO-Revision-Date: 2025-09-14 22:19+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,41 +22,81 @@ msgstr ""
 msgid "Product Name"
 msgstr "نام محصول"
 
-#: .\models.py:7
+#: .\models.py:7 .\templates\products\product_detail.html:104
 msgid "Description"
 msgstr "توضیحات"
 
-#: .\models.py:8
+#: .\models.py:8 .\templates\products\product_detail.html:77
+#: .\templates\products\product_list.html:298
 msgid "Price"
 msgstr "بها"
 
-#: .\models.py:10
+#: .\models.py:9
 msgid "Active"
 msgstr "موجود"
 
 #: .\models.py:11
-msgid "Image"
-msgstr "عکس"
+msgid "Cover Image"
+msgstr "عکس اصلی"
 
-#: .\models.py:17
+#: .\models.py:12
+msgid "Image 1"
+msgstr "عکس 1"
+
+#: .\models.py:13
+msgid "Image 2"
+msgstr "عکس 2"
+
+#: .\models.py:14
+msgid "Image 3"
+msgstr "عکس 3"
+
+#: .\models.py:20
 msgid "Product"
 msgstr "محصول"
 
-#: .\models.py:18 .\templates\products\product_list.html:8
+#: .\models.py:21 .\templates\products\product_detail.html:8
+#: .\templates\products\product_list.html:8
 msgid "Products"
 msgstr "محصولات"
 
+#: .\templates\products\product_detail.html:18
 #: .\templates\products\product_list.html:18
 msgid "Shop"
 msgstr "محصولات"
 
-#: .\templates\products\product_list.html:63
+#: .\templates\products\product_detail.html:78
+#: .\templates\products\product_list.html:92
+#: .\templates\products\product_list.html:153
+#: .\templates\products\product_list.html:299
 msgid "Toman"
 msgstr "تومان"
 
-#: .\templates\products\product_list.html:66
+#: .\templates\products\product_detail.html:82
+#: .\templates\products\product_list.html:304
+msgid "Quantity"
+msgstr "تعداد"
+
+#: .\templates\products\product_detail.html:91
+#: .\templates\products\product_list.html:314
 msgid "Add To Cart"
 msgstr "افزودن به سبد خرید"
+
+#: .\templates\products\product_detail.html:108
+msgid "Additional Information"
+msgstr "اطلاعات تکمیلی"
+
+#: .\templates\products\product_detail.html:131
+msgid "Colors"
+msgstr "رنگ بندی"
+
+#: .\templates\products\product_list.html:95
+msgid "Watch"
+msgstr "مشاهده"
+
+#: .\templates\products\product_list.html:319
+msgid "More"
+msgstr "بیشتر"
 
 #~ msgid "Size"
 #~ msgstr "سایز"
@@ -69,9 +109,6 @@ msgstr "افزودن به سبد خرید"
 
 #~ msgid "Color HEX code, e.g. #000000 for black"
 #~ msgstr "کد HEX رنگ، مثلاً #000000 برای مشکی"
-
-#~ msgid "Colors"
-#~ msgstr "رنگ بندی"
 
 #~ msgid "Stock"
 #~ msgstr "موجود"

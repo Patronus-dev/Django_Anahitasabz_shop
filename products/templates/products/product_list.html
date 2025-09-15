@@ -29,6 +29,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
+                        <div class="shop-toolbar mb--50">
+                        </div>
                         <div class="shop-products">
                             <div class="row">
                                 {% for product in products %}
@@ -37,31 +39,49 @@
                                             <div class="product-inner">
                                                 <figure class="product-image">
                                                     <a href="{% url 'product_detail' product.id %}">
-                                                        {% if product.cover %}
-                                                            <img src="{{ product.cover.url }}"
-                                                                 alt="{{ product.title }}">
-                                                        {% else %}
-                                                            <img src="{% static 'assets/img/products/default.jpg' %}"
-                                                                 alt="{{ product.title }}">
-                                                        {% endif %}
+                                                        <img src="{{ product.cover.url }}" alt="{{ product.title }}">
                                                     </a>
                                                     <div class="zakas-product-action">
                                                         <div class="product-action d-flex">
-                                                            <a data-bs-toggle="modal" data-bs-target="#productModal"
+                                                            <div class="product-size">
+                                                                <a href="" class="action-btn">
+                                                                    <span class="current">XL</span>
+                                                                </a>
+                                                                <div class="product-size-swatch">
+                                                                    <span class="product-size-swatch-btn variation-btn">L</span>
+                                                                    <span class="product-size-swatch-btn variation-btn">M</span>
+                                                                    <span class="product-size-swatch-btn variation-btn">S</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-color">
+                                                                <a href="" class="action-btn">
+                                                                    <span class="current abbey">Abbey</span>
+                                                                </a>
+                                                                <div class="product-color-swatch">
+                                                                    <span class="product-color-swatch-btn blue variation-btn">Blue</span>
+                                                                    <span class="product-color-swatch-btn copper variation-btn">Copper</span>
+                                                                    <span class="product-color-swatch-btn old-rose variation-btn">Old Rose</span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Eye Button -->
+                                                            <a data-bs-toggle="modal"
+                                                               data-bs-target="#productModal-{{ product.id }}"
                                                                class="action-btn quick-view">
                                                                 <i class="flaticon flaticon-eye"></i>
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    <span class="product-badge">New</span>
                                                 </figure>
                                                 <div class="product-info">
-                                                    <h1 class="product-title mb--15">
+                                                    <h3 class="product-title mb--15">
                                                         <a href="{% url 'product_detail' product.id %}">{{ product.title }}</a>
-                                                    </h1>
+                                                    </h3>
                                                     <div class="product-price-wrapper mb--30">
-                                                        <span class="money">{{ product.price|intcomma }} {% trans 'Toman' %}</span>
+                                                        <span class="money">{{ product.price|intcomma }}</span>
+                                                        <span class="title">{% trans 'Toman' %}</span>
                                                     </div>
+                                                    <a href="{% url 'product_detail' product.id %}"
+                                                       class="btn btn-small btn-bg-sand btn-color-dark">{% trans 'Watch' %}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,22 +89,135 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <nav class="pagination-wrap">
-                            <ul class="pagination">
-                                <li><a href="#" class="prev page-number"><i class="fa fa-angle-double-left"></i></a>
-                                </li>
-                                <li><span class="current page-number">1</span></li>
-                                <li><a href="#" class="page-number">2</a></li>
-                                <li><a href="#" class="page-number">3</a></li>
-                                <li><a href="#" class="next page-number"><i class="fa fa-angle-double-right"></i></a>
-                                </li>
-                            </ul>
-                        </nav>
+
+                        {% if is_paginated %}
+                            <nav class="pagination-wrap">
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a href="?page={{ page_obj.previous_page_number }}"
+                                               class="prev page-number">
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <span class="prev page-number"><i
+                                                    class="fa fa-angle-double-right"></i></span>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for num in paginator.page_range %}
+                                        {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                                            {% if num == page_obj.number %}
+                                                <li class="page-item active">
+                                                    <span class="current page-number">{{ num }}</span>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item">
+                                                    <a href="?page={{ num }}" class="page-number">{{ num }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item">
+                                            <a href="?page={{ page_obj.next_page_number }}" class="next page-number">
+                                                <i class="fa fa-angle-double-left"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <span class="next page-number"><i
+                                                    class="fa fa-angle-double-left"></i></span>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Main Content Wrapper Start -->
+    <!-- Main Content Wrapper End -->
+
+    <!-- Qicuk View Modal Start -->
+    {% for product in products %}
+        <div class="modal fade product-modal" id="productModal-{{ product.id }}" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="flaticon flaticon-cross"></i></span>
+                        </button>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="zakas-element-carousel nav-vertical-center"
+                                     data-slick-options='{
+                                "slidesToShow": 1,
+                                "slidesToScroll": 1,
+                                "arrows": true,
+                                "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-double-left" },
+                                "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-double-right" }
+                            }'>
+                                    <div class="product-image">
+                                        <div class="product-image--holder">
+                                            <a href="{% url 'product_detail' product.id %}">
+                                                <img src="{{ product.cover.url }}" alt="{{ product.title }}"
+                                                     class="primary-image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% if product.image1 %}
+                                        <div class="product-image">
+                                            <div class="product-image--holder">
+                                                <a href="{% url 'product_detail' product.id %}">
+                                                    <img src="{{ product.image1.url }}" alt="{{ product.title }}"
+                                                         class="primary-image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="modal-box product-summary" style="direction: rtl">
+                                    <h3 class="product-title mb--20" style="text-align: center">{{ product.title }}</h3>
+                                    <p class="product-short-description mb--25">{{ product.description }}</p>
+                                    <div class="product-price-wrapper mb--25">
+                                    <span class="money">{% trans 'Price' %} :
+                                        <span class="money">{{ product.price|intcomma }}</span> {% trans 'Toman' %}
+                                    </span>
+                                    </div>
+                                    <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30"
+                                         style="direction: ltr; float: left">
+                                        <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
+                                            <label class="quantity-label" for="qty">{% trans 'Quantity' %} : </label>
+                                            <div class="quantity">
+                                                <input type="number" class="quantity-input" name="qty" id="qty"
+                                                       value="1" min="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
+                                            onclick="window.location.href='cart.html'">
+                                        {% trans 'Add To Cart' %}
+                                    </button>
+                                </div>
+                                <hr>
+                                <a href="{% url 'product_detail' product.id %}"
+                                   class="btn btn-small btn-bg-sand btn-color-dark">{% trans 'More' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <!-- Qicuk View Modal End -->
+
 
 {% endblock content %}
