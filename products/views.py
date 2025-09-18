@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
 from .models import Product
+from cart.forms import AddToCartProductForm
 
 
 class ProductListView(ListView):
@@ -33,6 +34,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object
+        context['add_to_cart_form'] = AddToCartProductForm
 
         # محصولات مشابه بر اساس کلمات کلیدی مشترک
         similar_products = Product.objects.filter(

@@ -2,7 +2,6 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% load humanize %}
 {% load i18n %}
 
 {% block page_title %}{% trans 'Products' %}{% endblock page_title %}
@@ -88,120 +87,131 @@
                             <p class="product-short-description mb--20">{{ product.description }}</p>
                             <div class="product-price-wrapper mb--25">
                                 <span class="variation-label">{% trans 'Price' %} :
-                                    <span class="money">{{ product.price|intcomma }} </span> {% trans 'Toman' %}</span>
+                                    <span class="money">{{ product.price }} </span> {% trans 'Toman' %}</span>
                             </div>
                             <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30"
                                  style="direction: ltr; float: left">
-                                <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
-                                    <label class="quantity-label" for="qty">{% trans 'Quantity' %} : </label>
-                                    <div class="quantity">
-                                        <input type="number" class="quantity-input" name="qty" id="qty" value="1"
-                                               min="1">
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
-                                    onclick="window.location.href='cart.html'">
-                                {% trans 'Add To Cart' %}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center mb--80" style="direction: rtl">
-                    <div class="col-12">
-                        <div class="product-data-tab tab-style-3">
-                            <div class="nav nav-tabs product-data-tab__head mb--35 mb-sm--25" id="product-tab"
-                                 role="tablist">
-                                <button type="button" class="product-data-tab__link nav-link active"
-                                        id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description"
-                                        role="tab" aria-selected="true">
-                                    <span>{% trans 'Description' %}</span>
-                                </button>
-                                <button type="button" class="product-data-tab__link nav-link" id="nav-info-tab"
-                                        data-bs-toggle="tab" data-bs-target="#nav-info" role="tab" aria-selected="true">
-                                    <span>{% trans 'Additional Information' %}</span>
-                                </button>
-                            </div>
-                            <div class="tab-content product-data-tab__content" id="product-tabContent">
-                                <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
-                                     aria-labelledby="nav-description-tab">
-                                    <div class="product-description">
-                                        <p style="font-size: x-large">{{ product.description }}</p>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                                    <div class="table-content table-responsive">
-                                        <table class="table shop_attributes">
-                                            <tbody>
-                                            <tr>
-                                                <th>Weight</th>
-                                                <td>57 kg</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Dimensions</th>
-                                                <td>160 × 152 × 110 cm</td>
-                                            </tr>
-                                            <tr>
-                                                <th>{% trans 'Colors' %}</th>
-                                                <td>
-                                                    <a href="shop.html">Black</a>,
-                                                    <a href="shop.html">Gray</a>,
-                                                    <a href="shop.html">Red</a>,
-                                                    <a href="shop.html">Violet</a>,
-                                                    <a href="shop.html">Yellow</a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                                    {% csrf_token %}
+                                    {{ add_to_cart_form|crispy }}
+                                    <button type="submit" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
+                                        {% trans 'Add To Cart' %}
+                                    </button>
+                                </form>
+
+                                {#                                <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">#}
+                                {#                                    <label class="quantity-label" for="qty">{% trans 'Quantity' %} : </label>#}
+                                {#                                    <div class="quantity">#}
+                                {#                                        <input type="number" class="quantity-input" name="qty" id="qty" value="1"#}
+                                {#                                               min="1">#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                {#                            </div>#}
+                                {#                            <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"#}
+                                {#                                    onclick="window.location.href='cart.html'">#}
+                                {#                                {% trans 'Add To Cart' %}#}
+                                {#                            </button>#}
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                <!-- Similar Products Section Start -->
-                <div class="row" style="direction: rtl">
-                    <div class="col-12">
-                        {% if similar_products %}
-                            {% if product.keywords.all %}
-                                <h3 class="mb--30">{% trans 'Similar Products' %}</h3>
-                            {% else %}
-                                <h3 class="mb--30">{% trans 'Other Products' %}</h3>
-                            {% endif %}
-                            <div class="row">
-                                {% for p in similar_products %}
-                                    <div class="col-xl-3 col-lg-4 col-sm-6 mb--30">
-                                        <div class="zakas-product">
-                                            <div class="product-inner">
-                                                <figure class="product-image">
-                                                    <a href="{% url 'product_detail' p.id %}">
-                                                        {% if p.cover %}
-                                                            <img src="{{ p.cover.url }}" alt="{{ p.title }}">
-                                                        {% else %}
-                                                            <img src="{% static 'img/products/default.jpg' %}"
-                                                                 alt="{{ p.title }}">
-                                                        {% endif %}
-                                                    </a>
-                                                </figure>
-                                                <div class="product-info">
-                                                    <h3 class="product-title">
-                                                        <a href="{% url 'product_detail' p.id %}">{{ p.title }}</a>
-                                                    </h3>
-                                                    <div class="product-price-wrapper">
-                                                        <span class="money">{{ p.price|intcomma }}</span>
-                                                        <span class="title">{% trans 'Toman' %}</span>
+                    <div class="row justify-content-center mb--80" style="direction: rtl">
+                        <div class="col-12">
+                            <div class="product-data-tab tab-style-3">
+                                <div class="nav nav-tabs product-data-tab__head mb--35 mb-sm--25" id="product-tab"
+                                     role="tablist">
+                                    <button type="button" class="product-data-tab__link nav-link active"
+                                            id="nav-description-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-description"
+                                            role="tab" aria-selected="true">
+                                        <span>{% trans 'Description' %}</span>
+                                    </button>
+                                    <button type="button" class="product-data-tab__link nav-link" id="nav-info-tab"
+                                            data-bs-toggle="tab" data-bs-target="#nav-info" role="tab"
+                                            aria-selected="true">
+                                        <span>{% trans 'Additional Information' %}</span>
+                                    </button>
+                                </div>
+                                <div class="tab-content product-data-tab__content" id="product-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
+                                         aria-labelledby="nav-description-tab">
+                                        <div class="product-description">
+                                            <p style="font-size: x-large">{{ product.description }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+                                        <div class="table-content table-responsive">
+                                            <table class="table shop_attributes">
+                                                <tbody>
+                                                <tr>
+                                                    <th>Weight</th>
+                                                    <td>57 kg</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Dimensions</th>
+                                                    <td>160 × 152 × 110 cm</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>{% trans 'Colors' %}</th>
+                                                    <td>
+                                                        <a href="shop.html">Black</a>,
+                                                        <a href="shop.html">Gray</a>,
+                                                        <a href="shop.html">Red</a>,
+                                                        <a href="shop.html">Violet</a>,
+                                                        <a href="shop.html">Yellow</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Similar Products Section Start -->
+                    <div class="row" style="direction: rtl">
+                        <div class="col-12">
+                            {% if similar_products %}
+                                {% if product.keywords.all %}
+                                    <h3 class="mb--30">{% trans 'Similar Products' %}</h3>
+                                {% else %}
+                                    <h3 class="mb--30">{% trans 'Other Products' %}</h3>
+                                {% endif %}
+                                <div class="row">
+                                    {% for p in similar_products %}
+                                        <div class="col-xl-3 col-lg-4 col-sm-6 mb--30">
+                                            <div class="zakas-product">
+                                                <div class="product-inner">
+                                                    <figure class="product-image">
+                                                        <a href="{% url 'products:product_detail' p.id %}">
+                                                            {% if p.cover %}
+                                                                <img src="{{ p.cover.url }}" alt="{{ p.title }}">
+                                                            {% else %}
+                                                                <img src="{% static 'img/products/default.jpg' %}"
+                                                                     alt="{{ p.title }}">
+                                                            {% endif %}
+                                                        </a>
+                                                    </figure>
+                                                    <div class="product-info">
+                                                        <h3 class="product-title">
+                                                            <a href="{% url 'products:product_detail' p.id %}">{{ p.title }}</a>
+                                                        </h3>
+                                                        <div class="product-price-wrapper">
+                                                            <span class="money">{{ p.price }}</span>
+                                                            <span class="title">{% trans 'Toman' %}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
+                    <!-- Similar Products Section End -->
                 </div>
-                <!-- Similar Products Section End -->
             </div>
         </div>
     </div>

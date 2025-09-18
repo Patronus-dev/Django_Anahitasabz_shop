@@ -1,13 +1,12 @@
 from products.models import Product
 
+
 class Cart:
-    def __int__(self, request):
+    def __init__(self, request):
         # initialize the cart
         self.request = request
-
         self.session = request.session
-
-        cart = self.session.get('cat')
+        cart = self.session.get('cart')
 
         if not cart:
             cart = self.session['cart'] = {}

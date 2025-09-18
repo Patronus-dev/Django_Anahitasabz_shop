@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-18 18:37+0330\n"
+"PO-Revision-Date: 2025-09-18 18:37+0330\n"
+"Last-Translator:   <mehdii.dev@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.2\n"
+
+#: .\templates\cart\cart_detail.html:8 .\templates\cart\cart_detail.html:18
+msgid "Cart"
+msgstr "سبد خرید"
+
+#: .\templates\cart\cart_detail.html:41
+msgid "Product"
+msgstr "محصول"
+
+#: .\templates\cart\cart_detail.html:42
+msgid "price"
+msgstr "بها"
+
+#: .\templates\cart\cart_detail.html:43
+msgid "quantity"
+msgstr "تعداد"
+
+#: .\templates\cart\cart_detail.html:44
+msgid "total"
+msgstr "مجموع"
+
+#: .\templates\cart\cart_detail.html:63 .\templates\cart\cart_detail.html:75
+msgid "Toman"
+msgstr "تومان"
+
+#: .\templates\cart\cart_detail.html:90
+msgid "discount Code"
+msgstr "کد تخفیف"
+
+#: .\templates\cart\cart_detail.html:91
+msgid "Apply discount code"
+msgstr "اعمال کد تخفیف"
+
+#: .\templates\cart\cart_detail.html:95
+msgid "Clear Cart"
+msgstr "پاکسازی سبد خرید"
+
+#: .\templates\cart\cart_detail.html:96
+msgid "Update Cart"
+msgstr "بروزرسانی سبد خرید"
+
+#: .\templates\cart\cart_detail.html:104
+msgid "Cart totals"
+msgstr "مجموع سبد خرید"
+
+#: .\templates\cart\cart_detail.html:108
+msgid "Product prices"
+msgstr "بهای محصولات"
+
+#: .\templates\cart\cart_detail.html:116
+msgid "Shipping"
+msgstr "هزینه ارسال"
+
+#: .\templates\cart\cart_detail.html:121
+msgid "Total"
+msgstr "مجموع"
+
+#: .\templates\cart\cart_detail.html:132
+msgid "Proceed To Checkout"
+msgstr "ادامه جهت پرداخت"
