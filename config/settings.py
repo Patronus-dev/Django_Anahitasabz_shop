@@ -48,10 +48,10 @@ INSTALLED_APPS = [
     'treebeard',
 
     # my apps
-    'pages',
-    'blog',
-    'products',
-
+    'pages.apps.PagesConfig',
+    'blog.apps.BlogConfig',
+    'products.apps.ProductsConfig',
+    'cart.apps.CartConfig',
 
 ]
 

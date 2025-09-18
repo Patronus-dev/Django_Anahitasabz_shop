@@ -14,7 +14,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
     price = models.PositiveIntegerField(default=0, verbose_name=_("Price"))
     active = models.BooleanField(default=True, verbose_name=_("Active"))
-    keywords = models.ManyToManyField(Keyword, blank=True, verbose_name=_("Keywords"))
+    keywords = models.ManyToManyField(Keyword, blank=True, related_name="products", verbose_name=_("Keywords"))
 
     cover = models.ImageField(upload_to="products/", blank=True, null=True, verbose_name=_("Cover Image"))
     image1 = models.ImageField(upload_to="products/gallery/", blank=True, null=True, verbose_name=_("Image 1"))

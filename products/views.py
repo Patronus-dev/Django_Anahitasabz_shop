@@ -34,15 +34,18 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         product = self.object
 
-        # محصولات مشابه بر اساس کلیدواژه‌ها
+        # محصولات مشابه بر اساس کلمات کلیدی مشترک
         similar_products = Product.objects.filter(
+            active=True,
             keywords__in=product.keywords.all()
         ).exclude(pk=product.pk).distinct()[:4]
 
-        # اگر محصول مشابه وجود نداشت، آخرین محصولات فعال به غیر از محصول جاری
-        if not similar_products.exists():
-            similar_products = Product.objects.filter(active=True).exclude(pk=product.pk).order_by('-datetime_created')[
-                               :4]
+        if similar_products.exists():
+            context['similar_products'] = similar_products
+        else:
+            # اگر مشابه پیدا نشد، آخرین 4 محصول به غیر از محصول جاری
+            context['similar_products'] = Product.objects.filter(active=True).exclude(pk=product.pk).order_by(
+                '-datetime_created')[:4]
 
-        context['similar_products'] = similar_products
         return context
+

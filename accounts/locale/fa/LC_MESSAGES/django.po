@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-12 13:09+0330\n"
-"PO-Revision-Date: 2025-09-12 13:10+0330\n"
+"POT-Creation-Date: 2025-09-16 00:55+0330\n"
+"PO-Revision-Date: 2025-09-16 00:56+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\forms.py:34 .\models.py:12
+#: .\forms.py:36 .\models.py:12
 msgid "Phone Number"
 msgstr "شماره تماس"
 
-#: .\forms.py:34 .\models.py:12
+#: .\forms.py:36 .\models.py:12
 msgid "Enter your phone number."
 msgstr "شماره تماس خود را وارد کنید."
 
-#: .\forms.py:38
+#: .\forms.py:40
 msgid "OTP code"
 msgstr "کد یکبار مصرف"
 
@@ -78,6 +78,19 @@ msgstr "لطفا اطلاعات حساب کاربری خود را تکمیل ک�
 msgid "Save and continue"
 msgstr "ذخیره و ادامه"
 
+#: .\templates\accounts\edit_profile.html:6
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+#: .\templates\accounts\edit_profile.html:15
+#| msgid "Edit Profile"
+msgid "Edit Your Profile"
+msgstr "پروفایل خود را ویرایش کنید"
+
+#: .\templates\accounts\edit_profile.html:20
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
 #: .\templates\accounts\logout.html:7
 msgid "Logout Confirmation"
 msgstr "تأیید خروج"
@@ -86,16 +99,12 @@ msgstr "تأیید خروج"
 msgid "Are you sure you want to logout?"
 msgstr "آیا مطمئن هستید که می‌خواهید از پروفایل خود خارج شوید؟"
 
-#: .\templates\accounts\logout.html:33
-msgid "Click the button below to confirm logout."
-msgstr "برای تایید خروج روی دکمه زیر کلیک کنید."
-
-#: .\templates\accounts\logout.html:37
+#: .\templates\accounts\logout.html:36
 #: .\templates\accounts\user_profile.html:42
 msgid "Logout"
 msgstr "خروج از حساب کاربری"
 
-#: .\templates\accounts\logout.html:42
+#: .\templates\accounts\logout.html:41
 msgid "Cancel"
 msgstr "لغو"
 
@@ -175,6 +184,9 @@ msgstr "کد ارسالی منقضی شده است. لطفا یک کد جدید 
 msgid "Send again"
 msgstr "ارسال مجدد"
 
+#~ msgid "Click the button below to confirm logout."
+#~ msgstr "برای تایید خروج روی دکمه زیر کلیک کنید."
+
 #~ msgid "Enter your name."
 #~ msgstr "نام خود را وارد کنید."
 
@@ -204,9 +216,6 @@ msgstr "ارسال مجدد"
 
 #~ msgid "My Reviews"
 #~ msgstr "نظرات من"
-
-#~ msgid "Edit Profile"
-#~ msgstr "ویرایش پروفایل"
 
 #~ msgid "Profile details"
 #~ msgstr "مشخصات پروفایل"

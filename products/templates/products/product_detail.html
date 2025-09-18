@@ -84,6 +84,7 @@
                     <div class="col-xl-4 offset-xl-1 col-lg-5 product-main-details mt-md--40" id="sticky-sidebar">
                         <div class="product-summary pl-lg--30 pl-md--0" style="direction: rtl">
                             <h3 class="product-title mb--20">{{ product.title }}</h3>
+
                             <p class="product-short-description mb--20">{{ product.description }}</p>
                             <div class="product-price-wrapper mb--25">
                                 <span class="variation-label">{% trans 'Price' %} :
@@ -158,45 +159,46 @@
                         </div>
                     </div>
                 </div>
+                <hr>
                 <!-- Similar Products Section Start -->
-                <div class="row">
+                <div class="row" style="direction: rtl">
                     <div class="col-12">
-                        <h3 class="mb--30">{% trans 'Similar Products' %}</h3>
-                        <div class="row">
-                            {% for product in similar_products %}
-                                <div class="col-xl-3 col-lg-4 col-sm-6 mb--50">
-                                    <div class="zakas-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image">
-                                                <a href="{% url 'product_detail' product.id %}">
-                                                    {% if product.cover %}
-                                                        <img src="{{ product.cover.url }}" alt="{{ product.title }}">
-                                                    {% else %}
-                                                        <img src="{% static 'img/products/default.jpg' %}"
-                                                             alt="{{ product.title }}">
-                                                    {% endif %}
-                                                </a>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title mb--15">
-                                                    <a href="{% url 'product_detail' product.id %}">{{ product.title }}</a>
-                                                </h3>
-                                                <div class="product-price-wrapper mb--20">
-                                                    <span class="money">{{ product.price|intcomma }}</span>
-                                                    <span class="title">{% trans 'Toman' %}</span>
+                        {% if similar_products %}
+                            {% if product.keywords.all %}
+                                <h3 class="mb--30">{% trans 'Similar Products' %}</h3>
+                            {% else %}
+                                <h3 class="mb--30">{% trans 'Other Products' %}</h3>
+                            {% endif %}
+                            <div class="row">
+                                {% for p in similar_products %}
+                                    <div class="col-xl-3 col-lg-4 col-sm-6 mb--30">
+                                        <div class="zakas-product">
+                                            <div class="product-inner">
+                                                <figure class="product-image">
+                                                    <a href="{% url 'product_detail' p.id %}">
+                                                        {% if p.cover %}
+                                                            <img src="{{ p.cover.url }}" alt="{{ p.title }}">
+                                                        {% else %}
+                                                            <img src="{% static 'img/products/default.jpg' %}"
+                                                                 alt="{{ p.title }}">
+                                                        {% endif %}
+                                                    </a>
+                                                </figure>
+                                                <div class="product-info">
+                                                    <h3 class="product-title">
+                                                        <a href="{% url 'product_detail' p.id %}">{{ p.title }}</a>
+                                                    </h3>
+                                                    <div class="product-price-wrapper">
+                                                        <span class="money">{{ p.price|intcomma }}</span>
+                                                        <span class="title">{% trans 'Toman' %}</span>
+                                                    </div>
                                                 </div>
-                                                <a href="{% url 'product_detail' product.id %}"
-                                                   class="btn btn-small btn-bg-sand btn-color-dark">
-                                                    {% trans 'View Product' %}
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% empty %}
-                                <p>{% trans "No similar products found." %}</p>
-                            {% endfor %}
-                        </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- Similar Products Section End -->
