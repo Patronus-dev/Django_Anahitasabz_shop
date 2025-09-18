@@ -20,6 +20,7 @@ class ProductListView(ListView):
         start = max(page_obj.number - 2, 1)
         end = min(page_obj.number + 2, paginator.num_pages)
         context['page_range_limited'] = range(start, end + 1)
+
         return context
 
 
@@ -34,20 +35,8 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object
-        context['add_to_cart_form'] = AddToCartProductForm
 
-        # محصولات مشابه بر اساس کلمات کلیدی مشترک
-        similar_products = Product.objects.filter(
-            active=True,
-            keywords__in=product.keywords.all()
-        ).exclude(pk=product.pk).distinct()[:4]
-
-        if similar_products.exists():
-            context['similar_products'] = similar_products
-        else:
-            # اگر مشابه پیدا نشد، آخرین 4 محصول به غیر از محصول جاری
-            context['similar_products'] = Product.objects.filter(active=True).exclude(pk=product.pk).order_by(
-                '-datetime_created')[:4]
+        # فقط فرم اضافه به سبد خرید برای محصول جاری
+        context['add_to_cart_form'] = AddToCartProductForm(product=product)
 
         return context
-

@@ -85,32 +85,51 @@
                             <h3 class="product-title mb--20">{{ product.title }}</h3>
 
                             <p class="product-short-description mb--20">{{ product.description }}</p>
-                            <div class="product-price-wrapper mb--25">
+                            {% if product.quantity > 0 %}
+                                <div class="product-price-wrapper mb--25">
                                 <span class="variation-label">{% trans 'Price' %} :
                                     <span class="money">{{ product.price }} </span> {% trans 'Toman' %}</span>
-                            </div>
-                            <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30"
-                                 style="direction: ltr; float: left">
+                                </div>
+                                <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30"
+                                     style="direction: rtl; font-size: large">
                                 <form action="{% url 'cart:cart_add' product.id %}" method="POST">
                                     {% csrf_token %}
                                     {{ add_to_cart_form|crispy }}
-                                    <button type="submit" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
+                                    <br>
+                                    <button type="submit"
+                                            class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
                                         {% trans 'Add To Cart' %}
                                     </button>
                                 </form>
+                            {% else %}
+                                <p class="product-short-description mb--20" style="font-size: x-large; color: red">
+                                    {% trans 'The product is not available. To order, please refer to the page below.' %}</p>
+                                <a href="#">
+                                    <button type="button"
+                                            class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
+                                        {% trans 'Order this Product' %}
+                                    </button>
+                                </a>
+                                <a href="{% url 'products:product_list' %}">
+                                    <button type="button"
+                                            class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
+                                        {% trans 'Other Products' %}
+                                    </button>
+                                </a>
+                            {% endif %}
 
-                                {#                                <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">#}
-                                {#                                    <label class="quantity-label" for="qty">{% trans 'Quantity' %} : </label>#}
-                                {#                                    <div class="quantity">#}
-                                {#                                        <input type="number" class="quantity-input" name="qty" id="qty" value="1"#}
-                                {#                                               min="1">#}
-                                {#                                    </div>#}
-                                {#                                </div>#}
-                                {#                            </div>#}
-                                {#                            <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"#}
-                                {#                                    onclick="window.location.href='cart.html'">#}
-                                {#                                {% trans 'Add To Cart' %}#}
-                                {#                            </button>#}
+                            {#                                <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">#}
+                            {#                                    <label class="quantity-label" for="qty">{% trans 'Quantity' %} : </label>#}
+                            {#                                    <div class="quantity">#}
+                            {#                                        <input type="number" class="quantity-input" name="qty" id="qty" value="1"#}
+                            {#                                               min="1">#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                            <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"#}
+                            {#                                    onclick="window.location.href='cart.html'">#}
+                            {#                                {% trans 'Add To Cart' %}#}
+                            {#                            </button>#}
                             </div>
                         </div>
                     </div>

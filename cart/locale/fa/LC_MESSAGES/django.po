@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-18 18:37+0330\n"
-"PO-Revision-Date: 2025-09-18 18:37+0330\n"
+"POT-Creation-Date: 2025-09-18 23:58+0330\n"
+"PO-Revision-Date: 2025-09-18 23:52+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,62 +18,69 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
+#: .\forms.py:8
+msgid "Quantity  "
+msgstr "تعداد    "
+
 #: .\templates\cart\cart_detail.html:8 .\templates\cart\cart_detail.html:18
 msgid "Cart"
 msgstr "سبد خرید"
+
+#: .\templates\cart\cart_detail.html:40
+msgid "Image"
+msgstr "عکس"
 
 #: .\templates\cart\cart_detail.html:41
 msgid "Product"
 msgstr "محصول"
 
 #: .\templates\cart\cart_detail.html:42
-msgid "price"
+msgid "Price"
 msgstr "بها"
 
 #: .\templates\cart\cart_detail.html:43
-msgid "quantity"
+msgid "Quantity"
 msgstr "تعداد"
 
-#: .\templates\cart\cart_detail.html:44
-msgid "total"
-msgstr "مجموع"
-
-#: .\templates\cart\cart_detail.html:63 .\templates\cart\cart_detail.html:75
-msgid "Toman"
-msgstr "تومان"
-
-#: .\templates\cart\cart_detail.html:90
-msgid "discount Code"
-msgstr "کد تخفیف"
-
-#: .\templates\cart\cart_detail.html:91
-msgid "Apply discount code"
-msgstr "اعمال کد تخفیف"
-
-#: .\templates\cart\cart_detail.html:95
-msgid "Clear Cart"
-msgstr "پاکسازی سبد خرید"
-
-#: .\templates\cart\cart_detail.html:96
-msgid "Update Cart"
-msgstr "بروزرسانی سبد خرید"
-
-#: .\templates\cart\cart_detail.html:104
-msgid "Cart totals"
-msgstr "مجموع سبد خرید"
-
-#: .\templates\cart\cart_detail.html:108
-msgid "Product prices"
-msgstr "بهای محصولات"
-
-#: .\templates\cart\cart_detail.html:116
-msgid "Shipping"
-msgstr "هزینه ارسال"
-
-#: .\templates\cart\cart_detail.html:121
+#: .\templates\cart\cart_detail.html:44 .\templates\cart\cart_detail.html:142
 msgid "Total"
 msgstr "مجموع"
 
-#: .\templates\cart\cart_detail.html:132
+#: .\templates\cart\cart_detail.html:76 .\templates\cart\cart_detail.html:91
+msgid "Toman"
+msgstr "تومان"
+
+#: .\templates\cart\cart_detail.html:106
+msgid "discount Code"
+msgstr "کد تخفیف"
+
+#: .\templates\cart\cart_detail.html:108
+msgid "Apply discount code"
+msgstr "اعمال کد تخفیف"
+
+#: .\templates\cart\cart_detail.html:112
+msgid "Clear Cart"
+msgstr "پاکسازی سبد خرید"
+
+#: .\templates\cart\cart_detail.html:115
+msgid "Update Cart"
+msgstr "بروزرسانی سبد خرید"
+
+#: .\templates\cart\cart_detail.html:125
+msgid "Cart totals"
+msgstr "مجموع سبد خرید"
+
+#: .\templates\cart\cart_detail.html:129
+msgid "Product prices"
+msgstr "بهای محصولات"
+
+#: .\templates\cart\cart_detail.html:137
+msgid "Shipping"
+msgstr "هزینه ارسال"
+
+#: .\templates\cart\cart_detail.html:153
 msgid "Proceed To Checkout"
 msgstr "ادامه جهت پرداخت"
+
+#~ msgid "total"
+#~ msgstr "مجموع"

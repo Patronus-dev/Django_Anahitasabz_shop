@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-16 01:17+0330\n"
-"PO-Revision-Date: 2025-09-16 01:18+0330\n"
+"POT-Creation-Date: 2025-09-19 00:19+0330\n"
+"PO-Revision-Date: 2025-09-19 00:20+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,12 +26,11 @@ msgstr "کلمه کلیدی"
 msgid "Product Name"
 msgstr "نام محصول"
 
-#: .\models.py:14 .\templates\products\product_detail.html:117
+#: .\models.py:14 .\templates\products\product_detail.html:145
 msgid "Description"
 msgstr "توضیحات"
 
-#: .\models.py:15 .\templates\products\product_detail.html:89
-#: .\templates\products\product_list.html:191
+#: .\models.py:15 .\templates\products\product_detail.html:90
 msgid "Price"
 msgstr "بها"
 
@@ -43,76 +42,94 @@ msgstr "موجود"
 msgid "Keywords"
 msgstr "کلمات کلیدی"
 
-#: .\models.py:19
-msgid "Cover Image"
-msgstr "عکس اصلی"
-
-#: .\models.py:20
-msgid "Image 1"
-msgstr "عکس ۱"
-
-#: .\models.py:21
-msgid "Image 2"
-msgstr "عکس ۲"
-
-#: .\models.py:22
-msgid "Image 3"
-msgstr "عکس ۳"
-
-#: .\models.py:28
-msgid "Product"
-msgstr "محصول"
-
-#: .\models.py:29 .\templates\products\product_detail.html:8
-#: .\templates\products\product_list.html:8
-msgid "Products"
-msgstr "محصولات"
-
-#: .\templates\products\product_detail.html:18
-#: .\templates\products\product_list.html:18
-msgid "Shop"
-msgstr "محصولات"
-
-#: .\templates\products\product_detail.html:90
-#: .\templates\products\product_detail.html:192
-#: .\templates\products\product_list.html:81
-#: .\templates\products\product_list.html:192
-msgid "Toman"
-msgstr "تومان"
-
-#: .\templates\products\product_detail.html:95
-#: .\templates\products\product_list.html:198
+#: .\models.py:18
 msgid "Quantity"
 msgstr "تعداد"
 
-#: .\templates\products\product_detail.html:104
-#: .\templates\products\product_list.html:207
+#: .\models.py:20
+msgid "Cover Image"
+msgstr "عکس اصلی"
+
+#: .\models.py:21
+msgid "Image 1"
+msgstr "عکس ۱"
+
+#: .\models.py:22
+msgid "Image 2"
+msgstr "عکس ۲"
+
+#: .\models.py:23
+msgid "Image 3"
+msgstr "عکس ۳"
+
+#: .\models.py:29
+msgid "Product"
+msgstr "محصول"
+
+#: .\models.py:30 .\templates\products\product_detail.html:7
+#: .\templates\products\product_list.html:7
+msgid "Products"
+msgstr "محصولات"
+
+#: .\templates\products\product_detail.html:17
+#: .\templates\products\product_list.html:17
+msgid "Shop"
+msgstr "محصولات"
+
+#: .\templates\products\product_detail.html:91
+#: .\templates\products\product_detail.html:221
+#: .\templates\products\product_list.html:81
+msgid "Toman"
+msgstr "تومان"
+
+#: .\templates\products\product_detail.html:101
 msgid "Add To Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\products\product_detail.html:121
+#: .\templates\products\product_detail.html:106
+msgid ""
+"The product is not available. To order, please refer to the page below."
+msgstr "محصول موجود نمی باشد. جهت سفارش به صفحه زیر مراجعه فرمایید."
+
+#: .\templates\products\product_detail.html:110
+msgid "Order this Product"
+msgstr "سفارش این محصول"
+
+#: .\templates\products\product_detail.html:116
+#: .\templates\products\product_detail.html:198
+msgid "Other Products"
+msgstr "محصولات دیگر"
+
+#: .\templates\products\product_detail.html:150
 msgid "Additional Information"
 msgstr "اطلاعات تکمیلی"
 
-#: .\templates\products\product_detail.html:144
+#: .\templates\products\product_detail.html:173
 msgid "Colors"
 msgstr "رنگ بندی"
 
-#: .\templates\products\product_detail.html:167
+#: .\templates\products\product_detail.html:196
 msgid "Similar Products"
 msgstr "محصولات مشابه"
-
-#: .\templates\products\product_detail.html:169
-msgid "Other Products"
-msgstr "محصولات دیگر"
 
 #: .\templates\products\product_list.html:84
 msgid "Watch"
 msgstr "مشاهده"
 
-#: .\templates\products\product_list.html:212
-msgid "More"
-msgstr "بیشتر"
+#: .\templates\products\product_list.html:88
+msgid "The product is not available."
+msgstr "محصول موجود نمی باشد."
+
+#: .\templates\products\product_list.html:91
+msgid "Watch and Order"
+msgstr "مشاهده و سفارش"
+
+#, fuzzy
+#~ msgid "Oder Products"
+#~ msgstr "سفارش محصول"
+
+#~ msgid "More"
+#~ msgstr "بیشتر"
 
 #~ msgid "View Product"
 #~ msgstr "مشاهده محصول"

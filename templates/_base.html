@@ -1,6 +1,8 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -428,81 +430,6 @@
     <div class="zakas-global-overlay"></div>
     <!-- Global Overlay End -->
 
-    <!-- Qicuk View Modal Start -->
-    {% for product in products %}
-        <div class="modal fade product-modal" id="productModal-{{ product.id }}" tabindex="-1" role="dialog"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="flaticon flaticon-cross"></i></span>
-                        </button>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="zakas-element-carousel nav-vertical-center"
-                                     data-slick-options='{
-                                "slidesToShow": 1,
-                                "slidesToScroll": 1,
-                                "arrows": true,
-                                "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-double-left" },
-                                "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-double-right" }
-                            }'>
-                                    <div class="product-image">
-                                        <div class="product-image--holder">
-                                            <a href="{% url 'products:product_detail' product.id %}">
-                                                <img src="{{ product.cover.url }}" alt="{{ product.title }}"
-                                                     class="primary-image">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {% if product.image1 %}
-                                        <div class="product-image">
-                                            <div class="product-image--holder">
-                                                <a href="{% url 'products:product_detail' product.id %}">
-                                                    <img src="{{ product.image1.url }}" alt="{{ product.title }}"
-                                                         class="primary-image">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="modal-box product-summary" style="direction: rtl">
-                                    <h3 class="product-title mb--20" style="text-align: center">{{ product.title }}</h3>
-                                    <p class="product-short-description mb--25">{{ product.description }}</p>
-                                    <div class="product-price-wrapper mb--25">
-                                    <span class="money">{% trans 'Price' %} :
-                                        <span class="money">{{ product.price|intcomma }}</span> {% trans 'Toman' %}
-                                    </span>
-                                    </div>
-                                    <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30"
-                                         style="direction: ltr; float: left">
-                                        <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
-                                            <label class="quantity-label" for="qty">{% trans 'Quantity' %} : </label>
-                                            <div class="quantity">
-                                                <input type="number" class="quantity-input" name="qty" id="qty"
-                                                       value="1" min="1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
-                                            onclick="window.location.href='cart.html'">
-                                        {% trans 'Add To Cart' %}
-                                    </button>
-                                </div>
-                                <hr>
-                                <a href="{% url 'products:product_detail' product.id %}"
-                                   class="btn btn-small btn-bg-sand btn-color-dark">{% trans 'More' %}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-    <!-- Qicuk View Modal End -->
 
 </div>
 <!-- Main Wrapper End -->
