@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-18 23:58+0330\n"
-"PO-Revision-Date: 2025-09-18 23:52+0330\n"
+"POT-Creation-Date: 2025-09-20 00:29+0330\n"
+"PO-Revision-Date: 2025-09-20 00:51+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,69 +18,102 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\forms.py:8
-msgid "Quantity  "
-msgstr "تعداد    "
-
-#: .\templates\cart\cart_detail.html:8 .\templates\cart\cart_detail.html:18
-msgid "Cart"
-msgstr "سبد خرید"
-
-#: .\templates\cart\cart_detail.html:40
-msgid "Image"
-msgstr "عکس"
-
-#: .\templates\cart\cart_detail.html:41
-msgid "Product"
-msgstr "محصول"
-
-#: .\templates\cart\cart_detail.html:42
-msgid "Price"
-msgstr "بها"
-
-#: .\templates\cart\cart_detail.html:43
+#: .\forms.py:8 .\templates\cart\cart_detail.html:30
 msgid "Quantity"
 msgstr "تعداد"
 
-#: .\templates\cart\cart_detail.html:44 .\templates\cart\cart_detail.html:142
+#: .\templates\cart\cart_detail.html:8 .\templates\cart\cart_detail.html:9
+msgid "Cart"
+msgstr "سبد خرید"
+
+#: .\templates\cart\cart_detail.html:28
+msgid "Product"
+msgstr "محصول"
+
+#: .\templates\cart\cart_detail.html:29
+msgid "Price"
+msgstr "بها"
+
+#: .\templates\cart\cart_detail.html:31 .\templates\cart\cart_detail.html:165
 msgid "Total"
 msgstr "مجموع"
 
-#: .\templates\cart\cart_detail.html:76 .\templates\cart\cart_detail.html:91
+#: .\templates\cart\cart_detail.html:63 .\templates\cart\cart_detail.html:85
+#: .\templates\cart\cart_detail.html:137 .\templates\cart\cart_detail.html:148
+#: .\templates\cart\cart_detail.html:170
 msgid "Toman"
 msgstr "تومان"
 
-#: .\templates\cart\cart_detail.html:106
-msgid "discount Code"
-msgstr "کد تخفیف"
+#: .\templates\cart\cart_detail.html:78
+msgid "Update"
+msgstr "بروزرسانی"
 
-#: .\templates\cart\cart_detail.html:108
-msgid "Apply discount code"
-msgstr "اعمال کد تخفیف"
+#: .\templates\cart\cart_detail.html:95
+msgid "The Cart is empty!"
+msgstr "سبد خرید خالی است!"
 
-#: .\templates\cart\cart_detail.html:112
+#: .\templates\cart\cart_detail.html:100 .\templates\cart\cart_detail.html:112
+msgid "Products List"
+msgstr "لیست محصولات"
+
+#: .\templates\cart\cart_detail.html:117
 msgid "Clear Cart"
 msgstr "پاکسازی سبد خرید"
 
-#: .\templates\cart\cart_detail.html:115
-msgid "Update Cart"
-msgstr "بروزرسانی سبد خرید"
-
-#: .\templates\cart\cart_detail.html:125
+#: .\templates\cart\cart_detail.html:127
 msgid "Cart totals"
 msgstr "مجموع سبد خرید"
 
-#: .\templates\cart\cart_detail.html:129
+#: .\templates\cart\cart_detail.html:132
 msgid "Product prices"
 msgstr "بهای محصولات"
 
-#: .\templates\cart\cart_detail.html:137
+#: .\templates\cart\cart_detail.html:143
 msgid "Shipping"
-msgstr "هزینه ارسال"
+msgstr "هزینه ارسال کالا"
 
-#: .\templates\cart\cart_detail.html:153
+#: .\templates\cart\cart_detail.html:155
+msgid "discount Code"
+msgstr "کد تخفیف"
+
+#: .\templates\cart\cart_detail.html:159
+msgid "Apply discount code"
+msgstr "اعمال کد تخفیف"
+
+#: .\templates\cart\cart_detail.html:177
 msgid "Proceed To Checkout"
 msgstr "ادامه جهت پرداخت"
+
+#: .\views.py:39 .\views.py:44
+msgid "The maximum orderable quantity is {product.quantity} numbers."
+msgstr "حداکثر تعداد قابل سفارش، {product.quantity} عدد است."
+
+#: .\views.py:51
+msgid "The cart has updated."
+msgstr "سبد خرید بروز شد!"
+
+#: .\views.py:54
+msgid "The product was successfully added to the cart."
+msgstr "محصول با موفقیت به سبد خرید اضافه شد!"
+
+#: .\views.py:66
+msgid "The product was removed from the cart."
+msgstr "محصول با موفقیت از سبد خرید حذف شد!"
+
+#~ msgid "Product successfully added to cart!"
+#~ msgstr "محصول با موفقیت به سبد خرید اضافه شد!"
+
+#~ msgid "Product successfully removed from cart!"
+#~ msgstr "محصول با موفقیت از سبد خرید حذف شد!"
+
+#~ msgid "Image"
+#~ msgstr "عکس"
+
+#~ msgid "Update Cart"
+#~ msgstr "بروزرسانی سبد خرید"
+
+#~ msgid "Quantity  "
+#~ msgstr "تعداد    "
 
 #~ msgid "total"
 #~ msgstr "مجموع"

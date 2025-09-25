@@ -8,6 +8,8 @@ class AddToCartProductForm(forms.Form):
         label=_('Quantity')
     )
 
+    inplace = forms.BooleanField(required=False, widget=forms.HiddenInput)
+
     def __init__(self, *args, **kwargs):
         product = kwargs.pop("product", None)
         super().__init__(*args, **kwargs)

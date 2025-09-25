@@ -38,7 +38,7 @@ class ProductAdminForm(forms.ModelForm):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
-    list_display = ('title', 'price', 'active', 'datetime_created', 'datetime_modified', 'cover_preview', 'display_keywords')
+    list_display = ('title', 'quantity', 'price', 'active', 'datetime_created', 'datetime_modified', 'cover_preview', 'display_keywords')
     list_filter = ('active', 'datetime_created', 'datetime_modified')
     search_fields = ('title', 'description')
 

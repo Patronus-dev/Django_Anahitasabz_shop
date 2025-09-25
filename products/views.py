@@ -36,7 +36,23 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         product = self.object
 
-        # فقط فرم اضافه به سبد خرید برای محصول جاری
+        # فرم اضافه به سبد خرید
         context['add_to_cart_form'] = AddToCartProductForm(product=product)
 
+        # گرفتن کلیدواژه‌های محصول جاری
+        keywords = product.keywords.all()
+
+        if keywords.exists():
+            # گرفتن محصولات مشابه که حداقل یک کلیدواژه مشترک داشته باشن
+            similar_products = Product.objects.filter(
+                active=True,
+                keywords__in=keywords
+            ).exclude(id=product.id).distinct()[:8]
+        else:
+            # اگر محصول کلیدواژه نداشت، سایر محصولات فعال رو نشون بده
+            similar_products = Product.objects.filter(active=True).exclude(id=product.id)[:8]
+
+        context['similar_products'] = similar_products
+
         return context
+

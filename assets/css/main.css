@@ -101,6 +101,18 @@ INDEX:
 /*****************************
 00 - Base - Global
 *****************************/
+
+/* FONT */
+@font-face {
+  font-family: 'RastinPlus';
+  src: url('../fonts/DigiRastinPlusLine.woff2') format('woff2'),
+       url('../fonts/DigiRastinPlusLine.woff') format('woff'),
+       url('../fonts/DigiRastinPlusLine.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 html {
   height: 100%;
   font-size: 62.5%; }
@@ -118,6 +130,9 @@ html {
       font-size: 31.25%; } }
 
 body {
+  font-family: 'RastinPlus', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.8;
   overflow-x: hidden;
   overflow-y: auto; }
   @media (max-width: 74.9375em) {
