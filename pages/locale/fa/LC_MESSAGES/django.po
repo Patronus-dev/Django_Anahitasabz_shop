@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-16 00:59+0330\n"
+"POT-Creation-Date: 2025-09-26 20:14+0330\n"
 "PO-Revision-Date: 2025-09-16 01:00+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,66 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\templates\pages\contact_us.html:5 .\templates\pages\contact_us.html:15
-#: .\templates\pages\contact_us.html:17
+#: .\models.py:6
+msgid "Name"
+msgstr ""
+
+#: .\models.py:9
+msgid "Phone Number"
+msgstr ""
+
+#: .\models.py:10
+msgid "Enter your phone number"
+msgstr ""
+
+#: .\models.py:12
+msgid "Instagram Id"
+msgstr ""
+
+#: .\models.py:13
+msgid "WhatsApp Number"
+msgstr ""
+
+#: .\models.py:14
+msgid "Enter your phone number without 0"
+msgstr ""
+
+#: .\models.py:15
+msgid "Telegram Id"
+msgstr ""
+
+#: .\models.py:18 .\models.py:19
+#, fuzzy
+#| msgid "Contact info"
+msgid "Site Contact Info"
+msgstr "اطلاعات تماس"
+
+#: .\templates\pages\contact_us.html:5 .\templates\pages\contact_us.html:6
 msgid "Contact us"
 msgstr "ارتباط با ما"
 
-#: .\templates\pages\contact_us.html:18
-msgid "Home"
-msgstr "خانه"
+#: .\templates\pages\contact_us.html:17
+msgid "Social Media"
+msgstr ""
 
-#: .\templates\pages\contact_us.html:33
-msgid "Send message"
-msgstr "ارسال پیام"
+#: .\templates\pages\contact_us.html:26
+msgid "Instagram"
+msgstr ""
 
-#: .\templates\pages\contact_us.html:66
+#: .\templates\pages\contact_us.html:34
+msgid "Whatsapp"
+msgstr ""
+
+#: .\templates\pages\contact_us.html:42
+msgid "Telegram"
+msgstr ""
+
+#: .\templates\pages\contact_us.html:50
 msgid "Contact info"
 msgstr "اطلاعات تماس"
+
+#~ msgid "Home"
+#~ msgstr "خانه"
+
+#~ msgid "Send message"
+#~ msgstr "ارسال پیام"

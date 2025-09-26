@@ -65,9 +65,11 @@
 
                     <!-- Product Details -->
                     <div class="col-xl-4 offset-xl-1 col-lg-5 product-main-details mt-md--40" id="sticky-sidebar">
-                        <div class="product-summary pl-lg--30 pl-md--0" style="direction: rtl">
-                            <h3 class="product-title mb--20">{{ product.title }}</h3>
-                            <p class="product-short-description mb--20">{{ product.description }}</p>
+                        <div class="product-summary pl-lg--30 pl-md--0" style="direction: rtl;">
+                            <h4 class="product-title mb--20"
+                                style="font-family: RastinPlus, sans-serif">{{ product.title }}</h4>
+                            <p class="product-short-description mb--20"
+                               style="font-size: large">{{ product.description }}</p>
                             {% if product.quantity > 0 %}
                                 <div class="product-price-wrapper mb--25">
                                 <span class="variation-label">{% trans 'Price' %} :
@@ -88,8 +90,8 @@
                                         </div>
                                         <br>
                                         <input style="font-family: RastinPlus, sans-serif" type="submit"
-                                                   value="{% trans 'Add To Cart' %}"
-                                                   class="btn btn-submit btn-style-1">
+                                               value="{% trans 'Add To Cart' %}"
+                                               class="btn btn-submit btn-style-1">
                                     </form>
                                 </div>
                             {% else %}
@@ -184,21 +186,16 @@
                                             <div class="product-inner">
                                                 <figure class="product-image">
                                                     <a href="{% url 'products:product_detail' p.id %}">
-                                                        {% if p.cover %}
-                                                            <img src="{{ p.cover.url }}" alt="{{ p.title }}">
-                                                        {% else %}
-                                                            <img src="{% static 'img/products/default.jpg' %}"
-                                                                 alt="{{ p.title }}">
-                                                        {% endif %}
+                                                        <img src="{{ p.cover.url }}" alt="{{ p.title }}">
                                                     </a>
                                                 </figure>
                                                 <div class="product-info">
-                                                    <h3 class="product-title">
+                                                    <h2 class="product-title" style="font-family: RastinPlus, sans-serif">
                                                         <a href="{% url 'products:product_detail' p.id %}">{{ p.title }}</a>
-                                                    </h3>
+                                                    </h2>
                                                     <div class="product-price-wrapper">
-                                                        <span class="money">{{ p.price|price_fa }}</span>
-                                                        <span class="title">{% trans 'Toman' %}</span>
+                                                        <span style="font-size: large" class="money">{{ p.price|price_fa }}</span>
+                                                        <span style="font-size: large" class="title">{% trans 'Toman' %}</span>
                                                     </div>
                                                 </div>
                                             </div>

@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-6" style="margin: 0 auto; text-align: right;">
                         <div class="register-box">
-                            <h2 style="text-align: center;">{% trans 'Authentication' %}</h2>
+                            <h2 style="text-align: center; font-family: RastinPlus, sans-serif">{% trans 'Authentication' %}</h2>
                             <p style="text-align: center;">{% trans 'A 4-digit verification code has been sent to you. Please enter it in the box below.' %}</p>
                             <br>
 
@@ -37,7 +37,7 @@
                                 {% csrf_token %}
                                 {{ form|crispy }}
                                 <div class="form__group" style="text-align:center; margin-top: 15px;">
-                                    <input type="submit" value="{% trans 'Login' %}" class="btn btn-submit btn-style-1">
+                                    <input style="font-family: RastinPlus, sans-serif" type="submit" value="{% trans 'Login' %}" class="btn btn-submit btn-style-1">
                                 </div>
                             </form>
 

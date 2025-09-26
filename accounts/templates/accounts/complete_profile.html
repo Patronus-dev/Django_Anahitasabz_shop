@@ -16,14 +16,14 @@
                 <div class="row">
                     <div class="col-md-6" style="margin: 0 auto; direction: rtl">
                         <div class="register-box">
-                            <h2>{% trans 'Welcome!' %}</h2>
+                            <h2 style="font-family: RastinPlus, sans-serif">{% trans 'Welcome!' %}</h2>
                             <p>{% trans 'Please complete your account information.' %}</p>
                             <br>
                             <form class="form form--login" action="" method="post">
                                 {% csrf_token %}
                                 {{ form|crispy }}
                                 <div class="form__group" style="text-align:center;">
-                                    <input type="submit" value="{% trans 'Save and continue' %}"
+                                    <input style="font-family: RastinPlus, sans-serif" type="submit" value="{% trans 'Save and continue' %}"
                                            class="btn btn-submit btn-style-1">
                                 </div>
                             </form>
