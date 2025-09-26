@@ -10,12 +10,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="keywords"
+          content="لباس زنانه، پوشاک زنانه، فروشگاه لباس آنلاین، طراحی لباس، مد و فشن، مزون آنلاین، لباس مجلسی زنانه، مانتو شیک، پیراهن زنانه، ست لباس زنانه، طراحی مد، لباس روزمره زنانه، کت و دامن زنانه، تاپ و بلوز زنانه، استایل زنانه، اکسسوری مد، لباس فصلی زنانه">
+
     <title>ANAHITA SABZ | {% block page_title %}{% endblock page_title %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{% static 'img/icon.png' %}">
+    <link rel="shortcut icon" href="{% static 'img/logo/Logo_no_bg_100x90.png' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'img/logo/Logo_no_bg_100x90.png' %}">
 
     <!-- ************************* CSS Files ************************* -->
 
@@ -53,12 +57,12 @@
                     <div class="col-xl-10 col-lg-9 col-3">
                         <nav class="main-navigation">
                             <div class="site-branding">
-                                <a href="index.html" class="logo">
+                                <a href="{% url 'home' %}" class="logo">
                                     <figure class="logo--transparent">
-                                        <img src="assets/img/logo/logo-white.png" alt="Logo">
+                                        <img src="{% static 'img/logo/Logo_no_bg_100x90.png' %}" alt="Logo">
                                     </figure>
                                     <figure class="logo--normal">
-                                        <img src="assets/img/logo/logo.png" alt="Logo">
+                                        <img src="{% static 'img/logo/Logo_no_bg_100x90.png' %}" alt="Logo">
                                     </figure>
                                 </a>
                             </div>
@@ -223,7 +227,8 @@
                             <li class="header-toolbar__item mini-cart-item">
                                 <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
                                     <i class="flaticon flaticon-shopping-cart"></i>
-                                    <sup class="mini-cart-count">2</sup>
+                                    <sup class="mini-cart-count"
+                                         style="background-color: #C2080F">{{ cart_item_count }}</sup>
                                 </a>
                             </li>
                             <li class="header-toolbar__item user-info">
@@ -262,14 +267,16 @@
 
     <!-- Breadcrumb area Start -->
     {% if request.path != '/' %}
-        <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6" style="text-align: right">
+        <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6"
+             style="background-image: url({% static 'img/home/page_Breadcrumb_wallpaper.jpg' %});
+                     background-size: cover">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-                            <h1 class="page-title" style="margin: 0 auto">
+                            <h3 class="page-title" style="margin: 0 auto; font-family: RastinPlus, sans-serif">
                                 {% block page_Breadcrumb %}{% endblock page_Breadcrumb %}
-                            </h1>
+                            </h3>
                         </div>
                         {% if messages %}
                             <div class="container">
@@ -299,46 +306,32 @@
                     <div class="col-lg-9 text-center">
                         <div class="footer-widget mb--50">
                             <div class="textwidget">
-                                <img src="{% static 'img/logo/logo.png' %}" alt="Logo">
+                                <img src="{% static 'img/footer/Logo_file-removebg_11zon.png' %}" alt="Logo">
                             </div>
-                        </div>
-                        <div class="footer-widget mb--50 pb--1">
-                            <ul class="footer-menu">
-                                <li><a href="">About Us</a></li>
-                                <li><a href="">Terms &amp; Conditions</a></li>
-                                <li><a href="">Policy</a></li>
-                                <li><a href="">Help</a></li>
-                                <li><a href="">Contact Us</a></li>
-                            </ul>
                         </div>
                         <div class="footer-widget">
                             <!-- Social Icons Start Here -->
-                            <ul class="social">
+                            <ul class="social" style="margin-top: 5%">
                                 <li class="social__item">
-                                    <a href="https://plus.google.com/" target="_blank" rel="noopener"
-                                       class="social__link google-plus">
-                                        <span>Google Plus</span>
-                                        <i class="fa fa-google-plus"></i>
+                                    <a target="_blank" href="https://www.instagram.com/anahitasabz" rel="noopener"
+                                       class="social__link instagram">
+                                        <span style="font-size: large">{% trans 'Instagram' %}</span>
+                                        <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>
                                 <li class="social__item">
-                                    <a href="https://facebook.com/" target="_blank" rel="noopener"
-                                       class="social__link facebook">
-                                        <span>facebook</span>
-                                        <i class="fa fa-facebook"></i>
+                                    <a target="_blank" href="https://api.whatsapp.com/send?phone=+989101934120"
+                                       rel="noopener"
+                                       class="social__link whatsapp">
+                                        <span style="font-size: large">{% trans 'Whatsapp' %}</span>
+                                        <i class="fa fa-whatsapp"></i>
                                     </a>
                                 </li>
                                 <li class="social__item">
-                                    <a href="https://pinterest.com" target="_blank" rel="noopener"
-                                       class="social__link pinterest">
-                                        <span>pinterest</span>
-                                        <i class="fa fa-pinterest-p"></i>
-                                    </a>
-                                </li>
-                                <li class="social__item">
-                                    <a href="youtube.com" target="_blank" rel="noopener" class="social__link twitter">
-                                        <span>twitter</span>
-                                        <i class="fa fa-twitter"></i>
+                                    <a target="_blank" href="https://t.me/mhdi_dev" rel="noopener"
+                                       class="social__link telegram">
+                                        <span style="font-size: large">{% trans 'Telegram' %}</span>
+                                        <i class="fa fa-telegram"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -352,12 +345,15 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-sm-6 text-sm-start text-center mb-xs--10">
-                        <p class="copyright-text">&copy; Zakas 2023 Made With <i class="fa fa-heart"></i> BY <a
-                                href="https://hasthemes.com/" target="_blank" rel="noopener">Hasthemes</a></p>
+                        <p class="copyright-text">&copy; AnahitaSabz Shop 2025 | Made With <i class="fa fa-heart"></i>
+                            by <a
+                                    href="https://patronuscode.com/" target="_blank" rel="noopener">PATRONUS CODE</a>
+                        </p>
                     </div>
                     <div class="col-sm-6 text-sm-end text-center">
                         <figure>
-                            <img src="{% static 'img/others/payment.png' %}" alt="payment">
+                            <img src="{% static 'img/footer/payment_method-removebg-preview_11zon.png' %}"
+                                 alt="payment">
                         </figure>
                     </div>
                 </div>
@@ -367,16 +363,14 @@
     <!-- /FOOTER -->
 
     <!-- Searchform Popup Start -->
-    <div class="searchform__popup" id="searchForm">
+    <div class="searchform__popup" id="searchForm" style="direction: rtl">
         <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
         <div class="searchform__body">
-            <p>Start typing and press Enter to search</p>
+            <p>{% trans 'Search' %}</p>
             <form class="searchform">
-                <label for="popup-search">
-
-                </label>
+                <label for="popup-search"></label>
                 <input type="text" name="popup-search" id="popup-search" class="searchform__input"
-                       placeholder="Search Entire Store...">
+                       placeholder="{% trans 'Search Entire Store...' %}">
                 <button type="submit" class="searchform__submit">
                     <i class="flaticon flaticon-magnifying-glass-icon"></i>
                 </button>
@@ -390,62 +384,68 @@
         <div class="mini-cart-wrapper">
             <button type="button" class="btn-close"><i class="flaticon flaticon-cross"></i></button>
             <div class="mini-cart-inner">
-                <h3 class="mini-cart__heading mb--40 mb-lg--30">Shopping Cart</h3>
+                <h3 class="mini-cart__heading mb--40 mb-lg--30"
+                    style="font-family: RastinPlus, sans-serif; text-align: center; direction: rtl">
+                    {% trans 'Cart' %}
+                </h3>
                 <div class="mini-cart__content">
-                    <ul class="mini-cart__list">
-                        <li class="mini-cart__product">
-                            <a href="#" class="remove-from-cart remove">
-                                <i class="flaticon flaticon-cross"></i>
+                    {% if cart %}
+                        <ul class="mini-cart__list">
+                            {% for item in cart %}
+                                <li class="mini-cart__product">
+                                    <!-- Remove button -->
+                                    <a href="{% url 'cart:cart_remove' item.product_obj.id %}"
+                                       class="remove-from-cart remove">
+                                        <i class="flaticon flaticon-cross"></i>
+                                    </a>
+                                    <!-- Product image -->
+                                    <div class="mini-cart__product__image">
+                                        <img src="{{ item.product_obj.cover.url }}"
+                                             alt="{{ item.product_obj.title }}">
+                                    </div>
+                                    <!-- Product info -->
+                                    <div class="mini-cart__product__content">
+                                        <a class="mini-cart__product__title"
+                                           href="{% url 'products:product_detail' item.product_obj.id %}">
+                                            {{ item.product_obj.title }}
+                                        </a>
+                                        <span class="mini-cart__product__quantity">
+                                        {{ item.quantity }} x {{ item.product_obj.price }} {% trans 'Toman' %}
+                                    </span>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <!-- Subtotal -->
+                        <hr>
+                        <div class="mini-cart__total" style="direction: rtl">
+                            <span>{% trans 'Total' %}</span>
+                            <span class="ammount">
+                            <span style="direction: ltr">{{ cart.get_total_price }}</span>
+                            <span style="direction: rtl"> {% trans 'Toman' %}</span>
+                        </span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="form__group" style="text-align: center">
+                            <a href="{% url 'cart:cart_detail' %}">
+                                <input style="font-family: RastinPlus, sans-serif" type="submit"
+                                       value="{% trans 'View Cart' %}"
+                                       class="btn btn-submit btn-style-1">
                             </a>
-                            <div class="mini-cart__product__image">
-                                <img src="{% static 'img/products/prod-1-100x100.jpg' %}" alt="products">
-                            </div>
-                            <div class="mini-cart__product__content">
-                                <a class="mini-cart__product__title" href="product-details.html">Chain print bermuda
-                                    shorts </a>
-                                <span class="mini-cart__product__quantity">1 x $49.00</span>
-                            </div>
-                        </li>
-                        <li class="mini-cart__product">
-                            <a href="#" class="remove-from-cart remove">
-                                <i class="flaticon flaticon-cross"></i>
-                            </a>
-                            <div class="mini-cart__product__image">
-                                <img src="{% static 'img/products/prod-2-100x100.jpg' %}" alt="products">
-                            </div>
-                            <div class="mini-cart__product__content">
-                                <a class="mini-cart__product__title" href="product-details.html">Waxed-effect pleated
-                                    skirt</a>
-                                <span class="mini-cart__product__quantity">1 x $49.00</span>
-                            </div>
-                        </li>
-                        <li class="mini-cart__product">
-                            <a href="#" class="remove-from-cart remove">
-                                <i class="flaticon flaticon-cross"></i>
-                            </a>
-                            <div class="mini-cart__product__image">
-                                <img src="{% static 'img/products/prod-5-100x100.jpg' %}" alt="products">
-                            </div>
-                            <div class="mini-cart__product__content">
-                                <a class="mini-cart__product__title" href="product-details.html">Waxed-effect pleated
-                                    skirt</a>
-                                <span class="mini-cart__product__quantity">1 x $49.00</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="mini-cart__total">
-                        <span>Subtotal</span>
-                        <span class="ammount">$98.00</span>
-                    </div>
-                    <div class="mini-cart__buttons">
-                        <a href="cart.html" class="btn btn-fullwidth btn-bg-sand mb--20">View Cart</a>
-                        <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">Checkout</a>
-                    </div>
+                        </div>
+                    {% else %}
+                        <p style="text-align:center; direction: rtl">{% trans 'The Cart is empty!' %}</p>
+                        <a href="{% url 'products:product_list' %}">
+                            <p style="text-align:center; direction: rtl">{% trans 'View products' %} ---></p>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </aside>
     <!-- Mini Cart End -->
+
 
     <!-- Global Overlay Start -->
     <div class="zakas-global-overlay"></div>

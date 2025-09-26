@@ -1,67 +1,164 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 from products.models import Product
 from .cart import Cart
-from .forms import AddToCartProductForm
+from .models import Coupon, Shipping
+from .forms import AddToCartProductForm, CouponForm
 
 
 def cart_detail_view(request):
+    """
+    نمایش جزئیات سبد خرید
+    """
     cart = Cart(request)
 
-    for item in cart:
-        item['product_update_quantity_form'] = AddToCartProductForm(initial={
-            'quantity': item['quantity'],
-            'inplace': True,   # این فیلد نشون میده فرم مربوط به cart هست نه صفحه محصول
-        }, product=item['product_obj'])
+    # اگر سبد خرید خالی است، کوپن را پاک کن
+    if len(cart) == 0 and 'coupon' in request.session:
+        del request.session['coupon']
 
-    return render(request, 'cart/cart_detail.html', {'cart': cart})
+    coupon_form = CouponForm()
+
+    for item in cart:
+        item['product_update_quantity_form'] = AddToCartProductForm(
+            initial={'quantity': item['quantity'], 'inplace': True},
+            product=item['product_obj']
+        )
+
+    # هزینه حمل
+    shipping_cost = 0
+    shipping_id = request.session.get('shipping_id')
+    if shipping_id:
+        shipping = Shipping.objects.filter(id=shipping_id, active=True).first()
+        if shipping and not shipping.cost_on_delivery:
+            shipping_cost = int(shipping.cost)
+
+    # جمع محصولات بدون اعشار
+    products_total = sum(int(item['product_obj'].price * item['quantity']) for item in cart)
+
+    # مقدار و نوع تخفیف
+    coupon_value = 0
+    coupon_display = None
+    coupon_data = request.session.get('coupon')
+    if coupon_data:
+        if coupon_data['discount_type'] == 'percent':
+            percent = float(coupon_data['discount_value'])
+            coupon_value = int(products_total * percent / 100)
+            coupon_display = f"{int(percent)} %"
+        else:  # fixed amount
+            coupon_value = int(float(coupon_data['discount_value']))
+            coupon_display = f"{coupon_value} {_('Toman')}"
+
+    # جمع کل نهایی
+    total = (products_total - coupon_value) + shipping_cost
+    if total < 0:
+        total = 0
+
+    return render(request, 'cart/cart_detail.html', {
+        'cart': cart,
+        'coupon_form': coupon_form,
+        'shipping_cost': shipping_cost,
+        'products_total': products_total,
+        'coupon_value': coupon_value,
+        'coupon_display': coupon_display,
+        'total': total,
+    })
 
 
 @require_POST
 def add_to_cart_view(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
+    form = AddToCartProductForm(request.POST, product=product)
 
-    form = AddToCartProductForm(request.POST or None, product=product)
-
-    if request.method == "POST" and form.is_valid():
-        cleaned_data = form.cleaned_data
-        quantity = cleaned_data['quantity']
-        inplace = cleaned_data.get('inplace', False)
-
-        # بررسی موجودی نسبت به مجموع در cart
-        if inplace:
-            if quantity > product.quantity:
-                messages.info(request, f"حداکثر تعداد قابل سفارش، {product.quantity} عدد است.")
-                return redirect('cart:cart_detail')
-        else:
-            existing_quantity = cart.cart.get(str(product.id), {}).get('quantity', 0)
-            if existing_quantity + quantity > product.quantity:
-                messages.info(request, f"حداکثر تعداد قابل سفارش، {product.quantity} عدد است.")
-                return redirect(reverse('products:product_detail', args=[product.id]))
-
-        # اضافه یا آپدیت در cart
+    if form.is_valid():
+        quantity = form.cleaned_data['quantity']
+        inplace = form.cleaned_data.get('inplace', False)
         cart.add(product, quantity, replace_current_quantity=inplace)
-
         if inplace:
-            messages.info(request, _("The cart has updated."))
-            return redirect('cart:cart_detail')
+            messages.info(request, _("The cart has been updated."))
         else:
             messages.success(request, _("The product was successfully added to the cart."))
-            return redirect('cart:cart_detail')
+    else:
+        messages.warning(request, _("Something went wrong while adding to cart."))
 
-    if form.cleaned_data.get('inplace', False):
-        return redirect('cart:cart_detail')
-    return redirect(reverse('products:product_detail', args=[product.id]))
+    return redirect('cart:cart_detail')
 
 
 def remove_from_cart(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
+
+    # اگر سبد خالی شد، کوپن پاک شود
+    if len(cart) == 0 and 'coupon' in request.session:
+        del request.session['coupon']
+
     messages.warning(request, _("The product was removed from the cart."))
+    return redirect('cart:cart_detail')
+
+
+@require_POST
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+
+    # پاک کردن کوپن هنگام خالی شدن سبد
+    if 'coupon' in request.session:
+        del request.session['coupon']
+
+    messages.success(request, _("The cart has been cleared."))
+    return redirect('cart:cart_detail')
+
+
+@require_POST
+def apply_coupon(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, _("You need to login to use a coupon."))
+        return redirect('cart:cart_detail')
+
+    form = CouponForm(request.POST)
+    if form.is_valid():
+        code = form.cleaned_data['code']
+        try:
+            coupon = Coupon.objects.get(code__iexact=code, active=True)
+
+            # بررسی منقضی شدن کوپن
+            if coupon.datetime_expired and coupon.datetime_expired < timezone.now():
+                messages.warning(request, _("This coupon has expired."))
+                return redirect('cart:cart_detail')
+
+            # بررسی استفاده قبلی کاربر
+            if request.user in coupon.used_by.all():
+                messages.warning(request, _("You have already used this coupon."))
+                return redirect('cart:cart_detail')
+
+            # ذخیره کوپن در سشن تا تا خرید انجام نشده اعمال شود
+            request.session['coupon'] = {
+                'code': coupon.code,
+                'discount_type': coupon.discount_type,
+                'discount_value': float(coupon.discount_value),
+            }
+            messages.success(request, _("Coupon applied successfully!"))
+
+        except Coupon.DoesNotExist:
+            messages.warning(request, _("The Coupon code is invalid or expired."))
+
+    return redirect('cart:cart_detail')
+
+
+@require_POST
+def set_shipping(request):
+    shipping_id = request.POST.get('shipping_id')
+    shipping = Shipping.objects.filter(id=shipping_id, active=True).first()
+    if shipping:
+        request.session['shipping_id'] = shipping.id
+        request.session['shipping_cost'] = shipping.cost
+        messages.success(request, _("Shipping method updated!"))
+    else:
+        request.session['shipping_cost'] = 0
+        messages.warning(request, _("Invalid shipping method."))
     return redirect('cart:cart_detail')

@@ -1215,7 +1215,7 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  background-color: #ff5951;
+  background-color: #C8A2C8;
   padding: 19px 21px;
   line-height: 1;
   font-weight: 700;
@@ -4241,6 +4241,12 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
       background-color: #c2080f; }
     .social__link.twitter i {
       background-color: #4696f0; }
+    .social__link.whatsapp i {
+      background-color: #56D28B; }
+    .social__link.instagram i {
+      background-color: #FE38A2; }
+    .social__link.telegram i {
+      background-color: #69ADF0; }
   .social-2 .social__item {
     display: inline-block; }
     @media (max-width: 35.94em) {
@@ -4711,46 +4717,53 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 /*****************************
 40 - Pages - Cart
 *****************************/
+
 .cart-collaterals {
-  background: #f6f6f6; }
+  background: #f6f6f6;
+}
 
 .cart-totals {
   padding: 30px 30px 0;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+}
+
+.cart-calculator__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 
 .cart-calculator__item--head {
-  -webkit-flex-basis: 90px;
-  -moz-flex-basis: 90px;
-  -ms-flex-preferred-size: 90px;
-  flex-basis: 90px;
-  max-width: 90px;
+  flex: 0 0 auto;
+  white-space: nowrap;
   font-size: 14px;
-  font-weight: 700; }
+  font-weight: 700;
+  margin-left: 10px;
+}
 
 .cart-calculator__item--value {
-  -webkit-flex-basis: calc(100% - 90px);
-  -moz-flex-basis: calc(100% - 90px);
-  -ms-flex-preferred-size: calc(100% - 90px);
-  flex-basis: calc(100% - 90px);
-  max-width: calc(100% - 90px); }
-  @media (max-width: 28.125em) {
-    .cart-calculator__item--value {
-      -webkit-flex-basis: 100%;
-      -moz-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-      max-width: 100%; } }
-  .cart-calculator__item--value > span,
-  .cart-calculator__item--value > a {
-    display: block;
-    margin-bottom: 5px; }
-  .cart-calculator__item--value .product-price-wrapper > span {
-    font-weight: 400; }
+  flex: 1;
+  text-align: left;
+}
+
+.cart-calculator__item--value > span,
+.cart-calculator__item--value > a {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.cart-calculator__item--value .product-price-wrapper > span {
+  font-weight: 400;
+}
 
 .cart-calculator__item.order-total {
-  border-top: 1px solid #eeeeee; }
-  .cart-calculator__item.order-total > div {
-    padding-top: 15px; }
+  border-top: 1px solid #eeeeee;
+}
+
+.cart-calculator__item.order-total > div {
+  padding-top: 15px;
+}
 
 /*****************************
 41 - Pages - Checkout
@@ -5700,6 +5713,23 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
   letter-spacing: 0; }
 
 /*-- Banner Effect --*/
+
+.header .header-inner {
+    padding: 8px 0;
+}
+
+.header .site-branding .logo img {
+    max-height: 70px;
+    height: auto;
+    width: auto;
+}
+
+.header .site-branding {
+    display: flex;
+    align-items: center;
+}
+
+
 .banner-box .banner-hover-2 .banner-image:after {
   top: 0;
   left: -100%;
@@ -17054,7 +17084,7 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
   color: #c2080f; }
 
 .header-toolbar__btn.mini-cart-btn .mini-cart-count, .btn:hover, .btn:hover:after, .btn-bg-red, .btn-bg-red:after, .btn-submit:hover, .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .comment .reply:hover, .newsletter-form__submit, .product-badge, .zakas-product:hover .btn, .zakas-product:hover .btn:after, .tab-style-1 .nav-link:after, .tab-style-1 .nav-link.active, .user-dashboard-tab__head .nav-link.active, .user-dashboard-tab__head .nav-link:hover {
-  background-color: #c2080f; }
+  background-color: #A7C7E7; }
 
 .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .comment .reply:hover {
   border-color: #c2080f; }

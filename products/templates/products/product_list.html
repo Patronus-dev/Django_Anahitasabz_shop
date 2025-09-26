@@ -53,7 +53,8 @@
                                                     </div>
                                                 </figure>
                                                 <div class="product-info">
-                                                    <h3 class="product-title mb--15">
+                                                    <h3 class="product-title mb--15"
+                                                        style="font-family: RastinPlus,sans-serif">
                                                         <a href="{% url 'products:product_detail' product.id %}">{{ product.title }}</a>
                                                     </h3>
                                                     {% if product.quantity > 0 %}
@@ -61,17 +62,25 @@
                                                             <span class="money">{{ product.price }}</span>
                                                             <span class="title">{% trans 'Toman' %}</span>
                                                         </div>
-                                                        <a href="{% url 'products:product_detail' product.id %}"
-                                                           class="btn btn-small btn-bg-sand btn-color-dark">{% trans 'Watch' %}
-                                                        </a>
+                                                        <div class="form__group" style="text-align:center;">
+                                                            <a href="{% url 'products:product_detail' product.id %}">
+                                                                <input style="font-family: RastinPlus,sans-serif; font-size: medium" type="submit"
+                                                                       value="{% trans 'Watch' %}"
+                                                                       class="btn btn-submit btn-style-1">
+                                                            </a>
+                                                        </div>
                                                     {% else %}
                                                         <h3 class="product-price mb--30">
                                                             {% trans 'The product is not available.' %}
                                                         </h3>
 
-                                                        <a href="{% url 'products:product_detail' product.id %}"
-                                                           class="btn btn-small btn-bg-sand btn-color-dark">{% trans 'Watch and Order' %}
-                                                        </a>
+                                                        <div class="form__group" style="text-align:center;">
+                                                            <a href="{% url 'products:product_detail' product.id %}">
+                                                                <input type="submit"
+                                                                       value="{% trans 'Watch and Order' %}"
+                                                                       class="btn btn-submit btn-style-1">
+                                                            </a>
+                                                        </div>
                                                     {% endif %}
                                                 </div>
                                             </div>

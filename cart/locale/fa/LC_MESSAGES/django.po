@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-20 00:29+0330\n"
-"PO-Revision-Date: 2025-09-20 00:51+0330\n"
+"POT-Creation-Date: 2025-09-26 17:49+0330\n"
+"PO-Revision-Date: 2025-09-26 17:45+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,87 +18,206 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\forms.py:8 .\templates\cart\cart_detail.html:30
+#: .\forms.py:9 .\templates\cart\cart_detail.html:29
 msgid "Quantity"
 msgstr "تعداد"
+
+#: .\forms.py:29 .\models.py:14 .\templates\cart\cart_detail.html:127
+msgid "Coupon Code"
+msgstr "کد تخفیف"
+
+#: .\forms.py:32
+msgid "Enter your coupon code"
+msgstr "کد تخفیف را وارد کنید"
+
+#: .\models.py:10
+msgid "Percentage"
+msgstr "تخفیف درصدی"
+
+#: .\models.py:11
+msgid "Fixed Amount"
+msgstr "تخفیف مبلغی"
+
+#: .\models.py:16
+msgid "Discount Type"
+msgstr "نوع تخفیف"
+
+#: .\models.py:18 .\templates\cart\cart_detail.html:141
+msgid "Discount Value"
+msgstr "میزان تخفیف"
+
+#: .\models.py:19 .\models.py:38
+msgid "Active"
+msgstr "فعال"
+
+#: .\models.py:20
+msgid "Created At"
+msgstr "ایجاد شده در"
+
+#: .\models.py:21
+msgid "Expired At"
+msgstr "انقضاء در"
+
+#: .\models.py:24
+msgid "Used By"
+msgstr ""
+
+#: .\models.py:30
+msgid "Coupon"
+msgstr "تخفیف"
+
+#: .\models.py:31
+msgid "Coupons"
+msgstr "تخفیف ها"
+
+#: .\models.py:35
+msgid "Shipping Method"
+msgstr "روش ارسال"
+
+#: .\models.py:36
+msgid "Cost"
+msgstr "هزینه"
+
+#: .\models.py:37
+msgid "Cost Paid by Receiver"
+msgstr ""
+
+#: .\models.py:46 .\templates\cart\cart_detail.html:111
+msgid "Shipping"
+msgstr "هزینه ارسال کالا"
+
+#: .\models.py:47
+msgid "Shipping Methods"
+msgstr "روش های ارسال"
 
 #: .\templates\cart\cart_detail.html:8 .\templates\cart\cart_detail.html:9
 msgid "Cart"
 msgstr "سبد خرید"
 
-#: .\templates\cart\cart_detail.html:28
+#: .\templates\cart\cart_detail.html:27
 msgid "Product"
 msgstr "محصول"
 
-#: .\templates\cart\cart_detail.html:29
+#: .\templates\cart\cart_detail.html:28
 msgid "Price"
 msgstr "بها"
 
-#: .\templates\cart\cart_detail.html:31 .\templates\cart\cart_detail.html:165
+#: .\templates\cart\cart_detail.html:30 .\templates\cart\cart_detail.html:152
 msgid "Total"
 msgstr "مجموع"
 
-#: .\templates\cart\cart_detail.html:63 .\templates\cart\cart_detail.html:85
-#: .\templates\cart\cart_detail.html:137 .\templates\cart\cart_detail.html:148
-#: .\templates\cart\cart_detail.html:170
+#: .\templates\cart\cart_detail.html:49 .\templates\cart\cart_detail.html:63
+#: .\templates\cart\cart_detail.html:106 .\templates\cart\cart_detail.html:114
+#: .\templates\cart\cart_detail.html:153
 msgid "Toman"
 msgstr "تومان"
 
-#: .\templates\cart\cart_detail.html:78
+#: .\templates\cart\cart_detail.html:60
 msgid "Update"
 msgstr "بروزرسانی"
 
-#: .\templates\cart\cart_detail.html:95
-msgid "The Cart is empty!"
-msgstr "سبد خرید خالی است!"
-
-#: .\templates\cart\cart_detail.html:100 .\templates\cart\cart_detail.html:112
+#: .\templates\cart\cart_detail.html:73 .\templates\cart\cart_detail.html:88
 msgid "Products List"
 msgstr "لیست محصولات"
 
-#: .\templates\cart\cart_detail.html:117
+#: .\templates\cart\cart_detail.html:79
 msgid "Clear Cart"
 msgstr "پاکسازی سبد خرید"
 
-#: .\templates\cart\cart_detail.html:127
+#: .\templates\cart\cart_detail.html:86
+msgid "The Cart is empty!"
+msgstr "سبد خرید خالی است!"
+
+#: .\templates\cart\cart_detail.html:99
 msgid "Cart totals"
 msgstr "مجموع سبد خرید"
 
-#: .\templates\cart\cart_detail.html:132
+#: .\templates\cart\cart_detail.html:105
 msgid "Product prices"
 msgstr "بهای محصولات"
 
-#: .\templates\cart\cart_detail.html:143
-msgid "Shipping"
-msgstr "هزینه ارسال کالا"
+#: .\templates\cart\cart_detail.html:116
+msgid "Free"
+msgstr "رایگان"
 
-#: .\templates\cart\cart_detail.html:155
-msgid "discount Code"
-msgstr "کد تخفیف"
-
-#: .\templates\cart\cart_detail.html:159
+#: .\templates\cart\cart_detail.html:133
 msgid "Apply discount code"
 msgstr "اعمال کد تخفیف"
 
-#: .\templates\cart\cart_detail.html:177
+#: .\templates\cart\cart_detail.html:161
 msgid "Proceed To Checkout"
 msgstr "ادامه جهت پرداخت"
 
-#: .\views.py:39 .\views.py:44
-msgid "The maximum orderable quantity is {product.quantity} numbers."
-msgstr "حداکثر تعداد قابل سفارش، {product.quantity} عدد است."
+#: .\views.py:77
+msgid "The cart has been updated."
+msgstr "سبد خرید بروزرسانی شد!"
 
-#: .\views.py:51
-msgid "The cart has updated."
-msgstr "سبد خرید بروز شد!"
-
-#: .\views.py:54
+#: .\views.py:79
 msgid "The product was successfully added to the cart."
 msgstr "محصول با موفقیت به سبد خرید اضافه شد!"
 
-#: .\views.py:66
+#: .\views.py:81
+msgid "Something went wrong while adding to cart."
+msgstr "هنگام افزودن به سبد خرید مشکلی پیش آمد."
+
+#: .\views.py:95
 msgid "The product was removed from the cart."
 msgstr "محصول با موفقیت از سبد خرید حذف شد!"
+
+#: .\views.py:108
+msgid "The cart has been cleared."
+msgstr "سبد خرید خالی شد!"
+
+#: .\views.py:115
+msgid "You need to login to use a coupon."
+msgstr "برای استفاده از کد تخفیف ابتدا وارد حساب کاربری خود شوید."
+
+#: .\views.py:126
+msgid "This coupon has expired."
+msgstr "این کد تخفیف منقضی شده است."
+
+#: .\views.py:131
+msgid "You have already used this coupon."
+msgstr "شما قبلا از این کد تخفیف استفاده کرده اید."
+
+#: .\views.py:140
+msgid "Coupon applied successfully!"
+msgstr "کد تخفیف با موفقیت اعمال شد!"
+
+#: .\views.py:143
+msgid "The Coupon code is invalid or expired."
+msgstr "کد تخفیف نادرست است و یا منقضی شده است."
+
+#: .\views.py:155
+msgid "Shipping method updated!"
+msgstr "روش ارسال بروزرسانی شد!"
+
+#: .\views.py:158
+msgid "Invalid shipping method."
+msgstr "روش ارسال نامعتبر است."
+
+#~ msgid "Discount amount"
+#~ msgstr "میزان تخفیف"
+
+#~ msgid "Invalid coupon code."
+#~ msgstr "کد تخفیف نامعتبر است."
+
+#~ msgid "discount Code"
+#~ msgstr "کد تخفیف"
+
+#~ msgid "Expiration Date"
+#~ msgstr "انقضاء در"
+
+#, fuzzy
+#~ msgid "Updated At"
+#~ msgstr "بروزرسانی سبد خرید"
+
+#, fuzzy
+#~ msgid "Please enter a valid coupon code."
+#~ msgstr "کد تخفیف نامعتبر است."
+
+#~ msgid "The maximum orderable quantity is {product.quantity} numbers."
+#~ msgstr "حداکثر تعداد قابل سفارش، {product.quantity} عدد است."
 
 #~ msgid "Product successfully added to cart!"
 #~ msgstr "محصول با موفقیت به سبد خرید اضافه شد!"
@@ -108,9 +227,6 @@ msgstr "محصول با موفقیت از سبد خرید حذف شد!"
 
 #~ msgid "Image"
 #~ msgstr "عکس"
-
-#~ msgid "Update Cart"
-#~ msgstr "بروزرسانی سبد خرید"
 
 #~ msgid "Quantity  "
 #~ msgstr "تعداد    "

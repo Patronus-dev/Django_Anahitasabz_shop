@@ -10,178 +10,166 @@
 
 {% block content %}
 
-    <!-- Main Content Wrapper Start -->
     <div class="main-content-wrapper">
         <div class="page-content-inner ptb--80">
             <div class="container">
                 <div class="row">
+
+                    <!-- Cart Items -->
                     <div class="col-lg-8 mb-md--50">
-                        <div class="row g-0">
-                            <div class="col-12">
-                                {% if cart %}
-                                    <div class="table-content table-responsive">
-                                        <table class="table" style="direction: rtl; text-align: center">
-                                            <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th style="font-size: large">{% trans 'Product' %}</th>
-                                                <th style="font-size: large">{% trans 'Price' %}</th>
-                                                <th style="font-size: large">{% trans 'Quantity' %}</th>
-                                                <th style="font-size: large">{% trans 'Total' %}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {% for item in cart %}
-                                                <tr>
-                                                    <!-- Remove button -->
-                                                    <td class="product-remove">
-                                                        <a href="{% url 'cart:cart_remove' item.product_obj.id %}">
-                                                            <i class="flaticon flaticon-cross"></i>
-                                                        </a>
-                                                    </td>
-
-                                                    <!-- Product image -->
-                                                    <td class="product-thumbnail">
-                                                        <img src="{{ item.product_obj.cover.url }}"
-                                                             alt="{{ item.product_obj.title }}"
-                                                             style="max-width: 70px;">
-                                                    </td>
-
-                                                    <!-- Product name -->
-                                                    <td class="product-name">
-                                                        <h3 style="margin: 0; font-size: 14px;">
-                                                            <a href="{% url 'products:product_detail' item.product_obj.id %}">
-                                                                {{ item.product_obj.title }}
-                                                            </a>
-                                                        </h3>
-                                                    </td>
-
-                                                    <!-- Unit price -->
-                                                    <td class="product-price">
-                                                        <span class="product-price-wrapper">
-                                                            {{ item.product_obj.price }} {% trans 'Toman' %}
-                                                        </span>
-                                                    </td>
-
-                                                    <!-- Quantity -->
-                                                    <td class="product-quantity">
-                                                        <form action="{% url 'cart:cart_add' item.product_obj.id %}"
-                                                              method="POST">
-                                                            {% csrf_token %}
-                                                            <div class="quantity">
-                                                                <input type="number" class="quantity-input"
-                                                                       name="quantity" value="{{ item.quantity }}"
-                                                                       min="1">
-                                                                {{ item.product_update_quantity_form.inplace }}
-                                                            </div>
-                                                            <button type="submit">{% trans 'Update' %}</button>
-                                                        </form>
-                                                    </td>
-
-                                                    <!-- Total -->
-                                                    <td class="product-total-price">
-                                                    <span class="product-price-wrapper">
-                                                        {{ item.total_price }} {% trans 'Toman' %}
-                                                    </span>
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                {% else %}
-                                    <p style="direction: rtl;font-size: x-large; float: right">{% trans 'The Cart is empty!' %}</p>
-                                    <a href="{% url 'products:product_list' %}">
-                                        <button type="button"
-                                                class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
-                                                style="font-size: large; float: left">
-                                            {% trans 'Products List' %}
-                                        </button>
-                                    </a>
-                                {% endif %}
-                            </div>
-                        </div>
                         {% if cart %}
+                            <div class="table-content table-responsive">
+                                <table class="table" style="direction: rtl; text-align: center">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th style="font-size: large">{% trans 'Product' %}</th>
+                                        <th style="font-size: large">{% trans 'Price' %}</th>
+                                        <th style="font-size: large">{% trans 'Quantity' %}</th>
+                                        <th style="font-size: large">{% trans 'Total' %}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in cart %}
+                                        <tr>
+                                            <td class="product-remove">
+                                                <a href="{% url 'cart:cart_remove' item.product_obj.id %}"><i
+                                                        class="flaticon flaticon-cross"></i></a>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <img src="{{ item.product_obj.cover.url }}"
+                                                     alt="{{ item.product_obj.title }}" style="max-width: 70px;">
+                                            </td>
+                                            <td class="product-name">
+                                                <h3 style="margin: 0; font-size: 14px; font-family: RastinPlus, sans-serif">
+                                                    <a href="{% url 'products:product_detail' item.product_obj.id %}">{{ item.product_obj.title }}</a>
+                                                </h3>
+                                            </td>
+                                            <td class="product-price">{{ item.product_obj.price }} {% trans 'Toman' %}</td>
+                                            <td class="product-quantity">
+                                                <form action="{% url 'cart:cart_add' item.product_obj.id %}"
+                                                      method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="quantity">
+                                                        <input type="number" class="quantity-input" name="quantity"
+                                                               value="{{ item.quantity }}" min="1">
+                                                        {{ item.product_update_quantity_form.inplace }}
+                                                    </div>
+                                                    <button style="font-size: small"
+                                                            type="submit">{% trans 'Update' %}</button>
+                                                </form>
+                                            </td>
+                                            <td class="product-total-price">{{ item.total_price }} {% trans 'Toman' %}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
                             <div class="row g-0 border-top pt--20 mt--20">
                                 <div class="col-sm-6 text-sm-end" style="width: fit-content">
                                     <a href="{% url 'products:product_list' %}">
-                                        <button style="font-size: large" type="button"
-                                                class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
-                                            {% trans 'Products List' %}
-                                        </button>
+                                        <input type="submit" value="{% trans 'Products List' %}"
+                                               class="btn btn-submit btn-style-1"
+                                               style="font-family: RastinPlus, sans-serif;">
                                     </a>
-                                    <button style="font-size: large" type="button"
-                                            class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
-                                        {% trans 'Clear Cart' %}
-                                    </button>
+                                    <form action="{% url 'cart:cart_clear' %}" method="POST" style="display: inline">
+                                        {% csrf_token %}
+                                        <input type="submit" value="{% trans 'Clear Cart' %}"
+                                               class="btn btn-submit btn-style-1"
+                                               style="font-family: RastinPlus, sans-serif;">
+                                    </form>
                                 </div>
                             </div>
+                        {% else %}
+                            <p style="direction: rtl;font-size: x-large; float: right">{% trans 'The Cart is empty!' %}</p>
+                            <a href="{% url 'products:product_list' %}">
+                                <input type="submit" value="{% trans 'Products List' %}"
+                                       class="btn btn-submit btn-style-1" style="font-family: RastinPlus, sans-serif;">
+                            </a>
                         {% endif %}
                     </div>
+
+                    <!-- Cart Totals -->
                     <div class="col-lg-4">
                         <div class="cart-collaterals">
                             <div class="cart-totals">
                                 <h5 class="font-size-14 font-bold mb--15"
-                                    style="text-align: center; font-size: x-large">{% trans 'Cart totals' %}</h5>
+                                    style="text-align: center; font-size: large; font-family: RastinPlus, sans-serif">{% trans 'Cart totals' %}</h5>
                                 <hr>
                                 <div class="cart-calculator" style="direction: rtl">
+
+                                    <!-- Products Total -->
                                     <div class="cart-calculator__item">
-                                        <div class="cart-calculator__item--head">
-                                            <span style="font-size: medium">{% trans 'Product prices' %} : </span>
-                                        </div>
-                                        <div class="cart-calculator__item--value" style="text-align: left">
-                                            <span class="product-price-wrapper">
-                                                <span style="direction: ltr"> {{ cart.get_total_price }} </span>
-                                                <span style="direction: rtl"> {% trans 'Toman' %} </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="cart-calculator__item">
-                                        <div class="cart-calculator__item--head">
-                                            <span style="font-size: medium">{% trans 'Shipping' %}:</span>
-                                        </div>
-                                        <div class="cart-calculator__item--value" style="text-align: left">
-                                                <span class="product-price-wrapper">
-                                                    <span style="direction: ltr;" class="money">70000</span>
-                                                    <span style="direction: rtl;"> {% trans 'Toman' %} </span>
-                                                </span>
-                                        </div>
-                                    </div>
-                                    <div class="coupon">
-                                        <input style="width: fit-content; font-size: medium; text-align: center"
-                                               type="text" id="coupon" name="coupon" class="cart-form__input"
-                                               placeholder="{% trans 'discount Code' %}">
-                                        <button type="submit"
-                                                style="font-size: large; text-align: right; color: green;margin-right: 13%"
-                                                class="btn btn-small btn-no-bg btn-color-white btn-hover-2">
-                                            {% trans 'Apply discount code' %}
-                                        </button>
+                                        <div class="cart-calculator__item--head">{% trans 'Product prices' %} :</div>
+                                        <div class="cart-calculator__item--value">{{ products_total }} {% trans 'Toman' %}</div>
                                     </div>
 
-                                    <div class="cart-calculator__item order-total">
-                                        <div class="cart-calculator__item--head" style="margin-left: 10%">
-                                            <span style="font-size: large">{% trans 'Total' %} : </span>
-                                        </div>
-                                        <div class="cart-calculator__item--value" style="text-align: left">
-                                                <span class="product-price-wrapper">
-                                                    <span style="direction: ltr;" class="money">226000</span>
-                                                    <span style="direction: rtl;"> {% trans 'Toman' %} </span>
-                                                </span>
+                                    <!-- Shipping -->
+                                    <div class="cart-calculator__item">
+                                        <div class="cart-calculator__item--head">{% trans 'Shipping' %} :</div>
+                                        <div class="cart-calculator__item--value">
+                                            {% if shipping_cost %}
+                                                {{ shipping_cost }} {% trans 'Toman' %}
+                                            {% else %}
+                                                {% trans 'Free' %}
+                                            {% endif %}
                                         </div>
                                     </div>
+
+                                    <!-- Coupon Form -->
+                                    <div class="coupon" style="margin-top: 15px; text-align: center;">
+                                        <form method="POST" action="{% url 'cart:apply_coupon' %}"
+                                              style="display: inline-block;">
+                                            {% csrf_token %}
+                                            <input type="text" name="code"
+                                                   placeholder="{% trans 'Coupon Code' %}"
+                                                   class="cart-form__input"
+                                                   style="width: 55%; text-align: center; font-size: medium;">
+                                            <button type="submit"
+                                                    class="btn btn-small btn-no-bg btn-color-white btn-hover-2"
+                                                    style="font-size: medium; color: green; margin-right: 11%;">
+                                                {% trans 'Apply discount code' %}
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <!-- Discount Display -->
+                                    {% if coupon_value %}
+                                        <div class="cart-calculator__item" style="margin-top: 10px;">
+                                            <div class="cart-calculator__item--head">{% trans 'Discount Value' %} :
+                                            </div>
+                                            <div class="cart-calculator__item--value" style="color: green;">
+                                                {{ coupon_display }}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+
+                                    <!-- Total -->
+                                    <div class="cart-calculator__item order-total" style="margin-top: 5%">
+                                        <div class="cart-calculator__item--head">{% trans 'Total' %} :</div>
+                                        <div class="cart-calculator__item--value">{{ total }} {% trans 'Toman' %}</div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <a href="checkout.html" class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
-                                {% trans 'Proceed To Checkout' %}
-                            </a>
+
+                            <div class="form__group" style="text-align: center; margin-top: 10%">
+                                <a href="checkout.html">
+                                    <input type="submit" value="{% trans 'Proceed To Checkout' %}"
+                                           class="btn btn-submit btn-style-1"
+                                           style="font-family: RastinPlus, sans-serif;">
+                                </a>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- Main Content Wrapper Start -->
 
 {% endblock content %}

@@ -2,7 +2,6 @@ from pathlib import Path
 from environs import Env
 import os
 
-
 env = Env()
 env.read_env()
 
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     'cms',
     'menus',
     'treebeard',
+    'django_jalali',
 
     # my apps
     'pages.apps.PagesConfig',
@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart_context',
             ],
         },
     },
