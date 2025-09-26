@@ -1,4 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render
+from django.views.generic import *
+from django.db.models import Q
+
 from .models import Product
 from cart.forms import AddToCartProductForm
 
@@ -56,3 +59,18 @@ class ProductDetailView(DetailView):
 
         return context
 
+
+# ویو برای جستجو
+def product_search_view(request):
+    user_search = request.GET.get('q', '')  # گرفتن مقدار جستجو از URL
+    products = Product.objects.filter(
+        Q(title__icontains=user_search) |
+        Q(description__icontains=user_search) |
+        Q(keywords__name__icontains=user_search),
+        active=True
+    ).distinct() if user_search else []
+
+    return render(request, 'pages/search_result.html', {
+        'user_search': user_search,
+        'products': products
+    })

@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load persian_price %}
+{% load i18n %}
+
+{% block page_title %}{% trans 'Products' %}{% endblock page_title %}
+{% block page_Breadcrumb %}{% trans 'Shop' %}{% endblock page_Breadcrumb %}
+
+{% block content %}
+
+<!-- Main Content Wrapper Start -->
+<div class="main-content-wrapper" style="direction: rtl">
+    <div class="page-content-inner ptb--80">
+        <div class="container">
+            <h2 class="mb-4" style="font-family: RastinPlus, sans-serif">{% trans 'Search results for' %} "{{ user_search }}"</h2>
+            <hr>
+            {% if products %}
+                <div class="row" style="margin-top: 5rem">
+                    {% for product in products %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center">
+                                <img src="{{ product.cover.url }}" class="card-img-top" alt="{{ product.title }}" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h3 class="card-title" style="font-family: RastinPlus, sans-serif">
+                                        {{ product.title }}
+                                    </h3>
+                                    <a href="{%  url 'products:product_detail' product.id %}" class="btn btn-primary mt-2">
+                                        {% trans 'View Product' %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>{% trans 'No products found for' %} "{{ user_search }}"</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- Main Content Wrapper End -->
+
+{% endblock content %}

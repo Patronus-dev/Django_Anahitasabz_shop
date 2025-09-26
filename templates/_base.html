@@ -68,154 +68,27 @@
                             </div>
                             <div class="mainmenu-nav d-none d-lg-block">
                                 <ul class="mainmenu">
-                                    <li class="mainmenu__item">
+                                    <li class="mainmenu__item {% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">
                                         <a href="{% url 'contact_us' %}" class="mainmenu__link">
                                             <span class="mm-text">{% trans 'Contact Us' %}</span>
                                         </a>
                                     </li>
-                                    <li class="mainmenu__item">
+
+                                    <li class="mainmenu__item {% if request.resolver_match.url_name == 'blog_list' %}active{% endif %}">
                                         <a href="{% url 'blog_list' %}" class="mainmenu__link">
                                             <span class="mm-text">{% trans 'Blog' %}</span>
                                         </a>
                                     </li>
-                                    <li class="mainmenu__item menu-item-has-children">
+
+                                    <li class="mainmenu__item {% if request.resolver_match.namespace == 'products' and request.resolver_match.url_name == 'product_list' %}active{% endif %}">
                                         <a href="{% url 'products:product_list' %}" class="mainmenu__link">
                                             <span class="mm-text">{% trans 'Products' %}</span>
                                         </a>
-                                        <ul class="megamenu">
-                                            <li>
-                                                <a class="megamenu-title" href="#">
-                                                    <span class="mm-text">Shop Grid</span>
-                                                </a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="shop-fullwidth.html">
-                                                            <span class="mm-text">Full Width</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop.html">
-                                                            <span class="mm-text">Left Sidebar</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-right-sidebar.html">
-                                                            <span class="mm-text">Right Sidebar</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-three-columns.html">
-                                                            <span class="mm-text">Three Columns</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-four-columns.html">
-                                                            <span class="mm-text">Four Columns</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="megamenu-title" href="#">
-                                                    <span class="mm-text">Shop List</span>
-                                                </a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="shop-list.html">
-                                                            <span class="mm-text">Full Width</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-list-sidebar.html">
-                                                            <span class="mm-text">Left Sidebar</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-list-right-sidebar.html">
-                                                            <span class="mm-text">Right Sidebar</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="megamenu-title" href="#">
-                                                    <span class="mm-text">Product Details</span>
-                                                </a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="product-details.html">
-                                                            <span class="mm-text">Tab Style 1</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-tab-style-2.html">
-                                                            <span class="mm-text">Tab Style 2</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-tab-style-3.html">
-                                                            <span class="mm-text">Tab Style 3</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-gallery-left.html">
-                                                            <span class="mm-text">Gallery Left</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-gallery-right.html">
-                                                            <span class="mm-text">Gallery Right</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-sticky-left.html">
-                                                            <span class="mm-text">Sticky Left</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="megamenu-title" href="#">
-                                                    <span class="mm-text">Product Details</span>
-                                                </a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="product-details-sticky-right.html">
-                                                            <span class="mm-text">Sticky Right</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-slider-box.html">
-                                                            <span class="mm-text">Slider Box</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-slider-full-width.html">
-                                                            <span class="mm-text">Slider Box Full Width</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-affiliate.html">
-                                                            <span class="mm-text">Affiliate Proudct</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-variable.html">
-                                                            <span class="mm-text">Variable Proudct</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product-details-group.html">
-                                                            <span class="mm-text">Group Product</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
                                     </li>
-                                    <li class="mainmenu__item">
+
+                                    <li class="mainmenu__item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
                                         <a href="{% url 'home' %}" class="mainmenu__link">
-                                            <span class="mm-text">{% trans 'Home' %}</span>
+                                            <span style="margin-right: 2rem; text-align: center" class="mm-text">{% trans 'Home' %}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -362,22 +235,23 @@
     </footer>
     <!-- /FOOTER -->
 
-    <!-- Searchform Popup Start -->
-    <div class="searchform__popup" id="searchForm" style="direction: rtl">
-        <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-        <div class="searchform__body">
-            <p>{% trans 'Search' %}</p>
-            <form class="searchform">
-                <label for="popup-search"></label>
-                <input type="text" name="popup-search" id="popup-search" class="searchform__input"
-                       placeholder="{% trans 'Search Entire Store...' %}">
-                <button type="submit" class="searchform__submit">
-                    <i class="flaticon flaticon-magnifying-glass-icon"></i>
-                </button>
-            </form>
-        </div>
+<!-- Searchform Popup Start -->
+<div class="searchform__popup" id="searchForm" style="direction: rtl">
+    <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
+    <div class="searchform__body">
+        <p>{% trans 'Search' %}</p>
+        <form class="searchform" method="get" action="{% url 'products:user_search' %}">
+            <label for="popup-search"></label>
+            <input type="text" name="q" id="popup-search" class="searchform__input"
+                   placeholder="{% trans 'Search Entire Store...' %}">
+            <button type="submit" class="searchform__submit">
+                <i class="flaticon flaticon-magnifying-glass-icon"></i>
+            </button>
+        </form>
     </div>
-    <!-- Searchform Popup End -->
+</div>
+<!-- Searchform Popup End -->
+
 
     <!-- Mini Cart Start -->
     <aside class="mini-cart" id="miniCart">
@@ -437,7 +311,8 @@
                     {% else %}
                         <p style="text-align:center; direction: rtl">{% trans 'The Cart is empty!' %}</p>
                         <a href="{% url 'products:product_list' %}">
-                            <p style="text-align:center; direction: rtl">{% trans 'View products' %} ---></p>
+                            <p style="text-align:center; direction: rtl; margin-top: 5rem">{% trans 'View products' %}
+                                ---></p>
                         </a>
                     {% endif %}
                 </div>

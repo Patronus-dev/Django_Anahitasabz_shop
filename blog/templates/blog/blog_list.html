@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load jformat %}
 {% load static %}
 {% load i18n %}
 
@@ -14,7 +15,7 @@
                 <!-- تغییر این بخش -->
                 <div class="d-flex flex-row flex-nowrap overflow-auto">
                     {% for blog in blogs %}
-                        <div class="p-2" style="min-width: 250px;">
+                        <div class="p-2" style="min-width: 250px; margin-right: 2rem">
                             <article class="blog blog-style-2">
                                 <div class="blog-media">
                                     <figure class="image">
@@ -24,15 +25,17 @@
                                     </figure>
                                 </div>
                                 <div class="blog-info">
-                                    <h2 class="blog-title">
+                                    <h3 class="blog-title" style="font-family: RastinPlus, sans-serif">
                                         <a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a>
-                                    </h2>
+                                    </h3>
                                     <div class="blog-meta">
-                                        <a href="{% url 'blog_detail' blog.id %}" class="blog-meta-btn">
-{#                                            <label>{{ blog.likes }}</label> <i class="fa fa-heart-o"></i>#}
-                                        </a>
-                                            <br>
-                                            {{ blog.datetime_created|date }}
+                                        <div style="width: 70%">
+                                            <p style="text-align: right">
+                                                {% trans 'datetime created' %}
+                                                : {{ blog.datetime_created|jformat:"%Y/%m/%d" }}
+                                            </p>
+                                        </div>
+                                        <br>
                                         <a href="{% url 'blog_detail' blog.id %}" class="btn btn-no-bg btn-color-dark">
                                             {% trans 'Read more' %}
                                             <i class="fa fa-angle-double-left"></i>
@@ -44,20 +47,52 @@
                     {% endfor %}
                 </div>
 
-                <!-- Pagination (در صورت نیاز می‌توانید آن را نگه دارید) -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <nav class="pagination-wrap">
-                            <ul class="pagination justify-content-center">
-                                <li><a href="#" class="prev page-number"><i class="fa fa-angle-double-right"></i></a></li>
-                                <li><span class="current page-number">1</span></li>
-                                <li><a href="#" class="page-number">2</a></li>
-                                <li><a href="#" class="page-number">3</a></li>
-                                <li><a href="#" class="next page-number"><i class="fa fa-angle-double-left"></i></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+                {% if is_paginated %}
+                    <nav class="pagination-wrap">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a href="?page={{ page_obj.previous_page_number }}"
+                                       class="prev page-number">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                            <span class="prev page-number"><i
+                                                    class="fa fa-angle-double-right"></i></span>
+                                </li>
+                            {% endif %}
+
+                            {% for num in paginator.page_range %}
+                                {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                                    {% if num == page_obj.number %}
+                                        <li class="page-item active">
+                                            <span class="current page-number">{{ num }}</span>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a href="?page={{ num }}" class="page-number">{{ num }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a href="?page={{ page_obj.next_page_number }}" class="next page-number">
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                            <span class="next page-number"><i
+                                                    class="fa fa-angle-double-left"></i></span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
 
             </div>
         </div>

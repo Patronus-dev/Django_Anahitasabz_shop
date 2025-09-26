@@ -1,11 +1,12 @@
 {% extends '_base.html' %}
 {% load static %}
+{% load jformat %}
 {% load i18n %}
 
 {% block page_title %}{% trans 'Blog' %}{% endblock page_title %}
+{% block page_Breadcrumb %}{% trans 'Blog' %}{% endblock page_Breadcrumb %}
 
 {% block content %}
-{% block page_Breadcrumb %}{% trans 'Blog' %}{% endblock page_Breadcrumb %}
 
     <!-- Main Content Wrapper Start -->
     <div class="main-content-wrapper">
@@ -19,51 +20,45 @@
                                 <div class="jumbotron jumbotron-fluid">
                                     <div class="container d-flex justify-content-between align-items-center"
                                          style="direction: rtl;">
-
                                         <div class="text-right">
-                                            <h1 class="display-4 mb-2">{{ blog.title }}</h1>
-                                            <p class="lead mb-1"
-                                               style="font-size: medium;">{{ blog.datetime_created }}</p>
-{#                                            <p class="lead mb-0" style="font-size: medium;">#}
-{#                                                {% trans 'Number of' %} {{ blog.likes }} {% trans 'people liked this post' %}#}
-{#                                            </p>#}
-                                        </div>
-
-                                        <div>
-                                            <form action="{% url 'blog_like' blog.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit"
-                                                        class="btn btn-outline-danger btn-sm d-flex align-items-center justify-content-center px-2 py-1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                         fill="currentColor" class="bi bi-heart me-1"
-                                                         viewBox="0 0 16 16">
-                                                        <path d="...">
-                                                        </path>
-                                                    </svg>
-                                                    <span>
-                                                        {% if user.is_authenticated and user in blog.likes.all %}
-                                                            {% trans 'Liked' %}
-                                                        {% else %}
-                                                            {% trans 'I like it' %}
-                                                        {% endif %}
-                                                        ({{ blog.total_likes }})
-                                                    </span>
-                                                </button>
-                                            </form>
-
+                                            <h1 class="display-4 mb-2" style="font-family: RastinPlus, sans-serif">
+                                                {{ blog.title }}
+                                            </h1>
+                                            <p class="lead mb-1" style="font-size: medium;">
+                                                {% trans 'Date created' %}
+                                                : {{ blog.datetime_created|jformat:"%Y/%m/%d" }}
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="entry-media text-center my-3">
-                                    <div class="image">
-                                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}"
-                                             class="img-fluid rounded">
+                                    <br>
+                                    <div class="entry-media text-center my-3">
+                                        <div class="image">
+                                            <img src="{{ blog.image.url }}" alt="{{ blog.title }}"
+                                                 class="img-fluid rounded">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="entry-content" style="text-align: justify; direction: rtl;">
-                                    {{ blog.text|safe }}
+                                    <div class="entry-content"
+                                         style="text-align: justify; direction: rtl; margin-top: 5rem">
+                                        {{ blog.text|safe }}
+                                    </div>
+                                    <hr>
+                                    <div class="text-right" style="text-align: right">
+                                        <p class="lead mb-1" style="font-size: medium;">
+                                            {% trans 'Author' %} : {{ blog.author }}
+                                        </p>
+                                        {% if blog.datetime_modified|jformat:"%Y/%m/%d - %H:%M" != blog.datetime_created|jformat:"%Y/%m/%d - %H:%M" %}
+                                            <p class="lead mb-1" style="font-size: medium;">
+                                                {% trans 'Last edited date' %}
+                                                : {{ blog.datetime_modified|jformat:"%Y/%m/%d - %H:%M" }}
+                                            </p>
+                                        {% endif %}
+                                        <p class="lead mb-1" style="font-size: medium;">
+                                            <a href="{{ blog.source_link }}">
+                                                {% trans 'Source' %} : {{ blog.source }} <i class="fa fa-link"></i>
+                                            </a>
+                                        </p>
+                                    </div>
                                 </div>
                             </article>
 
@@ -73,15 +68,15 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="sidebar-inner">
                             <div class="widget blog-widget widget-recent-posts mb--40">
-                                <h2 style="text-align: right">{% trans 'Recent Post' %}</h2>
+                                <h3 style="text-align: right; font-family: RastinPlus, sans-serif">
+                                    {% trans 'Recent Post' %}
+                                </h3>
                                 <hr>
                                 <div class="recent-post"
                                      style="text-align: right; direction: rtl; margin-bottom: 15px;">
                                     {% if all_blogs %}
                                         {% for blog in latest_blogs %}
                                             <div class="recent-post__item d-flex justify-content-between align-items-center">
-
-
                                                 <div class="recent-post__thumb" style="margin-left: 20px">
                                                     <a href="{% url 'blog_detail' blog.id %}">
                                                         <img src="{{ blog.image.url }}" alt="Blog"
@@ -91,9 +86,12 @@
 
                                                 <div class="recent-post__content">
                                                     <h3 class="recent-post__title text-truncate mb-1">
-                                                        <a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a>
+                                                        <a style="font-family: RastinPlus, sans-serif"
+                                                           href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a>
                                                     </h3>
-                                                    <span class="recent-post__meta">{{ blog.datetime_created }}</span>
+                                                    <span class="recent-post__meta" style="direction: rtl">
+                                                        {% trans 'datetime created' %} : {{ blog.datetime_created|jformat:"%Y/%m/%d" }}
+                                                    </span>
                                                 </div>
                                             </div>
                                         {% endfor %}

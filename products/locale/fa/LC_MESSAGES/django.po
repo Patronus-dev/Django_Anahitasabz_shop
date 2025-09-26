@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-26 15:38+0330\n"
+"POT-Creation-Date: 2025-09-27 00:04+0330\n"
 "PO-Revision-Date: 2025-09-26 15:57+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "کلمه کلیدی"
 msgid "Product Name"
 msgstr "نام محصول"
 
-#: .\models.py:14 .\templates\products\product_detail.html:123
+#: .\models.py:14 .\templates\products\product_detail.html:126
 msgid "Description"
 msgstr "توضیحات"
 
-#: .\models.py:15 .\templates\products\product_detail.html:72
+#: .\models.py:15 .\templates\products\product_detail.html:75
 msgid "Price"
 msgstr "بها"
 
@@ -66,69 +66,68 @@ msgstr "عکس ۳"
 msgid "Product"
 msgstr "محصول"
 
-#: .\models.py:30 .\templates\products\product_detail.html:7
-#: .\templates\products\product_list.html:7
+#: .\models.py:30 .\templates\products\product_detail.html:8
+#: .\templates\products\product_list.html:8
 msgid "Products"
 msgstr "محصولات"
 
-#: .\templates\products\product_detail.html:8
-#: .\templates\products\product_list.html:8
+#: .\templates\products\product_detail.html:9
+#: .\templates\products\product_list.html:9
 msgid "Shop"
 msgstr "محصولات"
 
-#: .\templates\products\product_detail.html:73
-#: .\templates\products\product_detail.html:200
-#: .\templates\products\product_list.html:63
+#: .\templates\products\product_detail.html:76
+#: .\templates\products\product_detail.html:198
+#: .\templates\products\product_list.html:64
 msgid "Toman"
 msgstr "تومان"
 
-#: .\templates\products\product_detail.html:76
+#: .\templates\products\product_detail.html:79
 msgid "Available quantity"
 msgstr "تعداد موجود"
 
-#: .\templates\products\product_detail.html:78
+#: .\templates\products\product_detail.html:81
 msgid "number"
 msgstr "عدد"
 
-#: .\templates\products\product_detail.html:90
+#: .\templates\products\product_detail.html:93
 msgid "Add To Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\products\product_detail.html:96
-msgid ""
-"The product is not available. To order, please refer to the page below."
+#: .\templates\products\product_detail.html:99
+msgid "The product is not available. To order, please refer to the page below."
 msgstr "محصول موجود نمی باشد. جهت سفارش به صفحه زیر مراجعه فرمایید."
 
-#: .\templates\products\product_detail.html:100
+#: .\templates\products\product_detail.html:103
 msgid "Order this Product"
 msgstr "سفارش این محصول"
 
-#: .\templates\products\product_detail.html:105
-#: .\templates\products\product_detail.html:177
+#: .\templates\products\product_detail.html:108
+#: .\templates\products\product_detail.html:180
 msgid "Other Products"
 msgstr "محصولات دیگر"
 
-#: .\templates\products\product_detail.html:128
+#: .\templates\products\product_detail.html:131
 msgid "Additional Information"
 msgstr "اطلاعات تکمیلی"
 
-#: .\templates\products\product_detail.html:151
+#: .\templates\products\product_detail.html:154
 msgid "Colors"
 msgstr "رنگ بندی"
 
-#: .\templates\products\product_detail.html:175
+#: .\templates\products\product_detail.html:178
 msgid "Similar Products"
 msgstr "محصولات مشابه"
 
-#: .\templates\products\product_list.html:68
+#: .\templates\products\product_list.html:69
 msgid "Watch"
 msgstr "مشاهده"
 
-#: .\templates\products\product_list.html:74
+#: .\templates\products\product_list.html:75
 msgid "The product is not available."
 msgstr "محصول موجود نمی باشد."
 
-#: .\templates\products\product_list.html:80
+#: .\templates\products\product_list.html:81
 msgid "Watch and Order"
 msgstr "مشاهده و سفارش"
 

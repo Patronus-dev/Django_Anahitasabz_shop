@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-16 00:56+0330\n"
-"PO-Revision-Date: 2025-09-16 00:57+0330\n"
+"POT-Creation-Date: 2025-09-26 22:49+0330\n"
+"PO-Revision-Date: 2025-09-26 22:49+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,56 +18,91 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\templates\blog\blog_detail.html:5 .\templates\blog\blog_detail.html:15
-#: .\templates\blog\blog_detail.html:18 .\templates\blog\blog_list.html:5
-#: .\templates\blog\blog_list.html:15
+#: .\models.py:12
+msgid "Published"
+msgstr "منتشر شده"
+
+#: .\models.py:13
+msgid "Draft"
+msgstr "پیش نویس"
+
+#: .\models.py:16
+msgid "Title"
+msgstr "عنوان"
+
+#: .\models.py:17 .\templates\blog\blog_detail.html:52
+msgid "Author"
+msgstr "ایجاد شده توسط"
+
+#: .\models.py:18 .\templates\blog\blog_detail.html:56
+msgid "Source"
+msgstr "منبع"
+
+#: .\models.py:19
+msgid "Source link"
+msgstr "لینک منبع"
+
+#: .\models.py:20
+msgid "Text"
+msgstr "متن"
+
+#: .\models.py:22
+msgid "Status"
+msgstr "وضعیت"
+
+#: .\models.py:23 .\templates\blog\blog_detail.html:28
+msgid "Date created"
+msgstr "تاریخ انتشار"
+
+#: .\models.py:24
+msgid "Date edited"
+msgstr "تاریخ ویرایش"
+
+#: .\models.py:25
+msgid "Blog image"
+msgstr "عکس بلاگ"
+
+#: .\models.py:28 .\templates\blog\blog_detail.html:6
+#: .\templates\blog\blog_detail.html:7 .\templates\blog\blog_list.html:6
+#: .\templates\blog\blog_list.html:7
 msgid "Blog"
 msgstr "وبلاگ"
 
-#: .\templates\blog\blog_detail.html:19 .\templates\blog\blog_list.html:18
-msgid "Home"
-msgstr "خانه"
+#: .\models.py:29
+msgid "Blogs"
+msgstr "وبلاگ"
 
-#: .\templates\blog\blog_detail.html:63
-msgid "Liked"
-msgstr "لایک ها"
+#: .\templates\blog\blog_detail.html:32
+#| msgid "Date edited"
+msgid "Last edited date"
+msgstr "تاریخ آخرین ویرایش"
 
-#: .\templates\blog\blog_detail.html:65
-msgid "I like it"
-msgstr "پسندیدم"
-
-#: .\templates\blog\blog_detail.html:94
+#: .\templates\blog\blog_detail.html:70
 msgid "Recent Post"
 msgstr "پست های اخیر"
 
-#: .\templates\blog\blog_list.html:17
-msgid "Blog Grid"
-msgstr "وبلاگ ها"
+#: .\templates\blog\blog_detail.html:91 .\templates\blog\blog_list.html:34
+msgid "datetime created"
+msgstr "تاریخ انتشار"
 
-#: .\templates\blog\blog_list.html:54
+#: .\templates\blog\blog_list.html:40
 msgid "Read more"
 msgstr "بیشتر"
+
+#~ msgid "Liked"
+#~ msgstr "لایک ها"
+
+#~ msgid "I like it"
+#~ msgstr "پسندیدم"
+
+#~ msgid "Home"
+#~ msgstr "خانه"
 
 #~ msgid "Number of"
 #~ msgstr "تعداد"
 
 #~ msgid "people liked this post"
 #~ msgstr "نفر این پست را پسندیده اند"
-
-#~ msgid "Created"
-#~ msgstr "منتشر شده"
-
-#~ msgid "Author"
-#~ msgstr "ایجاد شده توسط"
-
-#~ msgid "Source"
-#~ msgstr "منبع"
-
-#~ msgid "Date"
-#~ msgstr "تاریخ انتشار"
-
-#~ msgid "Blogs"
-#~ msgstr "بلاگ"
 
 #~ msgid "Continue Reading"
 #~ msgstr "ادامه مطلب"
