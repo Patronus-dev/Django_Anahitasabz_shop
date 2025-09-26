@@ -9,4 +9,5 @@ urlpatterns = [
     path("remove/<int:product_id>/", remove_from_cart, name="cart_remove"),
     path("clear/", cart_clear, name="cart_clear"),
     path("apply-coupon/", apply_coupon, name="apply_coupon"),
+    path('set-shipping/', set_shipping, name='set_shipping'),
 ]

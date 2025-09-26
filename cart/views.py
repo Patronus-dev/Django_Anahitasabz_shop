@@ -28,16 +28,24 @@ def cart_detail_view(request):
             product=item['product_obj']
         )
 
-    # هزینه حمل
-    shipping_cost = 0
-    shipping_id = request.session.get('shipping_id')
-    if shipping_id:
-        shipping = Shipping.objects.filter(id=shipping_id, active=True).first()
-        if shipping and not shipping.cost_on_delivery:
-            shipping_cost = int(shipping.cost)
-
     # جمع محصولات بدون اعشار
     products_total = sum(int(item['product_obj'].price * item['quantity']) for item in cart)
+
+    # لیست روش‌های ارسال فعال
+    shippings = Shipping.objects.filter(active=True)
+
+    # روش ارسال انتخاب‌شده
+    shipping_id = request.session.get('shipping_id')
+    selected_shipping = None
+    shipping_cost = 0
+
+    if shipping_id:
+        selected_shipping = Shipping.objects.filter(id=shipping_id, active=True).first()
+    elif shippings.exists():
+        selected_shipping = shippings.first()  # پیش‌فرض روی اولین روش فعال
+
+    if selected_shipping and not getattr(selected_shipping, 'cost_on_delivery', False):
+        shipping_cost = int(selected_shipping.cost)
 
     # مقدار و نوع تخفیف
     coupon_value = 0
@@ -60,11 +68,13 @@ def cart_detail_view(request):
     return render(request, 'cart/cart_detail.html', {
         'cart': cart,
         'coupon_form': coupon_form,
-        'shipping_cost': shipping_cost,
         'products_total': products_total,
+        'shipping_cost': shipping_cost,
+        'total': total,
         'coupon_value': coupon_value,
         'coupon_display': coupon_display,
-        'total': total,
+        'shippings': shippings,
+        'selected_shipping': selected_shipping,
     })
 
 
@@ -136,7 +146,7 @@ def apply_coupon(request):
                 messages.warning(request, _("You have already used this coupon."))
                 return redirect('cart:cart_detail')
 
-            # ذخیره کوپن در سشن تا تا خرید انجام نشده اعمال شود
+            # ذخیره کوپن در سشن تا خرید انجام نشده اعمال شود
             request.session['coupon'] = {
                 'code': coupon.code,
                 'discount_type': coupon.discount_type,
@@ -156,7 +166,8 @@ def set_shipping(request):
     shipping = Shipping.objects.filter(id=shipping_id, active=True).first()
     if shipping:
         request.session['shipping_id'] = shipping.id
-        request.session['shipping_cost'] = shipping.cost
+        # هزینه ارسال فقط اگر روش پرداخت توسط گیرنده نباشد
+        request.session['shipping_cost'] = 0 if getattr(shipping, 'cost_on_delivery', False) else shipping.cost
         messages.success(request, _("Shipping method updated!"))
     else:
         request.session['shipping_cost'] = 0

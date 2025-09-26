@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% load humanize %}
+{% load persian_price %}
 {% load i18n %}
 
 {% block page_title %}{% trans 'Cart' %}{% endblock page_title %}
@@ -46,7 +46,7 @@
                                                     <a href="{% url 'products:product_detail' item.product_obj.id %}">{{ item.product_obj.title }}</a>
                                                 </h3>
                                             </td>
-                                            <td class="product-price">{{ item.product_obj.price }} {% trans 'Toman' %}</td>
+                                            <td class="product-price">{{ item.product_obj.price|price_fa }} {% trans 'Toman' %}</td>
                                             <td class="product-quantity">
                                                 <form action="{% url 'cart:cart_add' item.product_obj.id %}"
                                                       method="POST">
@@ -60,7 +60,7 @@
                                                             type="submit">{% trans 'Update' %}</button>
                                                 </form>
                                             </td>
-                                            <td class="product-total-price">{{ item.total_price }} {% trans 'Toman' %}</td>
+                                            <td class="product-total-price">{{ item.total_price|price_fa }} {% trans 'Toman' %}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -103,20 +103,52 @@
                                     <!-- Products Total -->
                                     <div class="cart-calculator__item">
                                         <div class="cart-calculator__item--head">{% trans 'Product prices' %} :</div>
-                                        <div class="cart-calculator__item--value">{{ products_total }} {% trans 'Toman' %}</div>
+                                        <div class="cart-calculator__item--value">{{ products_total|price_fa }} {% trans 'Toman' %}</div>
                                     </div>
 
                                     <!-- Shipping -->
                                     <div class="cart-calculator__item">
+                                        <div class="cart-calculator__item--head">{% trans 'Shipping Method' %} :</div>
+                                        <div class="cart-calculator__item--value">
+                                            <form method="POST" action="{% url 'cart:set_shipping' %}">
+                                                {% csrf_token %}
+                                                <select name="shipping_id" onchange="this.form.submit()"
+                                                        style="width: 100%; padding: 5px; font-size: small;">
+                                                    {% for shipping in shippings %}
+                                                        <option value="{{ shipping.id }}"
+                                                                {% if selected_shipping %}
+                                                                    {% if shipping.id == selected_shipping.id %}
+                                                                        selected
+                                                                    {% endif %}
+                                                                {% else %}
+                                                                    {% if forloop.first %}
+                                                                        selected
+                                                                    {% endif %}
+                                                                {% endif %}>
+                                                            {{ shipping.shipping_method }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!-- Shipping Cost -->
+                                    <div class="cart-calculator__item">
                                         <div class="cart-calculator__item--head">{% trans 'Shipping' %} :</div>
                                         <div class="cart-calculator__item--value">
-                                            {% if shipping_cost %}
-                                                {{ shipping_cost }} {% trans 'Toman' %}
+                                            {% if selected_shipping %}
+                                                {% if selected_shipping.cost_on_delivery %}
+                                                    {% trans 'Cash on delivery' %}
+                                                {% else %}
+                                                    {{ selected_shipping.cost|price_fa }} {% trans 'Toman' %}
+                                                {% endif %}
                                             {% else %}
                                                 {% trans 'Free' %}
                                             {% endif %}
                                         </div>
                                     </div>
+
 
                                     <!-- Coupon Form -->
                                     <div class="coupon" style="margin-top: 15px; text-align: center;">
@@ -148,9 +180,9 @@
 
 
                                     <!-- Total -->
-                                    <div class="cart-calculator__item order-total" style="margin-top: 5%">
-                                        <div class="cart-calculator__item--head">{% trans 'Total' %} :</div>
-                                        <div class="cart-calculator__item--value">{{ total }} {% trans 'Toman' %}</div>
+                                    <div class="cart-calculator__item order-total" style="margin-top: 5%; font-size: x-large">
+                                        <div class="cart-calculator__item--head" style="font-size: x-large">{% trans 'Total' %} :</div>
+                                        <div class="cart-calculator__item--value">{{ total|price_fa }} {% trans 'Toman' %}</div>
                                     </div>
 
                                 </div>
