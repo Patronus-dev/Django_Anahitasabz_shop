@@ -193,13 +193,13 @@
                             <div class="form__group" style="text-align: center; margin-top: 10%; margin-bottom: auto">
                                 {% if user.is_authenticated %}
                                     <a href="{% url 'orders:checkout' %}">
-                                        <input type="submit" value="{% trans 'Proceed To Checkout' %}"
+                                        <input type="submit" value="{% trans 'Place an order' %}"
                                                class="btn btn-submit btn-style-1"
                                                style="font-family: RastinPlus, sans-serif;">
                                     </a>
                                 {% else %}
                                     <a href="{% url 'accounts:login' %}">
-                                        <input type="submit" value="{% trans 'Proceed To Checkout' %}"
+                                        <input type="submit" value="{% trans 'Place an order' %}"
                                                class="btn btn-submit btn-style-1"
                                                style="font-family: RastinPlus, sans-serif;">
                                     </a>

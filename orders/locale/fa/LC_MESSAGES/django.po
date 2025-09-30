@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-29 03:35+0330\n"
-"PO-Revision-Date: 2025-09-29 03:35+0330\n"
+"POT-Creation-Date: 2025-09-30 22:48+0330\n"
+"PO-Revision-Date: 2025-09-30 22:49+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -104,22 +104,17 @@ msgstr "رایگان"
 
 #: .\templates\orders\order_create.html:63
 msgid "Discount Value"
-msgstr ""
+msgstr "میزان تخفیف"
 
 #: .\templates\orders\order_create.html:70
 msgid "Amount payable"
 msgstr "مبلغ قابل پرداخت"
 
-#: .\templates\orders\order_create.html:81
-#| msgid "Payment status"
-msgid "Payment"
-msgstr "پرداخت"
-
-#: .\templates\orders\order_create.html:86
+#: .\templates\orders\order_create.html:82
 msgid "Your Informations"
 msgstr "مشخصات شما"
 
-#: .\templates\orders\order_create.html:88
+#: .\templates\orders\order_create.html:84
 msgid ""
 "Please review and complete the following details carefully to avoid any "
 "problems during the submission process."
@@ -127,43 +122,50 @@ msgstr ""
 "لطفاً برای جلوگیری از بروز هرگونه مشکل در فرایند ارسال، مشخصات زیر را با دقت"
 " بازبینی و تکمیل کنید."
 
-#: .\templates\orders\order_create.html:97
+#: .\templates\orders\order_create.html:93
 msgid "Name"
 msgstr "نام"
 
-#: .\templates\orders\order_create.html:105
+#: .\templates\orders\order_create.html:101
 msgid "Lastname"
 msgstr "نام خانوادگی"
 
-#: .\templates\orders\order_create.html:115
+#: .\templates\orders\order_create.html:111
 msgid "Phonenumber"
 msgstr "شماره تماس"
 
-#: .\templates\orders\order_create.html:125
+#: .\templates\orders\order_create.html:121
 msgid "province"
 msgstr "استان"
 
-#: .\templates\orders\order_create.html:134
+#: .\templates\orders\order_create.html:130
 msgid "city"
 msgstr "شهر"
 
-#: .\templates\orders\order_create.html:144
+#: .\templates\orders\order_create.html:140
 msgid "address"
 msgstr "آدرس"
 
-#: .\templates\orders\order_create.html:154
+#: .\templates\orders\order_create.html:150
 msgid "postalcode"
 msgstr "کدپستی"
 
-#: .\templates\orders\order_create.html:165
+#: .\templates\orders\order_create.html:161
 msgid "Description"
 msgstr "توضیحات"
 
-#: .\templates\orders\order_create.html:168
+#: .\templates\orders\order_create.html:164
 msgid ""
 "If you have any requests or comments about your order, please mention them "
 "here."
 msgstr "اگر در مورد سفارش خود درخواست یا توضیحاتی دارید در اینجا بیان کنید."
+
+#: .\templates\orders\order_create.html:169
+msgid "Proceed To Checkout"
+msgstr "ادامه جهت پرداخت"
+
+#~ msgid "Payment"
+#~ msgstr "پرداخت"
 
 #~ msgid "Your Order"
 #~ msgstr "سفارش شما"

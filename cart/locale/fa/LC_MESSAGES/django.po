@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-26 18:12+0330\n"
-"PO-Revision-Date: 2025-09-26 18:13+0330\n"
+"POT-Creation-Date: 2025-09-30 22:47+0330\n"
+"PO-Revision-Date: 2025-09-30 22:48+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Quantity"
 msgstr "تعداد"
 
-#: .\forms.py:29 .\models.py:14 .\templates\cart\cart_detail.html:159
+#: .\forms.py:29 .\models.py:14 .\templates\cart\cart_detail.html:158
 msgid "Coupon Code"
 msgstr "کد تخفیف"
 
@@ -42,7 +42,7 @@ msgstr "تخفیف مبلغی"
 msgid "Discount Type"
 msgstr "نوع تخفیف"
 
-#: .\models.py:18 .\templates\cart\cart_detail.html:173
+#: .\models.py:18 .\templates\cart\cart_detail.html:172
 msgid "Discount Value"
 msgstr "میزان تخفیف"
 
@@ -102,13 +102,13 @@ msgstr "محصول"
 msgid "Price"
 msgstr "بها"
 
-#: .\templates\cart\cart_detail.html:30 .\templates\cart\cart_detail.html:184
+#: .\templates\cart\cart_detail.html:30 .\templates\cart\cart_detail.html:185
 msgid "Total"
 msgstr "مجموع"
 
 #: .\templates\cart\cart_detail.html:49 .\templates\cart\cart_detail.html:63
 #: .\templates\cart\cart_detail.html:106 .\templates\cart\cart_detail.html:144
-#: .\templates\cart\cart_detail.html:185
+#: .\templates\cart\cart_detail.html:175 .\templates\cart\cart_detail.html:187
 msgid "Toman"
 msgstr "تومان"
 
@@ -144,13 +144,13 @@ msgstr "پرداخت هنگام تحویل"
 msgid "Free"
 msgstr "رایگان"
 
-#: .\templates\cart\cart_detail.html:165
+#: .\templates\cart\cart_detail.html:164
 msgid "Apply discount code"
 msgstr "اعمال کد تخفیف"
 
-#: .\templates\cart\cart_detail.html:193
-msgid "Proceed To Checkout"
-msgstr "ادامه جهت پرداخت"
+#: .\templates\cart\cart_detail.html:196 .\templates\cart\cart_detail.html:202
+msgid "Place an order"
+msgstr "ثبت سفارش"
 
 #: .\views.py:92
 msgid "The cart has been updated."
@@ -199,6 +199,9 @@ msgstr "روش ارسال بروزرسانی شد!"
 #: .\views.py:174
 msgid "Invalid shipping method."
 msgstr "روش ارسال نامعتبر است."
+
+#~ msgid "Proceed To Checkout"
+#~ msgstr "ادامه جهت پرداخت"
 
 #~ msgid "Paid by receiver"
 #~ msgstr "هزینه ارسال با مشتری"
