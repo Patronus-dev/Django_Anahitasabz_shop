@@ -21,6 +21,8 @@ class Order(models.Model):
         'cart.Shipping', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Shipping method')
     )
     coupon_code = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('Coupon code'))
+    coupon_value = models.PositiveIntegerField(default=0, verbose_name=_('Coupon Value'))  # مبلغ تخفیف
+    coupon_display = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('Coupon Display'))  # مثلا %10
 
     order_notes = models.TextField(max_length=500, blank=True, verbose_name=_('Order notes'))
     datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('Date created'))

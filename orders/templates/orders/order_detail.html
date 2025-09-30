@@ -1,0 +1,97 @@
+{% extends '_base.html' %}
+{% load persian_price %}
+{% load jformat %}
+{% load i18n %}
+
+{% block page_title %}{% trans 'Order Details' %}{% endblock page_title %}
+{% block page_Breadcrumb %}{% trans 'Order Details' %}{% endblock page_Breadcrumb %}
+
+{% block content %}
+    <div class="main-content-wrapper" style="margin-top: 5rem">
+        <div class="page-content-inner">
+            <div class="container">
+                <div class="row pb--80 pb-md--60 pb-sm--40">
+                    <!-- Order Details Start -->
+                    <div class="col-lg-8 offset-lg-2" style="direction: rtl">
+                        <div class="order-details">
+                            <div class="checkout-title mt--10">
+                                <h1 style="font-family: RastinPlus, sans-serif; text-align: center">
+                                    {% trans 'Order receipt' %}
+                                </h1>
+                                <hr>
+                                <h2 style="font-family: RastinPlus, sans-serif; margin-top: 2rem">
+                                    {% trans 'Order number' %} :
+                                    00{{ order.datetime_created|jformat:"%Y%m%d" }}{{ order.id }}
+                                </h2>
+                                <p style="margin-top: 0.5rem">
+                                    {% trans 'Status' %}: <strong>{{ order.get_status_display }}</strong>
+                                </p>
+                                <p style="margin-top: 0.5rem">
+                                    {% trans 'Order Date' %} : {{ order.datetime_created|jformat:"%Y/%m/%d" }}
+                                    {% trans 'Time' %} : {{ order.datetime_created|jformat:"%H:%M" }}
+                                </p>
+                            </div>
+
+                            <div class="table-content table-responsive mb--30">
+                                <table class="table order-table order-table-2" style="direction: rtl">
+                                    <thead>
+                                    <tr>
+                                        <th style="font-size: large">{% trans 'Product' %}</th>
+                                        <th style="font-size: large" class="text-end">{% trans 'Price' %}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in order.items.all %}
+                                        <tr>
+                                            <th style="font-size: medium">{{ item.product.title }} &ensp;
+                                                <strong>&#10005;&ensp;{{ item.quantity|price_fa }}</strong>
+                                            </th>
+                                            <td class="text-end">{{ item.price|price_fa }} {% trans 'Toman' %}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr class="cart-subtotal" style="border-top: solid 1px #666666">
+                                        <th style="font-size: medium">{% trans 'Products Total' %}</th>
+                                        <td class="text-end">{{ products_total|default:0|price_fa }} {% trans 'Toman' %}</td>
+                                    </tr>
+                                    {% if order.shipping_method %}
+                                        <tr class="shipping">
+                                            <th style="font-size: medium">{% trans 'Shipping' %}</th>
+                                            {% if order.shipping_method.cost_on_delivery %}
+                                                <td class="text-end">{% trans 'Cash on delivery' %}</td>
+                                            {% else %}
+                                                <td class="text-end">{{ order.shipping_method.cost|price_fa }} {% trans 'Toman' %}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endif %}
+                                    {% if order.coupon_code %}
+                                        <tr class="cart-subtotal">
+                                            <th style="font-size: medium">{% trans 'Coupon' %}</th>
+                                            <td class="text-end">{{ order.coupon_value|price_fa }} {% trans 'Toman' %}</td>
+                                        </tr>
+                                    {% endif %}
+                                    <tr class="order-total" style="border-top: solid 1px #666666">
+                                        <th style="font-size: large">{% trans 'Amount Paid' %}</th>
+                                        <td class="text-end"><span
+                                                class="order-total-ammount">{{ order.total_price|price_fa }} {% trans 'Toman' %}</span>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                                {% if order.order_notes %}
+                                    <div class="order-notes mt--20">
+                                        <h4 style="font-family: RastinPlus, sans-serif">{% trans 'Order Notes' %}</h4>
+                                        <p>{{ order.order_notes }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Order Details End -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

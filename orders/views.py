@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.generic import DetailView
+from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import localtime
 
 from cart.cart import Cart
 from cart.models import Shipping
@@ -66,6 +69,8 @@ def checkout_view(request):
                 total_price=totals["total"],
                 shipping_method=totals["selected_shipping"],
                 coupon_code=totals["coupon_code"],
+                coupon_value=totals["coupon_value"],
+                coupon_display=totals["coupon_display"],
                 order_notes=form.cleaned_data.get("order_notes", "")
             )
 
@@ -82,14 +87,16 @@ def checkout_view(request):
             cart.clear()
             request.session.pop("coupon", None)
 
-            messages.success(request, "Your order has been successfully placed! ✅")
+            messages.success(request, _("Your order has been successfully placed! ✅"))
+
+            # ساخت شماره سفارش اختصاصی
+            order_number = f"00{localtime(order.datetime_created).strftime('%Y%m%d')}{order.id}"
             return redirect("orders:order_detail", order_id=order.id)
         else:
-            messages.info(request, "The information entered is not valid.")
+            messages.info(request, _("The information entered is not valid."))
     else:
         form = CheckoutUserForm(instance=user)
 
-    # ---- GET: نمایش صفحه چک‌اوت ----
     totals = calculate_order_totals(request, cart)
     shippings = Shipping.objects.filter(active=True)
 
@@ -105,3 +112,22 @@ def checkout_view(request):
         'selected_shipping': totals["selected_shipping"],
     }
     return render(request, 'orders/order_create.html', context)
+
+
+class OrderDetailView(DetailView):
+    model = Order
+    template_name = 'orders/order_detail.html'
+    pk_url_kwarg = 'order_id'
+    context_object_name = 'order'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order = self.get_object()
+        # شماره سفارش اختصاصی
+        context['order_number'] = f"00{localtime(order.datetime_created).strftime('%Y%m%d')}{order.id}"
+
+        # جمع محصولات بدون تخفیف و ارسال
+        products_total = sum(item.price * item.quantity for item in order.items.all())
+        context['products_total'] = products_total
+
+        return context
