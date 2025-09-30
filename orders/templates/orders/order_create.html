@@ -1,0 +1,180 @@
+{% extends '_base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load persian_price %}
+{% load i18n %}
+
+{% block page_title %}{% trans 'Products' %}{% endblock page_title %}
+{% block page_Breadcrumb %}{% trans 'Checkout' %}{% endblock page_Breadcrumb %}
+
+{% block content %}
+
+    <div class="main-content-wrapper">
+        <div class="page-content-inner">
+            <div class="container">
+                <div class="row pt--50 pt-md--40 pt-sm--20">
+                </div>
+                <div class="row pb--80 pb-md--60 pb-sm--40">
+                    <!-- Checkout Area Start -->
+                    <div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40" style="direction: rtl">
+                        <div class="order-details">
+                            <div class="checkout-title mt--10">
+                                <h2 style="font-family: RastinPlus, sans-serif">{% trans 'Billing Details' %}</h2>
+                            </div>
+                            <div class="table-content table-responsive mb--30">
+                                <table class="table order-table order-table-2" style="direction: rtl">
+                                    <thead>
+                                    <tr>
+                                        <th style="font-size: large">{% trans 'Product' %}</th>
+                                        <th style="font-size: large" class="text-end">{% trans 'Total' %}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in cart %}
+                                        <tr>
+                                            <th style="font-size: small"> {{ item.product_obj.title }}&ensp;
+                                                <strong><span> &#10005; </span>&ensp;{{ item.quantity|price_fa }}
+                                                </strong>
+                                            </th>
+                                            <td class="text-end">{{ item.total_price|price_fa }} {% trans 'Toman' %}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr class="cart-subtotal" style="border-top: solid 1px #666666">
+                                        <th style="font-size: medium">{% trans 'Product prices' %}</th>
+                                        <td class="text-end">{{ products_total|default:0|price_fa }} {% trans 'Toman' %}</td>
+                                    </tr>
+                                    <tr class="shipping">
+                                        <th style="font-size: medium">{% trans 'Shipping' %}</th>
+                                        {% if selected_shipping %}
+                                            {% if selected_shipping.cost_on_delivery %}
+                                                <td class="text-end">{% trans 'Cash on delivery' %}</td>
+                                            {% else %}
+                                                <td class="text-end">{{ selected_shipping.cost|default:0|price_fa }} {% trans 'Toman' %}</td>
+                                            {% endif %}
+                                        {% else %}
+                                            <td class="text-end">{% trans 'Free' %}</td>
+                                        {% endif %}
+                                    </tr>
+                                    {% if coupon_value %}
+                                        <tr class="cart-subtotal">
+                                            <th style="font-size: medium">{% trans 'Discount Value' %}</th>
+                                            <td class="text-end">{{ coupon_value|price_fa }} {% trans 'Toman' %}</td>
+                                        </tr>
+                                    {% else %}
+                                    {% endif %}
+
+                                    <tr class="order-total" style="border-top: solid 1px #666666">
+                                        <th style="font-size: large">{% trans 'Amount payable' %}</th>
+                                        <td class="text-end"><span
+                                                class="order-total-ammount">{{ total|default:0|price_fa }} {% trans 'Toman' %}</span>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form__group" style="text-align:center;margin-top: 1rem">
+                            <input style="font-family: RastinPlus, sans-serif; width: 100%; font-size: large" type="button"
+                                   value="{% trans 'Payment' %}" class="btn btn-submit btn-style-1">
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="direction: rtl">
+                        <div class="checkout-title mt--10">
+                            <h2 style="font-family: RastinPlus, sans-serif; margin-bottom: 0">{% trans 'Your Informations' %}</h2>
+                            <p style="color: #E91E63; font-size: small; margin-top: 2rem">
+                                * {% trans 'Please review and complete the following details carefully to avoid any problems during the submission process.' %}
+                            </p>
+                        </div>
+                        <br>
+                        <div class="checkout-form">
+                            <form action="{% url 'orders:checkout' %}" method="post" class="form form--checkout">
+                                {% csrf_token %}
+                                <div class="row mb--20">
+                                    <div class="form__group col-md-6 mb-sm--30">
+                                        <label for="billing_fname" class="form__label form__label--2">{% trans 'Name' %}
+                                            <span class="required">*</span></label>
+                                        <input type="text" name="name" id="billing_fname"
+                                               class="form__input form__input--2"
+                                               value="{{ request.user.name|default_if_none:'' }}">
+                                    </div>
+                                    <div class="form__group col-md-6">
+                                        <label for="billing_lname"
+                                               class="form__label form__label--2">{% trans 'Lastname' %} <span
+                                                class="required">*</span></label>
+                                        <input type="text" name="lastname" id="billing_lname"
+                                               class="form__input form__input--2"
+                                               value="{{ request.user.lastname|default_if_none:'' }}">
+                                    </div>
+                                </div>
+                                <div class="row mb--20">
+                                    <div class="form__group col-12">
+                                        <label for="billing_phone"
+                                               class="form__label form__label--2">{% trans 'Phonenumber' %} <span
+                                                class="required">*</span></label>
+                                        <input type="text" name="phone" id="billing_phone"
+                                               class="form__input form__input--2"
+                                               value="{{ request.user.username }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb--20">
+                                    <div class="form__group col-12">
+                                        <label for="billing_province"
+                                               class="form__label form__label--2">{% trans 'province' %} <span
+                                                class="required">*</span></label>
+                                        <input type="text" name="province" id="billing_province"
+                                               class="form__input form__input--2"
+                                               value="{{ request.user.province|default_if_none:'' }}">
+                                    </div>
+                                </div>
+                                <div class="row mb--20">
+                                    <div class="form__group col-12">
+                                        <label for="billing_city" class="form__label form__label--2">{% trans 'city' %}
+                                            <span class="required">*</span></label>
+                                        <input type="text" name="city" id="billing_city"
+                                               class="form__input form__input--2"
+                                               value="{{ request.user.city|default_if_none:'' }}">
+                                    </div>
+                                </div>
+                                <div class="row mb--20">
+                                    <div class="form__group col-12">
+                                        <label for="billing_address"
+                                               class="form__label form__label--2">{% trans 'address' %} <span
+                                                class="required">*</span></label>
+                                        <textarea name="address" id="billing_address"
+                                                  class="form__input form__input--2"
+                                                  rows="2">{{ request.user.address|default_if_none:'' }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb--20">
+                                    <div class="form__group col-12">
+                                        <label for="billing_postal"
+                                               class="form__label form__label--2">{% trans 'postalcode' %} <span
+                                                class="required">*</span></label>
+                                        <input type="text" name="postal_code" id="billing_postal"
+                                               class="form__input form__input--2"
+                                               value="{{ request.user.postal_code|default_if_none:'' }}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form__group col-12">
+                                        <label for="orderNotes"
+                                               class="form__label form__label--2">{% trans 'Description' %}</label>
+                                        <textarea class="form__input form__input--2 form__input--textarea"
+                                                  id="orderNotes" name="orderNotes"
+                                                  placeholder="{% trans 'If you have any requests or comments about your order, please mention them here.' %}"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Checkout Area End -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

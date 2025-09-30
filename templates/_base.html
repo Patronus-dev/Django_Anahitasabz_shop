@@ -1,6 +1,6 @@
 {% load static %}
 {% load i18n %}
-{% load humanize %}
+{% load persian_price %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 
@@ -50,9 +50,9 @@
 <!-- Main Wrapper Start -->
 <div class="wrapper">
     <!-- Header Start -->
-    <header class="header">
+    <header class="header header-transparent">
         <div class="header-inner fixed-header">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-xl-10 col-lg-9 col-3">
                         <nav class="main-navigation">
@@ -88,7 +88,8 @@
 
                                     <li class="mainmenu__item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
                                         <a href="{% url 'home' %}" class="mainmenu__link">
-                                            <span style="margin-right: 2rem; text-align: center" class="mm-text">{% trans 'Home' %}</span>
+                                            <span style="margin-right: 2rem; text-align: center"
+                                                  class="mm-text">{% trans 'Home' %}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -106,11 +107,11 @@
                             </li>
                             <li class="header-toolbar__item user-info">
                                 {% if user.is_authenticated %}
-                                    <a href="{% url 'user_profile' %}" class="header-toolbar__btn">
+                                    <a href="{% url 'accounts:user_profile' %}" class="header-toolbar__btn">
                                         <i class="flaticon flaticon-user"></i>
                                     </a>
                                 {% else %}
-                                    <a href="{% url 'login' %}" class="header-toolbar__btn">
+                                    <a href="{% url 'accounts:login' %}" class="header-toolbar__btn">
                                         <i class="flaticon flaticon-user"></i>
                                     </a>
                                 {% endif %}
@@ -142,7 +143,7 @@
     {% if request.path != '/' %}
         <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6"
              style="background-image: url({% static 'img/home/page_Breadcrumb_wallpaper.jpg' %});
-                     background-size: cover">
+                     background-size: cover; margin-top: 9rem">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -235,22 +236,22 @@
     </footer>
     <!-- /FOOTER -->
 
-<!-- Searchform Popup Start -->
-<div class="searchform__popup" id="searchForm" style="direction: rtl">
-    <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-    <div class="searchform__body">
-        <p>{% trans 'Search' %}</p>
-        <form class="searchform" method="get" action="{% url 'products:user_search' %}">
-            <label for="popup-search"></label>
-            <input type="text" name="q" id="popup-search" class="searchform__input"
-                   placeholder="{% trans 'Search Entire Store...' %}">
-            <button type="submit" class="searchform__submit">
-                <i class="flaticon flaticon-magnifying-glass-icon"></i>
-            </button>
-        </form>
+    <!-- Searchform Popup Start -->
+    <div class="searchform__popup" id="searchForm" style="direction: rtl">
+        <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
+        <div class="searchform__body">
+            <p>{% trans 'Search' %}</p>
+            <form class="searchform" method="get" action="{% url 'products:user_search' %}">
+                <label for="popup-search"></label>
+                <input type="text" name="q" id="popup-search" class="searchform__input"
+                       placeholder="{% trans 'Search Entire Store...' %}">
+                <button type="submit" class="searchform__submit">
+                    <i class="flaticon flaticon-magnifying-glass-icon"></i>
+                </button>
+            </form>
+        </div>
     </div>
-</div>
-<!-- Searchform Popup End -->
+    <!-- Searchform Popup End -->
 
 
     <!-- Mini Cart Start -->
@@ -283,22 +284,17 @@
                                            href="{% url 'products:product_detail' item.product_obj.id %}">
                                             {{ item.product_obj.title }}
                                         </a>
-                                        <span class="mini-cart__product__quantity">
-                                        {{ item.quantity }} x {{ item.product_obj.price }} {% trans 'Toman' %}
-                                    </span>
+                                        <p class="mini-cart__product__quantity" style="display: inline">
+                                            {{ item.quantity|price_fa }} x
+                                        </p>
+                                        <p class="mini-cart__product__quantity" style="display: inline; direction: rtl">
+                                             {{ item.product_obj.price|price_fa }} {% trans 'Toman' %}
+                                        </p>
                                     </div>
                                 </li>
                             {% endfor %}
                         </ul>
                         <!-- Subtotal -->
-                        <hr>
-                        <div class="mini-cart__total" style="direction: rtl">
-                            <span>{% trans 'Total' %}</span>
-                            <span class="ammount">
-                            <span style="direction: ltr">{{ cart.get_total_price }}</span>
-                            <span style="direction: rtl"> {% trans 'Toman' %}</span>
-                        </span>
-                        </div>
 
                         <!-- Buttons -->
                         <div class="form__group" style="text-align: center">

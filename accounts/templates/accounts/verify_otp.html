@@ -28,7 +28,7 @@
                             <!-- لینک ارسال مجدد OTP -->
                             <p id="otp-expired-text" style="text-align:center; color: red; display:none;">
                                 {% trans 'The code sent has expired. Please get a new one.' %}
-                                <a href="{% url 'login' %}" style="color: blue; text-decoration: underline;">
+                                <a href="{% url 'accounts:login' %}" style="color: blue; text-decoration: underline;">
                                     {% trans "Send again" %}
                                 </a>
                             </p>

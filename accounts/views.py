@@ -2,11 +2,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.generic import FormView, DetailView, TemplateView, UpdateView
 from django.shortcuts import redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 import random
 from django.http import JsonResponse
-from django.contrib.auth import logout
 
 from .models import CustomUser, OTP
 from .forms import PhoneLoginForm, VerifyOTPForm, CompleteProfileForm, UserUpdateForm
@@ -15,7 +14,7 @@ from .forms import PhoneLoginForm, VerifyOTPForm, CompleteProfileForm, UserUpdat
 class PhoneLoginView(FormView):
     template_name = "accounts/phone_login.html"
     form_class = PhoneLoginForm
-    success_url = reverse_lazy("verify_otp")
+    success_url = reverse_lazy("accounts:verify_otp")  # اصلاح با namespace
 
     def form_valid(self, form):
         phone = form.cleaned_data["phone"]
@@ -42,14 +41,14 @@ class VerifyOTPView(FormView):
     def get_success_url(self):
         # کاربر جدید → تکمیل پروفایل
         if self.request.session.get("is_new_user", False):
-            return reverse_lazy("complete_profile")
+            return reverse_lazy("accounts:complete_profile")  # اصلاح با namespace
         # کاربر قدیمی → home
         return reverse_lazy("home")
 
     def form_valid(self, form):
         user_id = self.request.session.get("otp_user_id")
         if not user_id:
-            return redirect("phone_login")
+            return redirect("accounts:login")  # اصلاح با namespace
 
         user = CustomUser.objects.get(id=user_id)
         code = form.cleaned_data["code"]
@@ -77,7 +76,7 @@ class VerifyOTPView(FormView):
 
 class CompleteProfileView(FormView):
     template_name = "accounts/complete_profile.html"
-    form_class = CompleteProfileForm  # استفاده از فرم جدید
+    form_class = CompleteProfileForm
     success_url = reverse_lazy("home")
 
     def get_initial(self):
@@ -151,8 +150,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     model = CustomUser
     form_class = UserUpdateForm
     template_name = "accounts/edit_profile.html"
-    success_url = reverse_lazy("user_profile")  # بعد از ذخیره به پروفایل هدایت شود
+    success_url = reverse_lazy("accounts:user_profile")
 
     def get_object(self, queryset=None):
-        # کاربر فعلی را برمی‌گرداند
         return self.request.user

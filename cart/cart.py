@@ -102,3 +102,5 @@ class Cart:
         total += shipping_cost
 
         return total
+
+

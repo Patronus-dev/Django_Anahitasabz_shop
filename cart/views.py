@@ -173,3 +173,5 @@ def set_shipping(request):
         request.session['shipping_cost'] = 0
         messages.warning(request, _("Invalid shipping method."))
     return redirect('cart:cart_detail')
+
+

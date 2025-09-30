@@ -13,8 +13,8 @@
             <div class="row">
                 <div class="col-md-6" style="margin:0 auto; direction: rtl">
                     <div class="register-box">
-                        <h2>{% trans 'Edit Your Profile' %}</h2>
-                        <form action="" method="post">
+                        <h2 style="font-family: RastinPlus, sans-serif">{% trans 'Edit Your Profile' %} :</h2>
+                        <form action="" method="post" style="margin-top: 3rem">
                             {% csrf_token %}
                             {{ form|crispy }}
                             <div class="form__group" style="text-align:center;">

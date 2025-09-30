@@ -46,12 +46,14 @@ INSTALLED_APPS = [
     'menus',
     'treebeard',
     'django_jalali',
+    'jalali_date',
 
     # my apps
     'pages.apps.PagesConfig',
     'blog.apps.BlogConfig',
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
 
 ]
 

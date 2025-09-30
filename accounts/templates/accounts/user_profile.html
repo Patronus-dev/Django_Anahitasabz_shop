@@ -22,7 +22,7 @@
                                         data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">
                                     {% trans 'Dashboard' %}
                                 </button>
-                                <a class="nav-link" href="{% url 'logout_confirm' %}">{% trans 'Logout' %}</a>
+                                <a class="nav-link" href="{% url 'accounts:logout_confirm' %}">{% trans 'Logout' %}</a>
                             </div>
 
                             <div class="user-dashboard-tab__content tab-content">
@@ -31,7 +31,7 @@
                                         <strong>{{ user_profile.name }}</strong> {% trans ' Dear' %}
                                         &ensp;<i class="fa fa-heart-o" style="color: red"></i>
                                     </h1>
-                                    <p style="color: #E91E63">* {% trans 'Please check the following specifications carefully to avoid any problems with product delivery.' %}</p>
+                                    <p style="color: #E91E63; font-size: small">* {% trans 'Please review and complete the following details carefully to avoid any problems during the submission process.' %}</p>
                                     <br>
 
                                     <h1 class="title"
@@ -57,7 +57,7 @@
                                     </ul>
                                 </div>
                                 <br>
-                                <a href="{% url 'edit_profile' %}">{% trans 'edit your account details' %}</a>
+                                <a href="{% url 'accounts:edit_profile' %}">{% trans 'edit your account details' %}</a>
                                 <div class="tab-pane fade" id="orders">
                                     <div class="message-box mb--30 d-none">
                                         <p><i class="fa fa-check-circle"></i>No order has been made yet.</p>

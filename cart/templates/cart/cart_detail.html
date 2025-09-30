@@ -118,11 +118,11 @@
                                                         <option value="{{ shipping.id }}"
                                                                 {% if selected_shipping %}
                                                                     {% if shipping.id == selected_shipping.id %}
-                                                                        selected
+                                                                selected
                                                                     {% endif %}
                                                                 {% else %}
                                                                     {% if forloop.first %}
-                                                                        selected
+                                                                selected
                                                                     {% endif %}
                                                                 {% endif %}>
                                                             {{ shipping.shipping_method }}
@@ -149,7 +149,6 @@
                                         </div>
                                     </div>
 
-
                                     <!-- Coupon Form -->
                                     <div class="coupon" style="margin-top: 15px; text-align: center;">
                                         <form method="POST" action="{% url 'cart:apply_coupon' %}"
@@ -168,20 +167,23 @@
                                     </div>
 
                                     <!-- Discount Display -->
-                                    {% if coupon_value %}
+                                    {% if coupon_display %}
                                         <div class="cart-calculator__item" style="margin-top: 10px;">
                                             <div class="cart-calculator__item--head">{% trans 'Discount Value' %} :
                                             </div>
                                             <div class="cart-calculator__item--value" style="color: green;">
-                                                {{ coupon_display }}
+                                                {{ coupon_value|price_fa }} {% trans 'Toman' %}
                                             </div>
                                         </div>
                                     {% endif %}
 
 
                                     <!-- Total -->
-                                    <div class="cart-calculator__item order-total" style="margin-top: 5%; font-size: x-large">
-                                        <div class="cart-calculator__item--head" style="font-size: x-large">{% trans 'Total' %} :</div>
+                                    <div class="cart-calculator__item order-total"
+                                         style="margin-top: 5%; font-size: x-large">
+                                        <div class="cart-calculator__item--head"
+                                             style="font-size: x-large">{% trans 'Total' %} :
+                                        </div>
                                         <div class="cart-calculator__item--value">{{ total|price_fa }} {% trans 'Toman' %}</div>
                                     </div>
 
@@ -189,11 +191,19 @@
                             </div>
 
                             <div class="form__group" style="text-align: center; margin-top: 10%; margin-bottom: auto">
-                                <a href="checkout.html">
-                                    <input type="submit" value="{% trans 'Proceed To Checkout' %}"
-                                           class="btn btn-submit btn-style-1"
-                                           style="font-family: RastinPlus, sans-serif;">
-                                </a>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'orders:checkout' %}">
+                                        <input type="submit" value="{% trans 'Proceed To Checkout' %}"
+                                               class="btn btn-submit btn-style-1"
+                                               style="font-family: RastinPlus, sans-serif;">
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'accounts:login' %}">
+                                        <input type="submit" value="{% trans 'Proceed To Checkout' %}"
+                                               class="btn btn-submit btn-style-1"
+                                               style="font-family: RastinPlus, sans-serif;">
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
