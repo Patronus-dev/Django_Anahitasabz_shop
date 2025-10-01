@@ -5,6 +5,7 @@ import django_jalali.db.models as jmodels
 
 User = get_user_model()
 
+
 class Coupon(models.Model):
     CODE_TYPE_CHOICES = [
         ('percent', _('Percentage')),

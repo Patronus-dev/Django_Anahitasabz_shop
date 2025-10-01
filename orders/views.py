@@ -4,9 +4,10 @@ from django.contrib import messages
 from django.views.generic import DetailView
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import localtime
+import jdatetime
 
 from cart.cart import Cart
-from cart.models import Shipping
+from cart.models import Shipping, Coupon
 from .forms import CheckoutUserForm
 from .models import Order, OrderItem
 
@@ -63,7 +64,7 @@ def checkout_view(request):
 
             totals = calculate_order_totals(request, cart)
 
-            # ساخت سفارش با ذخیره اطلاعات کامل
+            # ساخت سفارش
             order = Order.objects.create(
                 user=user,
                 total_price=totals["total"],
@@ -83,14 +84,31 @@ def checkout_view(request):
                     quantity=item["quantity"],
                 )
 
+            # کاهش موجودی محصول بعد از خرید موفق
+            for item in cart:
+                product = item['product_obj']
+                product.quantity -= item['quantity']
+                if product.quantity < 0:
+                    product.quantity = 0  # جلوگیری از منفی شدن موجودی
+                product.save()
+
+            # اگر کوپن استفاده شده بود → به used_by اضافه کن
+            coupon_data = request.session.get("coupon")
+            if coupon_data:
+                try:
+                    coupon = Coupon.objects.get(code=coupon_data["code"])
+                    coupon.used_by.add(user)
+                except Coupon.DoesNotExist:
+                    pass
+
             # پاک کردن سبد و کوپن
             cart.clear()
             request.session.pop("coupon", None)
 
             messages.success(request, _("Your order has been successfully placed! ✅"))
 
-            # ساخت شماره سفارش اختصاصی
-            order_number = f"00{localtime(order.datetime_created).strftime('%Y%m%d')}{order.id}"
+            # شماره سفارش اختصاصی شمسی
+            order_number = f"00{jdatetime.datetime.fromgregorian(datetime=order.datetime_created).strftime('%Y%m%d')}{order.id}"
             return redirect("orders:order_detail", order_id=order.id)
         else:
             messages.info(request, _("The information entered is not valid."))
@@ -123,11 +141,14 @@ class OrderDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         order = self.get_object()
+
+        # تاریخ ایجاد سفارش به شمسی
+        jalali_date = jdatetime.datetime.fromgregorian(datetime=localtime(order.datetime_created))
+
         # شماره سفارش اختصاصی
-        context['order_number'] = f"00{localtime(order.datetime_created).strftime('%Y%m%d')}{order.id}"
+        context['order_number'] = f"00{jalali_date.strftime('%Y%m%d')}{order.id}"
 
         # جمع محصولات بدون تخفیف و ارسال
         products_total = sum(item.price * item.quantity for item in order.items.all())
         context['products_total'] = products_total
-
         return context

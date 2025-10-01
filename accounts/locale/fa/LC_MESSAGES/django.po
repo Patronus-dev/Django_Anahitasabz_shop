@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-28 21:59+0330\n"
-"PO-Revision-Date: 2025-09-28 22:00+0330\n"
+"POT-Creation-Date: 2025-10-01 22:33+0330\n"
+"PO-Revision-Date: 2025-10-01 22:36+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,19 +30,19 @@ msgstr "شماره تماس خود را وارد کنید."
 msgid "OTP code"
 msgstr "کد یکبار مصرف"
 
-#: .\models.py:14 .\templates\accounts\user_profile.html:41
+#: .\models.py:14 .\templates\accounts\user_profile.html:48
 msgid "Name"
 msgstr "نام"
 
-#: .\models.py:16 .\templates\accounts\user_profile.html:44
+#: .\models.py:16 .\templates\accounts\user_profile.html:51
 msgid "Lastname"
 msgstr "نام خانوادگی"
 
-#: .\models.py:17 .\templates\accounts\user_profile.html:50
+#: .\models.py:17 .\templates\accounts\user_profile.html:57
 msgid "province"
 msgstr "استان"
 
-#: .\models.py:18 .\templates\accounts\user_profile.html:51
+#: .\models.py:18 .\templates\accounts\user_profile.html:58
 msgid "city"
 msgstr "شهر"
 
@@ -61,7 +61,7 @@ msgstr "اطلاعات حساب کاربری"
 #: .\templates\accounts\complete_profile.html:8
 #: .\templates\accounts\edit_profile.html:7 .\templates\accounts\logout.html:8
 #: .\templates\accounts\phone_login.html:8
-#: .\templates\accounts\user_profile.html:8
+#: .\templates\accounts\user_profile.html:10
 #: .\templates\accounts\verify_otp.html:8
 msgid "Account"
 msgstr "حساب کاربری"
@@ -99,7 +99,7 @@ msgid "Are you sure you want to logout?"
 msgstr "آیا مطمئن هستید که می‌خواهید از پروفایل خود خارج شوید؟"
 
 #: .\templates\accounts\logout.html:23
-#: .\templates\accounts\user_profile.html:25
+#: .\templates\accounts\user_profile.html:31
 msgid "Logout"
 msgstr "خروج از حساب کاربری"
 
@@ -116,26 +116,27 @@ msgstr "ورود - ثبت نام"
 msgid "Login"
 msgstr "ورود"
 
-#: .\templates\accounts\user_profile.html:7
+#: .\templates\accounts\user_profile.html:9
 msgid "Profile"
 msgstr "حساب کاربری"
 
-#: .\templates\accounts\user_profile.html:23
+#: .\templates\accounts\user_profile.html:25
 msgid "Dashboard"
 msgstr "پنل کاربری"
 
-#: .\templates\accounts\user_profile.html:30
+#: .\templates\accounts\user_profile.html:29
+msgid "Orders"
+msgstr "سفارشات"
+
+#: .\templates\accounts\user_profile.html:36
 msgid "Hello"
 msgstr "سلام"
 
-#: .\templates\accounts\user_profile.html:31
+#: .\templates\accounts\user_profile.html:37
 msgid " Dear"
 msgstr "عزیز"
 
-#: .\templates\accounts\user_profile.html:34
-#| msgid ""
-#| "Please check the following specifications carefully to avoid any problems "
-#| "with product delivery."
+#: .\templates\accounts\user_profile.html:41
 msgid ""
 "Please review and complete the following details carefully to avoid any "
 "problems during the submission process."
@@ -143,25 +144,60 @@ msgstr ""
 "لطفاً برای جلوگیری از بروز هرگونه مشکل در فرایند ارسال، مشخصات زیر را با دقت"
 " بازبینی و تکمیل کنید."
 
-#: .\templates\accounts\user_profile.html:38
+#: .\templates\accounts\user_profile.html:45
 msgid "Customer informations"
 msgstr "اطلاعات مشتری"
 
-#: .\templates\accounts\user_profile.html:47
+#: .\templates\accounts\user_profile.html:54
 msgid "Phonenumber"
 msgstr "شماره تماس"
 
-#: .\templates\accounts\user_profile.html:52
+#: .\templates\accounts\user_profile.html:59
 msgid "Adress"
 msgstr "آدرس"
 
-#: .\templates\accounts\user_profile.html:55
+#: .\templates\accounts\user_profile.html:62
 msgid "postalcode"
 msgstr "کدپستی"
 
-#: .\templates\accounts\user_profile.html:60
+#: .\templates\accounts\user_profile.html:66
 msgid "edit your account details"
 msgstr "ویرایش حساب کاربری"
+
+#: .\templates\accounts\user_profile.html:75
+#| msgid "Phonenumber"
+msgid "Order number"
+msgstr "شماره سفارش"
+
+#: .\templates\accounts\user_profile.html:76
+#| msgid "Delete"
+msgid "Date"
+msgstr "تاریخ"
+
+#: .\templates\accounts\user_profile.html:77
+msgid "Status"
+msgstr "وضعیت"
+
+#: .\templates\accounts\user_profile.html:78
+msgid "Total"
+msgstr "مجموع"
+
+#: .\templates\accounts\user_profile.html:88
+msgid "Toman"
+msgstr "تومان"
+
+#: .\templates\accounts\user_profile.html:94
+msgid "View"
+msgstr "مشاهده"
+
+#: .\templates\accounts\user_profile.html:106
+msgid "No order has been made yet."
+msgstr "هنوز هیچ سفارشی ثبت نشده است."
+
+#: .\templates\accounts\user_profile.html:112
+#| msgid "Go to"
+msgid "Go Shop"
+msgstr "برو به فروشگاه"
 
 #: .\templates\accounts\verify_otp.html:7
 msgid "User verification"
@@ -189,9 +225,6 @@ msgstr "کد ارسالی منقضی شده است. لطفا یک کد جدید 
 #: .\templates\accounts\verify_otp.html:32
 msgid "Send again"
 msgstr "ارسال مجدد"
-
-#~ msgid "Orders"
-#~ msgstr "سفارشات"
 
 #~ msgid "Click the button below to confirm logout."
 #~ msgstr "برای تایید خروج روی دکمه زیر کلیک کنید."
@@ -238,9 +271,6 @@ msgstr "ارسال مجدد"
 #~ msgid "Pending"
 #~ msgstr "در انتظار تایید"
 
-#~ msgid "Go to"
-#~ msgstr "برو به"
-
 #~ msgid "Drafts Listings"
 #~ msgstr "لیست در انتظار تأیید"
 
@@ -258,9 +288,6 @@ msgstr "ارسال مجدد"
 
 #~ msgid "Edit"
 #~ msgstr "ویرایش"
-
-#~ msgid "Delete"
-#~ msgstr "حذف"
 
 #~ msgid "There are no items on your list yet!"
 #~ msgstr "هنوز هیچ موردی در لیست شما وجود ندارد!"

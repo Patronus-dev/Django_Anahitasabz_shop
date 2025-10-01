@@ -344,6 +344,18 @@
         }
     });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var hash = window.location.hash;
+    if(hash) {
+        var tabTrigger = document.querySelector('button[data-bs-target="' + hash + '"]');
+        if(tabTrigger){
+            var tab = new bootstrap.Tab(tabTrigger);
+            tab.show();
+        }
+    }
+});
+</script>
 
 
 </body>

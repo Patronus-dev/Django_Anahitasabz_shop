@@ -9,6 +9,7 @@ from django.http import JsonResponse
 
 from .models import CustomUser, OTP
 from .forms import PhoneLoginForm, VerifyOTPForm, CompleteProfileForm, UserUpdateForm
+from orders.models import Order
 
 
 class PhoneLoginView(FormView):
@@ -134,6 +135,12 @@ class UserProfileView(DetailView):
 
     def get_object(self):
         return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # گرفتن تمام سفارش‌های کاربر
+        context['orders'] = Order.objects.filter(user=self.request.user).order_by('-datetime_created')
+        return context
 
 
 class CustomLogoutConfirmView(TemplateView):

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-01 02:32+0330\n"
-"PO-Revision-Date: 2025-10-01 02:33+0330\n"
+"POT-Creation-Date: 2025-10-01 22:53+0330\n"
+"PO-Revision-Date: 2025-10-01 22:53+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,99 +18,111 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\models.py:8
+#: .\admin.py:35 .\admin.py:52 .\templates\orders\order_detail.html:23
+msgid "Order number"
+msgstr "شماره سفارش"
+
+#: .\admin.py:40
+#| msgid "Date created"
+msgid "datetime_created"
+msgstr "ایجاد شده در تاریخ"
+
+#: .\admin.py:56
+#| msgid "Total price"
+msgid "total price"
+msgstr "مبلغ کل"
+
+#: .\models.py:10
 msgid "Pending"
 msgstr "در حال پردازش"
 
-#: .\models.py:9
+#: .\models.py:11
 msgid "Paid"
 msgstr "پرداخت شده"
 
-#: .\models.py:10
+#: .\models.py:12
 msgid "Shipped"
 msgstr "ارسال شده"
 
-#: .\models.py:11
+#: .\models.py:13
 msgid "Completed"
 msgstr "انجام شده"
 
-#: .\models.py:12
+#: .\models.py:14
 msgid "Canceled"
 msgstr "لغو شده"
 
-#: .\models.py:15
+#: .\models.py:17
 msgid "User"
 msgstr "کاربر"
 
-#: .\models.py:16
+#: .\models.py:18
 msgid "Payment status"
 msgstr "وضعیت پرداخت"
 
-#: .\models.py:17 .\templates\orders\order_detail.html:27
+#: .\models.py:19 .\templates\orders\order_detail.html:26
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\models.py:19
+#: .\models.py:21
 msgid "Total price"
 msgstr "مبلغ کل"
 
-#: .\models.py:21
+#: .\models.py:23
 msgid "Shipping method"
 msgstr "روش ارسال کالا"
 
-#: .\models.py:23
+#: .\models.py:25
 msgid "Coupon code"
 msgstr "کد تخفیف"
 
-#: .\models.py:24
+#: .\models.py:26
 msgid "Coupon Value"
 msgstr "میزان تخفیف"
 
-#: .\models.py:25
-#, fuzzy
-#| msgid "Coupon"
-msgid "Coupon Display"
-msgstr "تخفیف"
-
 #: .\models.py:27
+msgid "Coupon Display"
+msgstr "میزان تخفیف"
+
+#: .\models.py:29
 msgid "Order notes"
 msgstr "یادداشت های سفارش"
 
-#: .\models.py:28
+#: .\models.py:30
 msgid "Date created"
 msgstr "ایجاد شده در تاریخ"
 
-#: .\models.py:29
+#: .\models.py:31
 msgid "Date edited"
 msgstr "تاریخ ویرایش"
 
-#: .\models.py:35 .\models.py:40
+#: .\models.py:43 .\models.py:48
 msgid "Order"
 msgstr "سفارش"
 
-#: .\models.py:36
+#: .\models.py:44
 msgid "Orders"
 msgstr "سفارشات"
 
-#: .\models.py:42 .\templates\orders\order_create.html:29
-#: .\templates\orders\order_detail.html:39
+#: .\models.py:50 .\templates\orders\order_create.html:29
+#: .\templates\orders\order_detail.html:38
 msgid "Product"
 msgstr "محصول"
 
-#: .\models.py:44
+#: .\models.py:52
 msgid "Quantity"
 msgstr "تعداد"
 
-#: .\models.py:45 .\templates\orders\order_create.html:30
-#: .\templates\orders\order_detail.html:40
+#: .\models.py:53 .\templates\orders\order_create.html:30
+#: .\templates\orders\order_detail.html:39
 msgid "Price"
 msgstr "قیمت"
 
-#: .\models.py:51
+#: .\models.py:59
 msgid "Order item"
 msgstr "اقلام سفارش"
 
-#: .\models.py:52
+#: .\models.py:60
 msgid "Order items"
 msgstr "اقلام سفارش"
 
@@ -131,11 +143,11 @@ msgstr "جزئیات صورتحساب"
 #: .\templates\orders\order_create.html:55
 #: .\templates\orders\order_create.html:64
 #: .\templates\orders\order_create.html:72
-#: .\templates\orders\order_detail.html:49
-#: .\templates\orders\order_detail.html:56
-#: .\templates\orders\order_detail.html:64
-#: .\templates\orders\order_detail.html:71
-#: .\templates\orders\order_detail.html:77
+#: .\templates\orders\order_detail.html:48
+#: .\templates\orders\order_detail.html:55
+#: .\templates\orders\order_detail.html:63
+#: .\templates\orders\order_detail.html:70
+#: .\templates\orders\order_detail.html:76
 msgid "Toman"
 msgstr "تومان"
 
@@ -144,12 +156,12 @@ msgid "Product prices"
 msgstr "بهای محصولات"
 
 #: .\templates\orders\order_create.html:50
-#: .\templates\orders\order_detail.html:60
+#: .\templates\orders\order_detail.html:59
 msgid "Shipping"
 msgstr "هزینه ارسال کالا"
 
 #: .\templates\orders\order_create.html:53
-#: .\templates\orders\order_detail.html:62
+#: .\templates\orders\order_detail.html:61
 msgid "Cash on delivery"
 msgstr "پرداخت هنگام تحویل"
 
@@ -228,39 +240,40 @@ msgstr "جزئیات سفارش"
 msgid "Order receipt"
 msgstr "رسید سفارش"
 
-#: .\templates\orders\order_detail.html:23
-msgid "Order number"
-msgstr "شماره سفارش"
-
-#: .\templates\orders\order_detail.html:30
+#: .\templates\orders\order_detail.html:29
 msgid "Order Date"
 msgstr "تاریخ سفارش"
 
-#: .\templates\orders\order_detail.html:31
+#: .\templates\orders\order_detail.html:30
 msgid "Time"
 msgstr "ساعت"
 
-#: .\templates\orders\order_detail.html:55
+#: .\templates\orders\order_detail.html:54
 msgid "Products Total"
 msgstr "جمع قمیت محصولات"
 
-#: .\templates\orders\order_detail.html:70
+#: .\templates\orders\order_detail.html:69
 msgid "Coupon"
 msgstr "تخفیف"
 
-#: .\templates\orders\order_detail.html:75
+#: .\templates\orders\order_detail.html:74
 msgid "Amount Paid"
 msgstr "مبلغ پرداخت شده"
 
-#: .\templates\orders\order_detail.html:85
+#: .\templates\orders\order_detail.html:84
 msgid "Order Notes"
 msgstr "یادداشت های سفارش"
 
-#: .\views.py:90
+#: .\templates\orders\order_detail.html:92
+#| msgid "Orders"
+msgid "View Orders"
+msgstr "مشاهده سفارشات"
+
+#: .\views.py:108
 msgid "Your order has been successfully placed! ✅"
 msgstr "سفارش شما با موفقیت ثبت شد! ✅"
 
-#: .\views.py:96
+#: .\views.py:114
 msgid "The information entered is not valid."
 msgstr "اطلاعات وارد شده معتبر نیست."
 

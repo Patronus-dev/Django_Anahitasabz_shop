@@ -1,6 +1,8 @@
 {% extends '_base.html' %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
+{% load persian_price %}
+{% load jformat %}
 {% load static %}
 {% load i18n %}
 
@@ -22,6 +24,10 @@
                                         data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">
                                     {% trans 'Dashboard' %}
                                 </button>
+                                <button type="button" class="nav-link" data-bs-toggle="tab" role="tab"
+                                        data-bs-target="#orders" aria-controls="orders" aria-selected="true">
+                                    {% trans 'Orders' %}
+                                </button>
                                 <a class="nav-link" href="{% url 'accounts:logout_confirm' %}">{% trans 'Logout' %}</a>
                             </div>
 
@@ -31,11 +37,14 @@
                                         <strong>{{ user_profile.name }}</strong> {% trans ' Dear' %}
                                         &ensp;<i class="fa fa-heart-o" style="color: red"></i>
                                     </h1>
-                                    <p style="color: #E91E63; font-size: small">* {% trans 'Please review and complete the following details carefully to avoid any problems during the submission process.' %}</p>
+                                    <p style="color: #E91E63; font-size: small">
+                                        * {% trans 'Please review and complete the following details carefully to avoid any problems during the submission process.' %}</p>
                                     <br>
 
                                     <h1 class="title"
-                                        style="font-family: RastinPlus, sans-serif">{% trans 'Customer informations' %}</h1>
+                                        style="font-family: RastinPlus, sans-serif">{% trans 'Customer informations' %}
+                                    </h1>
+                                    <hr>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item" style="font-size: large">
                                             {% trans 'Name' %} : {{ user_profile.name }}
@@ -55,48 +64,65 @@
                                             {% trans 'postalcode' %} : {{ user_profile.postal_code }}
                                         </li>
                                     </ul>
+                                    <br>
+                                    <a href="{% url 'accounts:edit_profile' %}">{% trans 'edit your account details' %}</a>
                                 </div>
-                                <br>
-                                <a href="{% url 'accounts:edit_profile' %}">{% trans 'edit your account details' %}</a>
+
                                 <div class="tab-pane fade" id="orders">
-                                    <div class="message-box mb--30 d-none">
-                                        <p><i class="fa fa-check-circle"></i>No order has been made yet.</p>
-                                        <a href="shop.html">Go Shop</a>
-                                    </div>
-                                    <div class="table-content table-responsive">
-                                        <table class="table text-center">
-                                            <thead>
-                                            <tr>
-                                                <th>Order</th>
-                                                <th>Date</th>
-                                                <th>Status</th>
-                                                <th>Total</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td class="wide-column">September 19, 2023</td>
-                                                <td>Processing</td>
-                                                <td class="wide-column">$49.00 for 1 item</td>
-                                                <td><a href="product-details.html"
-                                                       class="btn btn-small btn-bg-red btn-color-white btn-hover-2">View</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td class="wide-column">September 19, 2023</td>
-                                                <td>Processing</td>
-                                                <td class="wide-column">$49.00 for 1 item</td>
-                                                <td><a href="product-details.html"
-                                                       class="btn btn-small btn-bg-red btn-color-white btn-hover-2">View</a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <h1 class="title"
+                                        style="font-family: RastinPlus, sans-serif">{% trans 'Orders' %}
+                                    </h1>
+                                    <hr>
+                                    {% if orders %}
+                                        <div class="table-content table-responsive">
+                                            <table class="table text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th style="font-size: medium">{% trans "Order number" %}</th>
+                                                    <th style="font-size: medium">{% trans "Date" %}</th>
+                                                    <th style="font-size: medium">{% trans "Status" %}</th>
+                                                    <th style="font-size: medium">{% trans "Total" %}</th>
+                                                    <th style="font-size: medium"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for order in orders %}
+                                                    <tr>
+                                                        <td>{{ order.order_number }}</td>
+                                                        <td class="wide-column">{{ order.datetime_created|jformat:"%Y/%m/%d" }}</td>
+                                                        <td>{{ order.get_status_display }}</td>
+                                                        <td class="wide-column">{{ order.total_price|price_fa }} {% trans "Toman" %}</td>
+                                                        <td>
+                                                            <div class="form__group" style="text-align:center;">
+                                                                <a href="{% url 'orders:order_detail' order.id %}">
+                                                                    <input type="submit"
+                                                                           style="font-family: RastinPlus, sans-serif"
+                                                                           value="{% trans "View" %}"
+                                                                           class="btn btn-submit btn-style-1">
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <div class="message-box mb--30">
+                                            <p>
+                                                {% trans "No order has been made yet." %}
+                                            </p>
+                                            <div class="form__group" style="text-align:center;">
+                                                <a href="{% url 'products:product_list' %}">
+                                                    <input type="submit" style="font-family: RastinPlus, sans-serif"
+                                                           value="{% trans "Go Shop" %}"
+                                                           class="btn btn-submit btn-style-1">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                 </div>
+
                             </div>
                         </div>
                     </div>

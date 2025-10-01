@@ -99,14 +99,14 @@
                                     {% trans 'The product is not available. To order, please refer to the page below.' %}
                                 </p>
                                 <a href="#">
-                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
-                                        {% trans 'Order this Product' %}
-                                    </button>
+                                    <input style="font-family: RastinPlus,sans-serif; font-size: medium" type="submit"
+                                           value="{% trans 'Order this Product' %}"
+                                           class="btn btn-submit btn-style-1">
                                 </a>
                                 <a href="{% url 'products:product_list' %}">
-                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
-                                        {% trans 'Other Products' %}
-                                    </button>
+                                    <input style="font-family: RastinPlus,sans-serif; font-size: medium" type="submit"
+                                           value="{% trans 'Other Products' %}"
+                                           class="btn btn-submit btn-style-1">
                                 </a>
                             {% endif %}
                         </div>
@@ -190,12 +190,15 @@
                                                     </a>
                                                 </figure>
                                                 <div class="product-info">
-                                                    <h2 class="product-title" style="font-family: RastinPlus, sans-serif">
+                                                    <h2 class="product-title"
+                                                        style="font-family: RastinPlus, sans-serif">
                                                         <a href="{% url 'products:product_detail' p.id %}">{{ p.title }}</a>
                                                     </h2>
                                                     <div class="product-price-wrapper">
-                                                        <span style="font-size: large" class="money">{{ p.price|price_fa }}</span>
-                                                        <span style="font-size: large" class="title">{% trans 'Toman' %}</span>
+                                                        <span style="font-size: large"
+                                                              class="money">{{ p.price|price_fa }}</span>
+                                                        <span style="font-size: large"
+                                                              class="title">{% trans 'Toman' %}</span>
                                                     </div>
                                                 </div>
                                             </div>
