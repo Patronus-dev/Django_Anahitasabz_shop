@@ -25,7 +25,7 @@ class OrderAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
                     'is_paid'
                     ]
     list_filter = ['is_paid', 'datetime_created']
-    search_fields = ['id', 'user__username']
+    search_fields = ['id', 'order_number_display', 'user__username']
 
     inlines = [OrderItemInline]
 

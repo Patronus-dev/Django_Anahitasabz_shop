@@ -5,7 +5,7 @@
 {% load persian_price %}
 {% load i18n %}
 
-{% block page_title %}{% trans 'Products' %}{% endblock page_title %}
+{% block page_title %}| {% trans 'Products' %}{% endblock page_title %}
 {% block page_Breadcrumb %}{% trans 'Checkout' %}{% endblock page_Breadcrumb %}
 
 {% block content %}
@@ -63,7 +63,6 @@
                                             <th style="font-size: medium">{% trans 'Discount Value' %}</th>
                                             <td class="text-end">{{ coupon_value|price_fa }} {% trans 'Toman' %}</td>
                                         </tr>
-                                    {% else %}
                                     {% endif %}
 
                                     <tr class="order-total" style="border-top: solid 1px #666666">
@@ -74,6 +73,14 @@
                                     </tr>
                                     </tfoot>
                                 </table>
+                                <br>
+                                <div class="form-check" style="margin-top: 5rem; direction: ltr; width: fit-content">
+                                    <h2 style="font-family: RastinPlus, sans-serif; text-align: right">{% trans 'payment method' %}</h2>
+                                    <br>
+                                    <img src="{% static 'img/others/payment_method-removebg.png' %}" alt="Zarin pal logo">
+                                    <input class="form-check-input ms-2" type="radio" style="margin-top: 2rem; margin-right: 2rem"
+                                           name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +93,7 @@
                         </div>
                         <br>
                         <div class="checkout-form">
-                            <form action="{% url 'orders:checkout' %}" method="post" class="form form--checkout">
+                            <form action="{% url 'orders:order_create' %}" method="post" class="form form--checkout">
                                 {% csrf_token %}
                                 <div class="row mb--20">
                                     <div class="form__group col-md-6 mb-sm--30">
@@ -164,10 +171,11 @@
                                                   placeholder="{% trans 'If you have any requests or comments about your order, please mention them here.' %}"></textarea>
                                     </div>
                                 </div>
-                        <div class="form__group" style="text-align:center;margin-top: 1rem">
-                            <input style="font-family: RastinPlus, sans-serif; width: 100%; font-size: large" type="submit"
-                                   value="{% trans 'Proceed To Checkout' %}" class="btn btn-submit btn-style-1">
-                        </div>
+                                <div class="form__group" style="text-align:center;margin-top: 1rem">
+                                    <input style="font-family: RastinPlus, sans-serif; width: 100%; font-size: large"
+                                           type="submit"
+                                           value="{% trans 'Proceed To Checkout' %}" class="btn btn-submit btn-style-1">
+                                </div>
                             </form>
                         </div>
                     </div>

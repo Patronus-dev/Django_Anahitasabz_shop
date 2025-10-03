@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-01 22:53+0330\n"
-"PO-Revision-Date: 2025-10-01 22:53+0330\n"
+"POT-Creation-Date: 2025-10-03 17:02+0330\n"
+"PO-Revision-Date: 2025-10-03 17:03+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,10 @@ msgid "Order number"
 msgstr "شماره سفارش"
 
 #: .\admin.py:40
-#| msgid "Date created"
 msgid "datetime_created"
 msgstr "ایجاد شده در تاریخ"
 
 #: .\admin.py:56
-#| msgid "Total price"
 msgid "total price"
 msgstr "مبلغ کل"
 
@@ -142,7 +140,7 @@ msgstr "جزئیات صورتحساب"
 #: .\templates\orders\order_create.html:47
 #: .\templates\orders\order_create.html:55
 #: .\templates\orders\order_create.html:64
-#: .\templates\orders\order_create.html:72
+#: .\templates\orders\order_create.html:71
 #: .\templates\orders\order_detail.html:48
 #: .\templates\orders\order_detail.html:55
 #: .\templates\orders\order_detail.html:63
@@ -173,15 +171,19 @@ msgstr "رایگان"
 msgid "Discount Value"
 msgstr "میزان تخفیف"
 
-#: .\templates\orders\order_create.html:70
+#: .\templates\orders\order_create.html:69
 msgid "Amount payable"
 msgstr "مبلغ قابل پرداخت"
 
-#: .\templates\orders\order_create.html:82
+#: .\templates\orders\order_create.html:78
+msgid "payment method"
+msgstr "روش پرداخت"
+
+#: .\templates\orders\order_create.html:89
 msgid "Your Informations"
 msgstr "مشخصات شما"
 
-#: .\templates\orders\order_create.html:84
+#: .\templates\orders\order_create.html:91
 msgid ""
 "Please review and complete the following details carefully to avoid any "
 "problems during the submission process."
@@ -189,45 +191,45 @@ msgstr ""
 "لطفاً برای جلوگیری از بروز هرگونه مشکل در فرایند ارسال، مشخصات زیر را با دقت"
 " بازبینی و تکمیل کنید."
 
-#: .\templates\orders\order_create.html:93
+#: .\templates\orders\order_create.html:100
 msgid "Name"
 msgstr "نام"
 
-#: .\templates\orders\order_create.html:101
+#: .\templates\orders\order_create.html:108
 msgid "Lastname"
 msgstr "نام خانوادگی"
 
-#: .\templates\orders\order_create.html:111
+#: .\templates\orders\order_create.html:118
 msgid "Phonenumber"
 msgstr "شماره تماس"
 
-#: .\templates\orders\order_create.html:121
+#: .\templates\orders\order_create.html:128
 msgid "province"
 msgstr "استان"
 
-#: .\templates\orders\order_create.html:130
+#: .\templates\orders\order_create.html:137
 msgid "city"
 msgstr "شهر"
 
-#: .\templates\orders\order_create.html:140
+#: .\templates\orders\order_create.html:147
 msgid "address"
 msgstr "آدرس"
 
-#: .\templates\orders\order_create.html:150
+#: .\templates\orders\order_create.html:157
 msgid "postalcode"
 msgstr "کدپستی"
 
-#: .\templates\orders\order_create.html:161
+#: .\templates\orders\order_create.html:168
 msgid "Description"
 msgstr "توضیحات"
 
-#: .\templates\orders\order_create.html:164
+#: .\templates\orders\order_create.html:171
 msgid ""
 "If you have any requests or comments about your order, please mention them "
 "here."
 msgstr "اگر در مورد سفارش خود درخواست یا توضیحاتی دارید در اینجا بیان کنید."
 
-#: .\templates\orders\order_create.html:169
+#: .\templates\orders\order_create.html:177
 msgid "Proceed To Checkout"
 msgstr "ادامه جهت پرداخت"
 
@@ -265,17 +267,33 @@ msgid "Order Notes"
 msgstr "یادداشت های سفارش"
 
 #: .\templates\orders\order_detail.html:92
-#| msgid "Orders"
 msgid "View Orders"
 msgstr "مشاهده سفارشات"
 
-#: .\views.py:108
+#: .\views.py:62
+msgid "Your cart is empty. You cannot checkout without products."
+msgstr ""
+"سبد خرید شما خالی است. بدون انتخاب محصول نمی‌توانید پرداخت را انجام دهید."
+
+#: .\views.py:76
+msgid "There is not enough stock. Please check the product page again."
+msgstr ""
+"موجودی کالا کافی نمی باشد. لطفا صفحه مربوط به محصول را دوباره بررسی کنید."
+
+#: .\views.py:123
 msgid "Your order has been successfully placed! ✅"
 msgstr "سفارش شما با موفقیت ثبت شد! ✅"
 
-#: .\views.py:114
+#: .\views.py:128
 msgid "The information entered is not valid."
 msgstr "اطلاعات وارد شده معتبر نیست."
+
+#~ msgid "Not enough stock for {product.title}. Available: {product.quantity}"
+#~ msgstr ""
+#~ "موجودی کالا برای {product.title} کافی نیست. موجود کالا: {product.quantity}"
+
+#~ msgid "Zarinpal portal"
+#~ msgstr "درگاه زرین پال"
 
 #~ msgid "Total"
 #~ msgstr "مجموع"

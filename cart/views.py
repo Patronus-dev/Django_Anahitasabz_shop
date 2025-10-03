@@ -95,7 +95,7 @@ def add_to_cart_view(request, product_id):
     else:
         messages.warning(request, _("Something went wrong while adding to cart."))
 
-    return redirect('cart:cart_detail')
+    return redirect('products:product_list')
 
 
 def remove_from_cart(request, product_id):

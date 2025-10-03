@@ -14,7 +14,7 @@
     <meta name="keywords"
           content="لباس زنانه، پوشاک زنانه، فروشگاه لباس آنلاین، طراحی لباس، مد و فشن، مزون آنلاین، لباس مجلسی زنانه، مانتو شیک، پیراهن زنانه، ست لباس زنانه، طراحی مد، لباس روزمره زنانه، کت و دامن زنانه، تاپ و بلوز زنانه، استایل زنانه، اکسسوری مد، لباس فصلی زنانه">
 
-    <title>ANAHITA SABZ | {% block page_title %}{% endblock page_title %}</title>
+    <title>ANAHITA SABZ {% block page_title %}{% endblock page_title %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicons -->
@@ -51,7 +51,7 @@
 <div class="wrapper">
     <!-- Header Start -->
     <header class="header header-transparent">
-        <div class="header-inner fixed-header">
+        <div class="header-inner fixed-header" style="height: max-content">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-xl-10 col-lg-9 col-3">
@@ -96,7 +96,7 @@
                             </div>
                         </nav>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-9 text-end">
+                    <div class="col-xl-2 col-lg-3 col-9 col-2" style="text-align: center; width: fit-content">
                         <ul class="header-toolbar">
                             <li class="header-toolbar__item mini-cart-item">
                                 <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
@@ -143,7 +143,7 @@
     {% if request.path != '/' %}
         <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6"
              style="background-image: url({% static 'img/home/page_Breadcrumb_wallpaper.jpg' %});
-                     background-size: cover; margin-top: 9rem">
+                     background-size: cover; margin-top: 15rem">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -260,14 +260,14 @@
             <button type="button" class="btn-close"><i class="flaticon flaticon-cross"></i></button>
             <div class="mini-cart-inner">
                 <h3 class="mini-cart__heading mb--40 mb-lg--30"
-                    style="font-family: RastinPlus, sans-serif; text-align: center; direction: rtl">
+                    style="font-family: RastinPlus, sans-serif; text-align: center; direction: rtl; margin-bottom: 5rem">
                     {% trans 'Cart' %}
                 </h3>
                 <div class="mini-cart__content">
                     {% if cart %}
                         <ul class="mini-cart__list">
                             {% for item in cart %}
-                                <li class="mini-cart__product">
+                                <li class="mini-cart__product" style="width: 90%">
                                     <!-- Remove button -->
                                     <a href="{% url 'cart:cart_remove' item.product_obj.id %}"
                                        class="remove-from-cart remove">
@@ -288,7 +288,7 @@
                                             {{ item.quantity|price_fa }} x
                                         </p>
                                         <p class="mini-cart__product__quantity" style="display: inline; direction: rtl">
-                                             {{ item.product_obj.price|price_fa }} {% trans 'Toman' %}
+                                            {{ item.product_obj.price|price_fa }} {% trans 'Toman' %}
                                         </p>
                                     </div>
                                 </li>
@@ -297,7 +297,7 @@
                         <!-- Subtotal -->
 
                         <!-- Buttons -->
-                        <div class="form__group" style="text-align: center">
+                        <div class="form__group" style="text-align: center; margin-top: 5rem">
                             <a href="{% url 'cart:cart_detail' %}">
                                 <input style="font-family: RastinPlus, sans-serif" type="submit"
                                        value="{% trans 'View Cart' %}"
@@ -345,16 +345,16 @@
     });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var hash = window.location.hash;
-    if(hash) {
-        var tabTrigger = document.querySelector('button[data-bs-target="' + hash + '"]');
-        if(tabTrigger){
-            var tab = new bootstrap.Tab(tabTrigger);
-            tab.show();
+    document.addEventListener("DOMContentLoaded", function () {
+        var hash = window.location.hash;
+        if (hash) {
+            var tabTrigger = document.querySelector('button[data-bs-target="' + hash + '"]');
+            if (tabTrigger) {
+                var tab = new bootstrap.Tab(tabTrigger);
+                tab.show();
+            }
         }
-    }
-});
+    });
 </script>
 
 

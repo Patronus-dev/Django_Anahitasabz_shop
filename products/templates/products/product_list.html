@@ -5,7 +5,7 @@
 {% load persian_price %}
 {% load i18n %}
 
-{% block page_title %}{% trans 'Products' %}{% endblock page_title %}
+{% block page_title %}| {% trans 'Products' %}{% endblock page_title %}
 {% block page_Breadcrumb %}{% trans 'Shop' %}{% endblock page_Breadcrumb %}
 
 {% block content %}
@@ -71,13 +71,13 @@
                                                             </a>
                                                         </div>
                                                     {% else %}
-                                                        <h3 class="product-price mb--30" style="font-family: RastinPlus, sans-serif">
+                                                        <span class="title" style="font-family: RastinPlus, sans-serif">
                                                             {% trans 'The product is not available.' %}
-                                                        </h3>
+                                                        </span>
 
-                                                        <div class="form__group" style="text-align:center;">
+                                                        <div class="form__group" style="text-align:center; margin-top: 2rem">
                                                             <a href="{% url 'products:product_detail' product.id %}">
-                                                                <input type="submit"style="font-family: RastinPlus, sans-serif"
+                                                                <input type="submit" style="font-family: RastinPlus, sans-serif"
                                                                        value="{% trans 'Watch and Order' %}"
                                                                        class="btn btn-submit btn-style-1">
                                                             </a>

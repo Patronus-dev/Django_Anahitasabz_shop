@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-01 02:29+0330\n"
-"PO-Revision-Date: 2025-10-01 02:32+0330\n"
+"POT-Creation-Date: 2025-10-03 18:43+0330\n"
+"PO-Revision-Date: 2025-10-03 18:44+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Page not found"
 msgstr "صفحه مورد نظر یافت نشد"
 
-#: .\404.html:21 .\_base.html:92 .\home.html:7
+#: .\404.html:21 .\_base.html:93
 msgid "Home"
 msgstr "خانه"
 
@@ -54,65 +54,77 @@ msgstr "ما درحال بروز رسانی هستیم :)"
 msgid "Website will be available soon..."
 msgstr "وبسایت به زودی در دسترس خواهد بود..."
 
-#: .\_base.html:73
+#: .\_base.html:68
+#| msgid "Search"
+msgid "Dear"
+msgstr "عزیز"
+
+#: .\_base.html:68
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+#: .\_base.html:74
 msgid "Contact Us"
 msgstr "ارتباط با ما"
 
-#: .\_base.html:79
+#: .\_base.html:80
 msgid "Blog"
 msgstr "وبلاگ"
 
-#: .\_base.html:85
+#: .\_base.html:86 .\_base.html:153
 msgid "Products"
 msgstr "محصولات"
 
-#: .\_base.html:192
+#: .\_base.html:193
 msgid "Instagram"
 msgstr "اینستاگرام"
 
-#: .\_base.html:200
+#: .\_base.html:201
 msgid "Whatsapp"
 msgstr "واتساپ"
 
-#: .\_base.html:207
+#: .\_base.html:208
 msgid "Telegram"
 msgstr "تلگرام"
 
-#: .\_base.html:243
+#: .\_base.html:244
 msgid "Search"
 msgstr "جستجو"
 
-#: .\_base.html:247
+#: .\_base.html:248
 msgid "Search Entire Store..."
 msgstr "جستجو در فروشگاه ..."
 
-#: .\_base.html:264
+#: .\_base.html:265
 msgid "Cart"
 msgstr "سبد خرید"
 
-#: .\_base.html:291
+#: .\_base.html:292
 msgid "Toman"
 msgstr "تومان"
 
-#: .\_base.html:303
+#: .\_base.html:304
 msgid "View Cart"
 msgstr "مشاهده سبد خرید"
 
-#: .\_base.html:308
+#: .\_base.html:309
 msgid "The Cart is empty!"
 msgstr "سبد خرید خالی است!"
 
-#: .\_base.html:310
+#: .\_base.html:311
 msgid "View products"
 msgstr "مشاهده محصولات"
 
-#: .\home.html:80
+#: .\home.html:88
 msgid "Up Coming Discount"
 msgstr "دارای تخفیف"
 
-#: .\home.html:2607
+#: .\home.html:2615
 msgid "Follow us on Instagram"
 msgstr "ما را در اینستاگرام دنبال کنید"
+
+#~ msgid "Anahita Sabz"
+#~ msgstr "آناهیتا سبز"
 
 #, fuzzy
 #~ msgid "Total"
