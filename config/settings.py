@@ -1,6 +1,11 @@
 from pathlib import Path
+
+from django.contrib import staticfiles
 from environs import Env
 import os
+# ------------------------------------------------------------------------------------------------ Render.com
+import dj_database_url
+# ------------------------------------------------------------------------------------------------ l
 
 env = Env()
 env.read_env()
@@ -54,11 +59,15 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # ------------------------------------------------------------------------------------------------ Render.com
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # ---------------------------------------------------------------------------------------------------
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -105,18 +114,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 # On development mode
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'db',
+#         'PORT': 5432
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# ------------------------------------------------------------------------------------------------ Render.com
+# To deploy on Render.com
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        conn_max_age=600
+    )
 }
+# ------------------------------------------------------------------------------------------------------
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -170,11 +190,33 @@ USE_TZ = True
 # MEDIA_ROOT = '/home/patronus/public_html/media/'
 
 # On development mode
-STATIC_URL = 'assets/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets'), ]
+# STATIC_URL = 'assets/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets'), ]
+# # Media
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# ------------------------------------------------------------------------------------------------ Render.com
+# for Render.com
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'staticfiles',
+]
+
+STATICFILES_URLS = 'static/'
+
 # Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# --------------------------------------------------------------------------------------------------------
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
