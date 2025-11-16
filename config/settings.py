@@ -3,9 +3,7 @@ from pathlib import Path
 from django.contrib import staticfiles
 from environs import Env
 import os
-# ------------------------------------------------------------------------------------------------ Render.com
 import dj_database_url
-# ------------------------------------------------------------------------------------------------ l
 
 env = Env()
 env.read_env()
