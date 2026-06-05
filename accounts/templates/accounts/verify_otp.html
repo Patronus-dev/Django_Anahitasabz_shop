@@ -17,7 +17,7 @@
                     <div class="col-md-6" style="margin: 0 auto; text-align: right;">
                         <div class="register-box">
                             <h2 style="text-align: center; font-family: RastinPlus, sans-serif">{% trans 'Authentication' %}</h2>
-                            <p style="text-align: center;">{% trans 'A 4-digit verification code has been sent to you. Please enter it in the box below.' %}</p>
+                            <p style="font-size: medium; text-align: center;">{% trans 'A 4-digit verification code has been sent to you. Please enter it in the box below.' %}</p>
                             <br>
 
                             <!-- تایمر -->
@@ -25,10 +25,11 @@
                                 {% trans "Time remaining " %} <span id="otp-timer">02:00</span>
                             </p>
 
-                            <!-- لینک ارسال مجدد OTP -->
-                            <p id="otp-expired-text" style="text-align:center; color: red; display:none;">
+                            <p id="otp-expired-text" style="text-align:center; color: #DC3563; display:none;">
                                 {% trans 'The code sent has expired. Please get a new one.' %}
-                                <a href="{% url 'accounts:login' %}" style="color: blue; text-decoration: underline;">
+
+                                <a href="#" onclick="resendOTP(event)"
+                                   style="color: #4478A8; text-decoration: underline;">
                                     {% trans "Send again" %}
                                 </a>
                             </p>
@@ -37,7 +38,8 @@
                                 {% csrf_token %}
                                 {{ form|crispy }}
                                 <div class="form__group" style="text-align:center; margin-top: 15px;">
-                                    <input style="font-family: RastinPlus, sans-serif" type="submit" value="{% trans 'Login' %}" class="btn btn-submit btn-style-1">
+                                    <input style="font-family: RastinPlus, sans-serif" type="submit"
+                                           value="{% trans 'Login' %}" class="btn btn-submit btn-style-1">
                                 </div>
                             </form>
 
@@ -78,6 +80,27 @@
         }
 
         window.addEventListener("load", startTimer);
+
+        function resendOTP(e) {
+            e.preventDefault();
+
+            fetch("{% url 'accounts:resend_otp' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message);
+
+                    if (data.success) {
+                        // ریست تایمر
+                        startTimer();
+                    }
+                });
+        }
     </script>
 
 {% endblock content %}

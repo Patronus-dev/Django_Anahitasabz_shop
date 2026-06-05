@@ -4,6 +4,7 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -14,7 +15,7 @@
     <meta name="keywords"
           content="لباس زنانه، پوشاک زنانه، فروشگاه لباس آنلاین، طراحی لباس، مد و فشن، مزون آنلاین، لباس مجلسی زنانه، مانتو شیک، پیراهن زنانه، ست لباس زنانه، طراحی مد، لباس روزمره زنانه، کت و دامن زنانه، تاپ و بلوز زنانه، استایل زنانه، اکسسوری مد، لباس فصلی زنانه">
 
-    <title>ANAHITA SABZ {% block page_title %}{% endblock page_title %}</title>
+    <title>ANAHITA SHOP {% block page_title %}{% endblock page_title %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicons -->
@@ -173,11 +174,11 @@
     <!-- /Content -->
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer class="footer" style="background-color: #F1ECE8">
         <div class="footer-top ptb--50">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-9 text-center">
+                    <div class="col-lg-9 text-center" style=" width: auto">
                         <div class="footer-widget mb--50">
                             <div class="textwidget">
                                 <img src="{% static 'img/footer/Logo_file-removebg_11zon.png' %}" alt="Logo">
@@ -185,27 +186,24 @@
                         </div>
                         <div class="footer-widget">
                             <!-- Social Icons Start Here -->
-                            <ul class="social" style="margin-top: 5%">
-                                <li class="social__item">
-                                    <a target="_blank" href="https://www.instagram.com/anahitasabz" rel="noopener"
-                                       class="social__link instagram">
+                            <ul class="social">
+                                <li class="social__item" style="margin-right: 5rem">
+                                    <a target="_blank" href="https://www.instagram.com/anahitasabz" rel="noopener">
                                         <span style="font-size: large">{% trans 'Instagram' %}</span>
-                                        <i class="fa fa-instagram"></i>
+                                        <i style="font-size: x-large" class="fa fa-instagram"></i>
                                     </a>
                                 </li>
-                                <li class="social__item">
+                                <li class="social__item" style="margin-right: 5rem">
                                     <a target="_blank" href="https://api.whatsapp.com/send?phone=+989101934120"
-                                       rel="noopener"
-                                       class="social__link whatsapp">
+                                       rel="noopener">
                                         <span style="font-size: large">{% trans 'Whatsapp' %}</span>
-                                        <i class="fa fa-whatsapp"></i>
+                                        <i style="font-size: x-large" class="fa fa-whatsapp"></i>
                                     </a>
                                 </li>
                                 <li class="social__item">
-                                    <a target="_blank" href="https://t.me/mhdi_dev" rel="noopener"
-                                       class="social__link telegram">
+                                    <a target="_blank" href="https://t.me/mhdi_dev" rel="noopener">
                                         <span style="font-size: large">{% trans 'Telegram' %}</span>
-                                        <i class="fa fa-telegram"></i>
+                                        <i style="font-size: x-large" class="fa fa-telegram"></i>
                                     </a>
                                 </li>
                             </ul>

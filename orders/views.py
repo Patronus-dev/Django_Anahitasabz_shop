@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.generic import DetailView
 from django.utils.translation import gettext_lazy as _
-from django.utils.timezone import localtime
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from weasyprint import HTML
+from django.contrib.auth.decorators import login_required
 import jdatetime
+from django.utils.timezone import localtime
 
 from cart.cart import Cart
 from cart.models import Shipping, Coupon
@@ -166,3 +169,28 @@ class OrderDetailView(DetailView):
         products_total = sum(item.price * item.quantity for item in order.items.all())
         context['products_total'] = products_total
         return context
+
+
+@login_required
+def download_invoice(request, order_id):
+    try:
+        order = Order.objects.get(id=order_id, user=request.user)
+    except Order.DoesNotExist:
+        return HttpResponse("Order not found", status=404)
+
+    # شماره سفارش مثل ویوی خودت
+    jalali_date = jdatetime.datetime.fromgregorian(datetime=localtime(order.datetime_created))
+    order_number = f"00{jalali_date.strftime('%Y%m%d')}{order.id}"
+
+    html_string = render_to_string('orders/invoice_pdf.html', {
+        'order': order,
+        'order_number': order_number,
+    })
+
+    html = HTML(string=html_string, base_url=request.build_absolute_uri())
+    pdf = html.write_pdf()
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="invoice_{order.id}.pdf"'
+
+    return response

@@ -20,16 +20,10 @@
                     <div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40" style="direction: rtl">
                         <div class="order-details">
                             <div class="checkout-title mt--10">
-                                <h2 style="font-family: RastinPlus, sans-serif">{% trans 'Billing Details' %}</h2>
+                                <h2 style="font-family: RastinPlus, sans-serif">{% trans 'Billing Details' %}:</h2>
                             </div>
                             <div class="table-content table-responsive mb--30">
                                 <table class="table order-table order-table-2" style="direction: rtl">
-                                    <thead>
-                                    <tr>
-                                        <th style="font-size: large">{% trans 'Product' %}</th>
-                                        <th style="font-size: large" class="text-end">{% trans 'Price' %}</th>
-                                    </tr>
-                                    </thead>
                                     <tbody>
                                     {% for item in cart %}
                                         <tr>
@@ -42,10 +36,6 @@
                                     {% endfor %}
                                     </tbody>
                                     <tfoot>
-                                    <tr class="cart-subtotal" style="border-top: solid 1px #666666">
-                                        <th style="font-size: medium">{% trans 'Product prices' %}</th>
-                                        <td class="text-end">{{ products_total|default:0|price_fa }} {% trans 'Toman' %}</td>
-                                    </tr>
                                     <tr class="shipping">
                                         <th style="font-size: medium">{% trans 'Shipping' %}</th>
                                         {% if selected_shipping %}
@@ -74,12 +64,47 @@
                                     </tfoot>
                                 </table>
                                 <br>
-                                <div class="form-check" style="margin-top: 5rem; direction: ltr; width: fit-content">
-                                    <h2 style="font-family: RastinPlus, sans-serif; text-align: right">{% trans 'payment method' %}</h2>
-                                    <br>
-                                    <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-                                    <input class="form-check-input ms-2" type="radio" style="margin-top: 2rem; margin-right: 2rem"
-                                           name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                <div class="form-check" style="margin-top: 5rem; direction: ltr; width: fit-content;">
+                                    <h2 style="font-family: RastinPlus, sans-serif; text-align: right">
+                                        :{% trans 'payment method' %}</h2>
+                                </div>
+                                <div style="margin-top: 5rem; direction: rtl; text-align: right;">
+                                    <!-- پرداخت آنلاین -->
+                                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                        <input type="radio" name="payment_method" id="online_payment" checked
+                                               onclick="togglePayment('online')">
+                                        <label for="online_payment" style="margin-right: 10px;">پرداخت آنلاین</label>
+
+                                        <script src="https://www.zarinpal.com/webservice/TrustCode"
+                                                type="text/javascript"></script>
+                                    </div>
+
+                                    <!-- کارت به کارت -->
+                                    <div style="display: flex; align-items: center;">
+                                        <input type="radio" name="payment_method" id="card_payment"
+                                               onclick="togglePayment('card')">
+
+                                        <label for="card_payment" style="margin-right: 10px;">کارت به کارت</label>
+
+                                        <img src="{% static 'img/cart_payment/card-payment.png' %}"
+                                             style="width: 6rem; margin-right: 15px;" alt="کارت به کارت">
+                                    </div>
+
+                                    <!-- نمایش اطلاعات کارت -->
+                                    <div id="card-info-box"
+                                         style="display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+
+                                        <p style="margin-bottom: 10px;">
+                                            <strong>شماره کارت:</strong>
+                                            6037-9912-3456-7890
+                                        </p>
+
+                                        <p style="color: #DC3563;">
+                                            لطفاً رسید پرداخت را به شماره
+                                            <strong>09101934120</strong>
+                                            در واتساپ ارسال نمایید.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -184,5 +209,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePayment(type) {
+            const cardBox = document.getElementById("card-info-box");
+
+            if (type === "card") {
+                cardBox.style.display = "block";
+            } else {
+                cardBox.style.display = "none";
+            }
+        }
+    </script>
 
 {% endblock content %}

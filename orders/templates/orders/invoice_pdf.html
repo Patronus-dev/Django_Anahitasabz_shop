@@ -1,0 +1,147 @@
+{% load persian_price %}
+{% load jformat %}
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            font-family: RastinPlus, sans-serif;
+            direction: rtl;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+
+        .text-end {
+            text-align: left;
+        }
+
+        hr {
+            margin: 15px 0;
+        }
+    </style>
+    <title>
+
+    </title>
+</head>
+
+<body>
+
+<div class="order-details">
+
+    <div class="checkout-title mt--10">
+
+        <h1 style="text-align: center">
+            {% trans 'Order receipt' %}
+        </h1>
+
+        <hr>
+
+        <h2>
+            {% trans 'Order number' %} : {{ order_number }}
+        </h2>
+
+        <p>
+            {% trans 'Order status' %}: <strong>{{ order.get_status_display }}</strong>
+        </p>
+
+        <p>
+            {% trans 'Order Date' %} : {{ order.datetime_created|jformat:"%Y/%m/%d" }}
+            {% trans 'Time' %} : {{ order.datetime_created|jformat:"%H:%M" }}
+        </p>
+
+    </div>
+
+    <div class="table-content mb--30">
+
+        <table class="order-table">
+
+            <thead>
+            <tr>
+                <th>{% trans 'Order items' %}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in order.items.all %}
+                <tr>
+                    <th>
+                        {{ item.product.title }}
+                        <strong>× {{ item.quantity|price_fa }}</strong>
+                    </th>
+                    <td class="text-end">
+                        {{ item.price|price_fa }} {% trans 'Toman' %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+            <tfoot>
+
+            {% if order.shipping_method %}
+                <tr>
+                    <th>{% trans 'Shipping' %}</th>
+
+                    {% if order.shipping_method.cost_on_delivery %}
+                        <td class="text-end">{% trans 'Cash on delivery' %}</td>
+                    {% else %}
+                        <td class="text-end">
+                            {{ order.shipping_method.cost|price_fa }} {% trans 'Toman' %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endif %}
+
+            {% if order.coupon_code %}
+                <tr>
+                    <th>{% trans 'Coupon' %}</th>
+                    <td class="text-end">
+                        {{ order.coupon_value|price_fa }} {% trans 'Toman' %}
+                    </td>
+                </tr>
+            {% endif %}
+
+            <tr>
+                <th style="border-top: 1px solid #666;">
+                    {% trans 'Amount Paid' %}
+                </th>
+
+                <td class="text-end" style="border-top: 1px solid #666;">
+                    <strong>
+                        {{ order.total_price|price_fa }} {% trans 'Toman' %}
+                    </strong>
+                </td>
+            </tr>
+
+            </tfoot>
+
+        </table>
+
+        {% if order.order_notes %}
+            <div style="margin-top: 20px;">
+                <h4>{% trans 'Order Notes' %}</h4>
+                <p>{{ order.order_notes }}</p>
+            </div>
+        {% endif %}
+
+    </div>
+    <div class="textwidget" style="margin-top: 5rem">
+        <img style="margin-right: 12rem" src="{% static 'img/footer/Logo_file-removebg_11zon.png' %}" alt="Logo">
+    </div>
+
+
+</div>
+
+</body>
+</html>

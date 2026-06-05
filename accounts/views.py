@@ -4,8 +4,10 @@ from django.views.generic import FormView, DetailView, TemplateView, UpdateView
 from django.shortcuts import redirect
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
-import random
 from django.http import JsonResponse
+from django.utils import timezone
+from datetime import timedelta
+import random
 
 from .models import CustomUser, OTP
 from .forms import PhoneLoginForm, VerifyOTPForm, CompleteProfileForm, UserUpdateForm
@@ -15,20 +17,18 @@ from orders.models import Order
 class PhoneLoginView(FormView):
     template_name = "accounts/phone_login.html"
     form_class = PhoneLoginForm
-    success_url = reverse_lazy("accounts:verify_otp")  # اصلاح با namespace
+    success_url = reverse_lazy("accounts:verify_otp")
 
     def form_valid(self, form):
         phone = form.cleaned_data["phone"]
 
-        # اگر کاربر وجود داشته باشه بگیر، وگرنه بساز
         user, created = CustomUser.objects.get_or_create(username=phone)
 
-        # تولید OTP چهاررقمی
         code = f"{random.randint(1000, 9999)}"
         OTP.objects.create(user=user, code=code)
-        print(f"OTP برای {phone}: {code}")  # فقط برای تست
 
-        # ذخیره در session
+        print(f"OTP برای {phone}: {code}")
+
         self.request.session["otp_user_id"] = user.id
         self.request.session["is_new_user"] = created
 
@@ -40,36 +40,31 @@ class VerifyOTPView(FormView):
     form_class = VerifyOTPForm
 
     def get_success_url(self):
-        # کاربر جدید → تکمیل پروفایل
         if self.request.session.get("is_new_user", False):
-            return reverse_lazy("accounts:complete_profile")  # اصلاح با namespace
-        # کاربر قدیمی → home
+            return reverse_lazy("accounts:complete_profile")
         return reverse_lazy("home")
 
     def form_valid(self, form):
         user_id = self.request.session.get("otp_user_id")
         if not user_id:
-            return redirect("accounts:login")  # اصلاح با namespace
+            return redirect("accounts:login")
 
         user = CustomUser.objects.get(id=user_id)
         code = form.cleaned_data["code"]
 
-        # بررسی OTP
-        try:
-            otp_obj = OTP.objects.filter(user=user, code=code).latest("created_at")
-        except OTP.DoesNotExist:
+        otp_obj = OTP.objects.filter(user=user).order_by("-created_at").first()
+
+        if not otp_obj or otp_obj.code != code:
             form.add_error("code", "کد وارد شده نامعتبر است.")
             return self.form_invalid(form)
 
-        if otp_obj.is_expired():
-            form.add_error("code", "کد وارد شده منقضی شده است.")
+        if timezone.now() - otp_obj.created_at > timedelta(minutes=2):
+            form.add_error("code", "کد منقضی شده است.")
             return self.form_invalid(form)
 
-        # کاربر جدید → هدایت به تکمیل پروفایل
         if self.request.session.get("is_new_user", False):
             self.request.session["pending_phone"] = user.username
         else:
-            # کاربر قدیمی → لاگین و هدایت به home
             login(self.request, user, backend="django.contrib.auth.backends.ModelBackend")
 
         return super().form_valid(form)
@@ -98,12 +93,11 @@ class CompleteProfileView(FormView):
         phone = self.request.session.get("pending_phone")
         user = CustomUser.objects.get(username=phone)
 
-        # به‌روزرسانی اطلاعات کاربر
         for field, value in form.cleaned_data.items():
             setattr(user, field, value)
+
         user.save()
 
-        # لاگین و حذف session
         login(self.request, user, backend="django.contrib.auth.backends.ModelBackend")
         self.request.session.pop("pending_phone", None)
 
@@ -113,19 +107,33 @@ class CompleteProfileView(FormView):
 class ResendOTPView(View):
     def post(self, request, *args, **kwargs):
         user_id = request.session.get("otp_user_id")
+
         if not user_id:
-            return JsonResponse({"success": False, "message": "User not found in session."})
+            return JsonResponse(
+                {"success": False, "message": "Session expired"},
+                status=400
+            )
 
         user = CustomUser.objects.get(id=user_id)
 
-        # ساخت OTP جدید
+        last_otp = OTP.objects.filter(user=user).order_by("-created_at").first()
+
+        # جلوگیری از ارسال پشت سر هم (30 ثانیه)
+        if last_otp and timezone.now() - last_otp.created_at < timedelta(seconds=30):
+            return JsonResponse(
+                {"success": False, "message": "لطفاً کمی صبر کنید"},
+                status=429
+            )
+
         code = f"{random.randint(1000, 9999)}"
         OTP.objects.create(user=user, code=code)
 
-        # TODO: ارسال پیامک واقعی
-        print(f"OTP جدید برای {user.username}: {code}")  # فقط برای تست
+        print(f"OTP جدید برای {user.username}: {code}")
 
-        return JsonResponse({"success": True, "message": "کد جدید ارسال شد."})
+        return JsonResponse({
+            "success": True,
+            "message": "کد جدید ارسال شد"
+        })
 
 
 class UserProfileView(DetailView):
@@ -138,7 +146,6 @@ class UserProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # گرفتن تمام سفارش‌های کاربر
         context['orders'] = Order.objects.filter(user=self.request.user).order_by('-datetime_created')
         return context
 

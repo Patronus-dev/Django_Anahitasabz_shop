@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 00:03+0330\n"
+"POT-Creation-Date: 2026-06-02 01:48+0330\n"
 "PO-Revision-Date: 2025-09-27 00:05+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,88 +18,88 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\models.py:6
+#: .\pages\models.py:6
 msgid "Name"
 msgstr "نام"
 
-#: .\models.py:10
+#: .\pages\models.py:10
 msgid "Phone Number"
 msgstr "شماره تماس"
 
-#: .\models.py:11
+#: .\pages\models.py:11
 msgid "Enter your phone number"
 msgstr "شماره تماس خود را وارد کنید"
 
-#: .\models.py:13 .\templates\pages\contact_us.html:60
+#: .\pages\models.py:13 .\pages\templates\pages\contact_us.html:60
 msgid "Address"
 msgstr "آدرس"
 
-#: .\models.py:14
+#: .\pages\models.py:14
 msgid "Instagram Id"
 msgstr "آیدی اینستاگرام"
 
-#: .\models.py:15
+#: .\pages\models.py:15
 msgid "WhatsApp Number"
 msgstr "شماره واتساپ"
 
-#: .\models.py:16
+#: .\pages\models.py:16
 msgid "Enter your phone number without 0"
 msgstr "شماره تلفن خود را بدون عدد 0 وارد کنید"
 
-#: .\models.py:17
+#: .\pages\models.py:17
 msgid "Telegram Id"
 msgstr "آیدی تلگرام"
 
-#: .\models.py:20 .\models.py:21
+#: .\pages\models.py:20 .\pages\models.py:21
 msgid "Site Contact Info"
 msgstr "اطلاعات تماس صاحب سایت"
 
-#: .\templates\pages\contact_us.html:5 .\templates\pages\contact_us.html:6
+#: .\pages\templates\pages\contact_us.html:5
+#: .\pages\templates\pages\contact_us.html:6
 msgid "Contact us"
 msgstr "ارتباط با ما"
 
-#: .\templates\pages\contact_us.html:17
+#: .\pages\templates\pages\contact_us.html:17
 msgid "Social Media"
 msgstr "شبکه های اجتماعی"
 
-#: .\templates\pages\contact_us.html:27
+#: .\pages\templates\pages\contact_us.html:27
 msgid "Instagram"
 msgstr "اینستاگرام"
 
-#: .\templates\pages\contact_us.html:37
+#: .\pages\templates\pages\contact_us.html:37
 msgid "Whatsapp"
 msgstr "واتساپ"
 
-#: .\templates\pages\contact_us.html:46
+#: .\pages\templates\pages\contact_us.html:46
 msgid "Telegram"
 msgstr "تلگرام"
 
-#: .\templates\pages\contact_us.html:54
+#: .\pages\templates\pages\contact_us.html:54
 msgid "Contact info"
 msgstr "اطلاعات تماس"
 
-#: .\templates\pages\contact_us.html:71
-#| msgid "Phone Number"
+#: .\pages\templates\pages\contact_us.html:71
 msgid "Phonenumber"
 msgstr "شماره تماس"
 
-#: .\templates\pages\search_result.html:8
+#: .\pages\templates\pages\search_result.html:8
 msgid "Products"
 msgstr "محصولات"
 
-#: .\templates\pages\search_result.html:9
+#: .\pages\templates\pages\search_result.html:9
 msgid "Shop"
 msgstr "فروشگاه"
 
-#: .\templates\pages\search_result.html:17
+#: .\pages\templates\pages\search_result.html:17
 msgid "Search results for"
 msgstr "نتایج جستجو برای"
 
-#: .\templates\pages\search_result.html:29
+#: .\pages\templates\pages\search_result.html:30
 msgid "View Product"
 msgstr "نمایش محصول"
 
-#: .\templates\pages\search_result.html:37
+#: .\pages\templates\pages\search_result.html:38
 msgid "No products found for"
 msgstr "محصولی یافت نشد برای"
 

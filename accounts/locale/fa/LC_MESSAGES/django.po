@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-01 22:33+0330\n"
+"POT-Creation-Date: 2026-06-02 01:47+0330\n"
 "PO-Revision-Date: 2025-10-01 22:36+0330\n"
 "Last-Translator:   <mehdii.dev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,211 +18,210 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\forms.py:36 .\models.py:12
+#: .\accounts\forms.py:36 .\accounts\models.py:12
 msgid "Phone Number"
 msgstr "شماره تماس"
 
-#: .\forms.py:36 .\models.py:12
+#: .\accounts\forms.py:36 .\accounts\models.py:12
 msgid "Enter your phone number."
 msgstr "شماره تماس خود را وارد کنید."
 
-#: .\forms.py:40
+#: .\accounts\forms.py:40
 msgid "OTP code"
 msgstr "کد یکبار مصرف"
 
-#: .\models.py:14 .\templates\accounts\user_profile.html:48
+#: .\accounts\models.py:14 .\accounts\templates\accounts\user_profile.html:50
 msgid "Name"
 msgstr "نام"
 
-#: .\models.py:16 .\templates\accounts\user_profile.html:51
+#: .\accounts\models.py:16 .\accounts\templates\accounts\user_profile.html:53
 msgid "Lastname"
 msgstr "نام خانوادگی"
 
-#: .\models.py:17 .\templates\accounts\user_profile.html:57
+#: .\accounts\models.py:17 .\accounts\templates\accounts\user_profile.html:59
 msgid "province"
 msgstr "استان"
 
-#: .\models.py:18 .\templates\accounts\user_profile.html:58
+#: .\accounts\models.py:18 .\accounts\templates\accounts\user_profile.html:60
 msgid "city"
 msgstr "شهر"
 
-#: .\models.py:19
+#: .\accounts\models.py:19
 msgid "address"
 msgstr "آدرس"
 
-#: .\models.py:20
+#: .\accounts\models.py:20
 msgid "postal_code"
 msgstr "کد پستی"
 
-#: .\templates\accounts\complete_profile.html:7
+#: .\accounts\templates\accounts\complete_profile.html:7
 msgid "Profile information"
 msgstr "اطلاعات حساب کاربری"
 
-#: .\templates\accounts\complete_profile.html:8
-#: .\templates\accounts\edit_profile.html:7 .\templates\accounts\logout.html:8
-#: .\templates\accounts\phone_login.html:8
-#: .\templates\accounts\user_profile.html:10
-#: .\templates\accounts\verify_otp.html:8
+#: .\accounts\templates\accounts\complete_profile.html:8
+#: .\accounts\templates\accounts\edit_profile.html:7
+#: .\accounts\templates\accounts\logout.html:8
+#: .\accounts\templates\accounts\phone_login.html:8
+#: .\accounts\templates\accounts\user_profile.html:10
+#: .\accounts\templates\accounts\verify_otp.html:8
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: .\templates\accounts\complete_profile.html:19
+#: .\accounts\templates\accounts\complete_profile.html:19
 msgid "Welcome!"
 msgstr "خوش آمدید!"
 
-#: .\templates\accounts\complete_profile.html:20
+#: .\accounts\templates\accounts\complete_profile.html:20
 msgid "Please complete your account information."
 msgstr "لطفا اطلاعات حساب کاربری خود را تکمیل کنید."
 
-#: .\templates\accounts\complete_profile.html:26
+#: .\accounts\templates\accounts\complete_profile.html:26
 msgid "Save and continue"
 msgstr "ذخیره و ادامه"
 
-#: .\templates\accounts\edit_profile.html:6
+#: .\accounts\templates\accounts\edit_profile.html:6
 msgid "Edit Profile"
 msgstr "ویرایش پروفایل"
 
-#: .\templates\accounts\edit_profile.html:16
+#: .\accounts\templates\accounts\edit_profile.html:16
 msgid "Edit Your Profile"
 msgstr "پروفایل خود را ویرایش کنید"
 
-#: .\templates\accounts\edit_profile.html:21
+#: .\accounts\templates\accounts\edit_profile.html:21
 msgid "Save Changes"
 msgstr "ذخیره تغییرات"
 
-#: .\templates\accounts\logout.html:7
+#: .\accounts\templates\accounts\logout.html:7
 msgid "Logout Confirmation"
 msgstr "تأیید خروج"
 
-#: .\templates\accounts\logout.html:19
+#: .\accounts\templates\accounts\logout.html:19
 msgid "Are you sure you want to logout?"
 msgstr "آیا مطمئن هستید که می‌خواهید از پروفایل خود خارج شوید؟"
 
-#: .\templates\accounts\logout.html:23
-#: .\templates\accounts\user_profile.html:31
+#: .\accounts\templates\accounts\logout.html:23
+#: .\accounts\templates\accounts\user_profile.html:31
 msgid "Logout"
 msgstr "خروج از حساب کاربری"
 
-#: .\templates\accounts\logout.html:28
+#: .\accounts\templates\accounts\logout.html:28
 msgid "Cancel"
 msgstr "لغو"
 
-#: .\templates\accounts\phone_login.html:7
+#: .\accounts\templates\accounts\phone_login.html:7
 msgid "Login - Sign up"
 msgstr "ورود - ثبت نام"
 
-#: .\templates\accounts\phone_login.html:23
-#: .\templates\accounts\verify_otp.html:40
+#: .\accounts\templates\accounts\phone_login.html:23
+#: .\accounts\templates\accounts\verify_otp.html:42
 msgid "Login"
 msgstr "ورود"
 
-#: .\templates\accounts\user_profile.html:9
+#: .\accounts\templates\accounts\user_profile.html:9
 msgid "Profile"
 msgstr "حساب کاربری"
 
-#: .\templates\accounts\user_profile.html:25
+#: .\accounts\templates\accounts\user_profile.html:25
 msgid "Dashboard"
 msgstr "پنل کاربری"
 
-#: .\templates\accounts\user_profile.html:29
+#: .\accounts\templates\accounts\user_profile.html:29
+#: .\accounts\templates\accounts\user_profile.html:73
 msgid "Orders"
 msgstr "سفارشات"
 
-#: .\templates\accounts\user_profile.html:36
+#: .\accounts\templates\accounts\user_profile.html:36
 msgid "Hello"
 msgstr "سلام"
 
-#: .\templates\accounts\user_profile.html:37
+#: .\accounts\templates\accounts\user_profile.html:37
 msgid " Dear"
 msgstr "عزیز"
 
-#: .\templates\accounts\user_profile.html:41
+#: .\accounts\templates\accounts\user_profile.html:41
 msgid ""
 "Please review and complete the following details carefully to avoid any "
 "problems during the submission process."
 msgstr ""
-"لطفاً برای جلوگیری از بروز هرگونه مشکل در فرایند ارسال، مشخصات زیر را با دقت"
-" بازبینی و تکمیل کنید."
+"لطفاً برای جلوگیری از بروز هرگونه مشکل در فرایند ارسال، مشخصات زیر را با دقت "
+"بازبینی و تکمیل کنید."
 
-#: .\templates\accounts\user_profile.html:45
+#: .\accounts\templates\accounts\user_profile.html:45
 msgid "Customer informations"
 msgstr "اطلاعات مشتری"
 
-#: .\templates\accounts\user_profile.html:54
+#: .\accounts\templates\accounts\user_profile.html:56
 msgid "Phonenumber"
 msgstr "شماره تماس"
 
-#: .\templates\accounts\user_profile.html:59
+#: .\accounts\templates\accounts\user_profile.html:61
 msgid "Adress"
 msgstr "آدرس"
 
-#: .\templates\accounts\user_profile.html:62
+#: .\accounts\templates\accounts\user_profile.html:64
 msgid "postalcode"
 msgstr "کدپستی"
 
-#: .\templates\accounts\user_profile.html:66
+#: .\accounts\templates\accounts\user_profile.html:68
 msgid "edit your account details"
 msgstr "ویرایش حساب کاربری"
 
-#: .\templates\accounts\user_profile.html:75
-#| msgid "Phonenumber"
+#: .\accounts\templates\accounts\user_profile.html:81
 msgid "Order number"
 msgstr "شماره سفارش"
 
-#: .\templates\accounts\user_profile.html:76
-#| msgid "Delete"
+#: .\accounts\templates\accounts\user_profile.html:82
 msgid "Date"
 msgstr "تاریخ"
 
-#: .\templates\accounts\user_profile.html:77
+#: .\accounts\templates\accounts\user_profile.html:83
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\templates\accounts\user_profile.html:78
+#: .\accounts\templates\accounts\user_profile.html:84
 msgid "Total"
 msgstr "مجموع"
 
-#: .\templates\accounts\user_profile.html:88
+#: .\accounts\templates\accounts\user_profile.html:94
 msgid "Toman"
 msgstr "تومان"
 
-#: .\templates\accounts\user_profile.html:94
+#: .\accounts\templates\accounts\user_profile.html:100
 msgid "View"
 msgstr "مشاهده"
 
-#: .\templates\accounts\user_profile.html:106
+#: .\accounts\templates\accounts\user_profile.html:113
 msgid "No order has been made yet."
 msgstr "هنوز هیچ سفارشی ثبت نشده است."
 
-#: .\templates\accounts\user_profile.html:112
-#| msgid "Go to"
+#: .\accounts\templates\accounts\user_profile.html:118
 msgid "Go Shop"
 msgstr "برو به فروشگاه"
 
-#: .\templates\accounts\verify_otp.html:7
+#: .\accounts\templates\accounts\verify_otp.html:7
 msgid "User verification"
 msgstr "تایید کابر"
 
-#: .\templates\accounts\verify_otp.html:19
+#: .\accounts\templates\accounts\verify_otp.html:19
 msgid "Authentication"
 msgstr "احراز هویت "
 
-#: .\templates\accounts\verify_otp.html:20
+#: .\accounts\templates\accounts\verify_otp.html:20
 msgid ""
-"A 4-digit verification code has been sent to you. Please enter it in the box"
-" below."
+"A 4-digit verification code has been sent to you. Please enter it in the box "
+"below."
 msgstr ""
 "یک کد تایید ۴ رقمی برای شما ارسال شد، لطفا آن را در کادر زیر وارد کنید."
 
-#: .\templates\accounts\verify_otp.html:25
+#: .\accounts\templates\accounts\verify_otp.html:25
 msgid "Time remaining "
 msgstr "زمان باقی مانده"
 
-#: .\templates\accounts\verify_otp.html:30
+#: .\accounts\templates\accounts\verify_otp.html:29
 msgid "The code sent has expired. Please get a new one."
 msgstr "کد ارسالی منقضی شده است. لطفا یک کد جدید دریافت کنید."
 
-#: .\templates\accounts\verify_otp.html:32
+#: .\accounts\templates\accounts\verify_otp.html:33
 msgid "Send again"
 msgstr "ارسال مجدد"
 
