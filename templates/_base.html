@@ -58,7 +58,7 @@
                     <div class="col-xl-10 col-lg-9 col-3">
                         <nav class="main-navigation">
                             <div class="site-branding">
-                                <a href="{% url 'home' %}" class="logo">
+                                <a href="{% url 'pages:home' %}" class="logo">
                                     <figure class="logo--transparent">
                                         <img src="{% static 'img/logo/Logo_no_bg_100x90.png' %}" alt="Logo">
                                     </figure>
@@ -70,7 +70,7 @@
                             <div class="mainmenu-nav d-none d-lg-block">
                                 <ul class="mainmenu">
                                     <li class="mainmenu__item {% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">
-                                        <a href="{% url 'contact_us' %}" class="mainmenu__link">
+                                        <a href="{% url 'pages:contact_us' %}" class="mainmenu__link">
                                             <span class="mm-text">{% trans 'Contact Us' %}</span>
                                         </a>
                                     </li>
@@ -88,7 +88,7 @@
                                     </li>
 
                                     <li class="mainmenu__item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
-                                        <a href="{% url 'home' %}" class="mainmenu__link">
+                                        <a href="{% url 'pages:home' %}" class="mainmenu__link">
                                             <span style="margin-right: 2rem; text-align: center"
                                                   class="mm-text">{% trans 'Home' %}</span>
                                         </a>
@@ -142,30 +142,71 @@
 
     <!-- Breadcrumb area Start -->
     {% if request.path != '/' %}
-        <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6"
-             style="background-image: url({% static 'img/home/page_Breadcrumb_wallpaper.jpg' %});
-                     background-size: cover; margin-top: 15rem">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-                            <h3 class="page-title" style="margin: 0 auto; font-family: RastinPlus, sans-serif">
-                                {% block page_Breadcrumb %}{% endblock page_Breadcrumb %}
-                            </h3>
-                        </div>
-                        {% if messages %}
-                            <div class="container">
-                                {% for message in messages %}
-                                    <div style="direction: rtl; text-align: right"
-                                         class="alert alert-{{ message.tags }}">{{ message }}</div>
+    <div class="breadcrumb-area bg-color ptb--90"
+         data-bg-color="#f6f6f6"
+         style="margin-top: 15rem; direction: rtl;">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Header row -->
+                    <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column"
+                         style="width: 100%;">
+
+                        <!-- Page Title (RIGHT) -->
+                        <h3 class="page-title"
+                            style="font-family: RastinPlus, sans-serif;
+                                   text-align: right;
+                                   margin: 0;">
+                            {% block page_Breadcrumb %}{% endblock page_Breadcrumb %}
+                        </h3>
+
+                        <!-- Breadcrumb (LEFT) -->
+                        {% if request.resolver_match.app_name != 'accounts' and request.resolver_match.app_name != 'pages' and request.path != '/' %}
+                            <nav class="breadcrumb"
+                                 style="display: flex;
+                                    direction: ltr;
+                                    flex-direction: row-reverse;
+                                    align-items: center;
+                                    justify-content: flex-start;
+                                    gap: 6px;
+                                    margin: 0;">
+
+                                <a href="{% url 'pages:home' %}">{% trans 'Home' %}</a>
+
+                                {% for item in breadcrumb %}
+                                    <span>/</span>
+
+                                    {% if not forloop.last %}
+                                        <a href="{{ item.url }}">{{ item.title }}</a>
+                                    {% else %}
+                                        <span>{{ item.title }}</span>
+                                    {% endif %}
                                 {% endfor %}
+
+                            </nav>
+                            {% endif %}
+
+                            </div>
+
+                            <!-- Messages -->
+                            {% if messages %}
+                                <div class="container mt-3">
+                                    {% for message in messages %}
+                                        <div style="direction: rtl; text-align: right"
+                                             class="alert alert-{{ message.tags }}">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            </div>
+                            </div>
+                            </div>
                             </div>
                         {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
     <!-- Breadcrumb area End -->
 
     <!-- Content -->

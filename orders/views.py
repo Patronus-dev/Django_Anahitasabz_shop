@@ -15,6 +15,20 @@ from .forms import CheckoutUserForm
 from .models import Order, OrderItem
 
 
+def order_breadcrumb(order=None, step=None):
+    breadcrumb = [
+        {"title": "سفارش‌ها", "url": "/orders/"}
+    ]
+
+    if step == "create":
+        breadcrumb = [
+            {"title": "سبد خرید", "url": "/cart/"},
+            {"title": "پرداخت", "url": None},
+        ]
+
+    return breadcrumb
+
+
 def calculate_order_totals(request, cart):
     """محاسبه جمع کل سفارش + کوپن + هزینه ارسال"""
     products_total = sum(int(item['product_obj'].price * item['quantity']) for item in cart)
@@ -67,10 +81,11 @@ def order_create_view(request):
 
     if request.method == "POST":
         form = CheckoutUserForm(request.POST, instance=user)
+
         if form.is_valid():
             form.save()
 
-            # قبل از ساخت سفارش، بررسی موجودی کالاها
+            # بررسی موجودی
             for item in cart:
                 product = item['product_obj']
                 if item['quantity'] > product.quantity:
@@ -82,7 +97,6 @@ def order_create_view(request):
 
             totals = calculate_order_totals(request, cart)
 
-            # ساخت سفارش
             order = Order.objects.create(
                 user=user,
                 total_price=totals["total"],
@@ -93,7 +107,6 @@ def order_create_view(request):
                 order_notes=form.cleaned_data.get("order_notes", "")
             )
 
-            # ذخیره آیتم‌های سفارش و کاهش موجودی محصول
             for item in cart:
                 product = item["product_obj"]
 
@@ -104,13 +117,11 @@ def order_create_view(request):
                     quantity=item["quantity"],
                 )
 
-                # کاهش موجودی
                 product.quantity -= item["quantity"]
                 if product.quantity < 0:
-                    product.quantity = 0  # جلوگیری از منفی شدن موجودی
+                    product.quantity = 0
                 product.save()
 
-            # اگر کوپن استفاده شده بود → به used_by اضافه کن
             coupon_data = request.session.get("coupon")
             if coupon_data:
                 try:
@@ -119,7 +130,6 @@ def order_create_view(request):
                 except Coupon.DoesNotExist:
                     pass
 
-            # پاک کردن سبد و کوپن
             cart.clear()
             request.session.pop("coupon", None)
 
@@ -127,14 +137,13 @@ def order_create_view(request):
 
             return redirect("orders:order_detail", order_id=order.id)
 
-        else:
-            messages.info(request, _("The information entered is not valid."))
     else:
         form = CheckoutUserForm(instance=user)
 
     totals = calculate_order_totals(request, cart)
     shippings = Shipping.objects.filter(active=True)
 
+    # ✅ فقط یک context درست
     context = {
         "cart": cart,
         "checkout_form": form,
@@ -145,7 +154,11 @@ def order_create_view(request):
         "coupon_display": totals["coupon_display"],
         "shippings": shippings,
         "selected_shipping": totals["selected_shipping"],
+
+        # breadcrumb درست
+        "breadcrumb": order_breadcrumb(step="create"),
     }
+
     return render(request, "orders/order_create.html", context)
 
 
@@ -157,17 +170,21 @@ class OrderDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         order = self.get_object()
 
-        # تاریخ ایجاد سفارش به شمسی
-        jalali_date = jdatetime.datetime.fromgregorian(datetime=localtime(order.datetime_created))
+        jalali_date = jdatetime.datetime.fromgregorian(
+            datetime=localtime(order.datetime_created)
+        )
 
-        # شماره سفارش اختصاصی
         context['order_number'] = f"00{jalali_date.strftime('%Y%m%d')}{order.id}"
 
-        # جمع محصولات بدون تخفیف و ارسال
         products_total = sum(item.price * item.quantity for item in order.items.all())
         context['products_total'] = products_total
+
+        # breadcrumb
+        context["breadcrumb"] = order_breadcrumb(order=order)
+
         return context
 
 

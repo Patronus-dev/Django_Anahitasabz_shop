@@ -6,6 +6,20 @@ from .models import Product
 from cart.forms import AddToCartProductForm
 
 
+def get_category_breadcrumb(category):
+    breadcrumb = []
+
+    while category:
+        breadcrumb.append({
+            "title": category.name,
+            "url": f"/products/category/{category.slug}/"
+        })
+        category = category.parent
+
+    breadcrumb.reverse()
+    return breadcrumb
+
+
 class ProductListView(ListView):
     model = Product
     template_name = "products/product_list.html"
@@ -17,12 +31,18 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         paginator = context['paginator']
         page_obj = context['page_obj']
 
         start = max(page_obj.number - 2, 1)
         end = min(page_obj.number + 2, paginator.num_pages)
         context['page_range_limited'] = range(start, end + 1)
+
+        # breadcrumb
+        context['breadcrumb'] = [
+            {"title": "محصولات", "url": None}
+        ]
 
         return context
 
@@ -37,23 +57,41 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         product = self.object
 
         # فرم اضافه به سبد خرید
         context['add_to_cart_form'] = AddToCartProductForm(product=product)
 
-        # گرفتن کلیدواژه‌های محصول جاری
+        # breadcrumb base
+        breadcrumb = [
+            {"title": "محصولات", "url": "/products/"},
+        ]
+
+        # category hierarchy
+        if product.category:
+            breadcrumb += get_category_breadcrumb(product.category)
+
+        # current product
+        breadcrumb.append({
+            "title": product.title,
+            "url": None
+        })
+
+        context['breadcrumb'] = breadcrumb
+
+        # similar products
         keywords = product.keywords.all()
 
         if keywords.exists():
-            # گرفتن محصولات مشابه که حداقل یک کلیدواژه مشترک داشته باشن
             similar_products = Product.objects.filter(
                 active=True,
                 keywords__in=keywords
             ).exclude(id=product.id).distinct()[:8]
         else:
-            # اگر محصول کلیدواژه نداشت، سایر محصولات فعال رو نشون بده
-            similar_products = Product.objects.filter(active=True).exclude(id=product.id)[:8]
+            similar_products = Product.objects.filter(
+                active=True
+            ).exclude(id=product.id)[:8]
 
         context['similar_products'] = similar_products
 
@@ -62,7 +100,8 @@ class ProductDetailView(DetailView):
 
 # ویو برای جستجو
 def product_search_view(request):
-    user_search = request.GET.get('q', '')  # گرفتن مقدار جستجو از URL
+    user_search = request.GET.get('q', '')
+
     products = Product.objects.filter(
         Q(title__icontains=user_search) |
         Q(description__icontains=user_search) |
@@ -70,7 +109,13 @@ def product_search_view(request):
         active=True
     ).distinct() if user_search else []
 
-    return render(request, 'pages/search_result.html', {
+    context = {
         'user_search': user_search,
-        'products': products
-    })
+        'products': products,
+        'breadcrumb': [
+            {"title": "جستجو", "url": None}
+        ]}
+
+    # breadcrumb
+
+    return render(request, 'pages/search_result.html', context)

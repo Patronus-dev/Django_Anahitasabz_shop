@@ -11,7 +11,7 @@
 {% block content %}
 
     <!-- Main Content Wrapper Start -->
-    <div class="main-content-wrapper" style="direction: rtl">
+    <div class="main-content-wrapper" style="direction: rtl; background-image: url('{% static 'img/products/' %}')">
         <div class="shop-page-wrapper ptb--80">
             <div class="container">
                 <div class="row">
@@ -41,7 +41,8 @@
                                                         </div>
                                                         <div class="form__group" style="text-align:center;">
                                                             <a href="{% url 'products:product_detail' product.id %}">
-                                                                <input style="font-family: RastinPlus,sans-serif; font-size: medium" type="submit"
+                                                                <input style="font-family: RastinPlus,sans-serif; font-size: medium"
+                                                                       type="submit"
                                                                        value="{% trans 'Watch' %}"
                                                                        class="btn btn-submit btn-style-1">
                                                             </a>
@@ -51,9 +52,11 @@
                                                             {% trans 'The product is not available.' %}
                                                         </span>
 
-                                                        <div class="form__group" style="text-align:center; margin-top: 2rem">
+                                                        <div class="form__group"
+                                                             style="text-align:center; margin-top: 2rem">
                                                             <a href="{% url 'products:product_detail' product.id %}">
-                                                                <input type="submit" style="font-family: RastinPlus, sans-serif"
+                                                                <input type="submit"
+                                                                       style="font-family: RastinPlus, sans-serif"
                                                                        value="{% trans 'Watch and Order' %}"
                                                                        class="btn btn-submit btn-style-1">
                                                             </a>

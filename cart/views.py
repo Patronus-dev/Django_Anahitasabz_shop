@@ -10,13 +10,23 @@ from .models import Coupon, Shipping
 from .forms import AddToCartProductForm, CouponForm
 
 
+def cart_breadcrumb(step=None):
+    breadcrumb = [
+        {"title": "سبد خرید", "url": "/cart/"}
+    ]
+
+    if step == "checkout":
+        breadcrumb.append({
+            "title": "پرداخت",
+            "url": None
+        })
+
+    return breadcrumb
+
+
 def cart_detail_view(request):
-    """
-    نمایش جزئیات سبد خرید
-    """
     cart = Cart(request)
 
-    # اگر سبد خرید خالی است، کوپن را پاک کن
     if len(cart) == 0 and 'coupon' in request.session:
         del request.session['coupon']
 
@@ -28,13 +38,10 @@ def cart_detail_view(request):
             product=item['product_obj']
         )
 
-    # جمع محصولات بدون اعشار
     products_total = sum(int(item['product_obj'].price * item['quantity']) for item in cart)
 
-    # لیست روش‌های ارسال فعال
     shippings = Shipping.objects.filter(active=True)
 
-    # روش ارسال انتخاب‌شده
     shipping_id = request.session.get('shipping_id')
     selected_shipping = None
     shipping_cost = 0
@@ -42,25 +49,24 @@ def cart_detail_view(request):
     if shipping_id:
         selected_shipping = Shipping.objects.filter(id=shipping_id, active=True).first()
     elif shippings.exists():
-        selected_shipping = shippings.first()  # پیش‌فرض روی اولین روش فعال
+        selected_shipping = shippings.first()
 
     if selected_shipping and not getattr(selected_shipping, 'cost_on_delivery', False):
         shipping_cost = int(selected_shipping.cost)
 
-    # مقدار و نوع تخفیف
     coupon_value = 0
     coupon_display = None
     coupon_data = request.session.get('coupon')
+
     if coupon_data:
         if coupon_data['discount_type'] == 'percent':
             percent = float(coupon_data['discount_value'])
             coupon_value = int(products_total * percent / 100)
             coupon_display = f"{int(percent)} %"
-        else:  # fixed amount
+        else:
             coupon_value = int(float(coupon_data['discount_value']))
-            coupon_display = f"{coupon_value} {_('Toman')}"
+            coupon_display = f"{coupon_value} Toman"
 
-    # جمع کل نهایی
     total = (products_total - coupon_value) + shipping_cost
     if total < 0:
         total = 0
@@ -75,6 +81,9 @@ def cart_detail_view(request):
         'coupon_display': coupon_display,
         'shippings': shippings,
         'selected_shipping': selected_shipping,
+
+        # breadcrumb
+        'breadcrumb': cart_breadcrumb(),
     })
 
 

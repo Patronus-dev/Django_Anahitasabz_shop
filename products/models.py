@@ -9,6 +9,35 @@ class Keyword(models.Model):
         return self.name
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_("Category Name"))
+    slug = models.SlugField(unique=True)
+
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='children',
+        verbose_name=_("Parent Category")
+    )
+
+    class Meta:
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
+
+    def __str__(self):
+        return self.name
+
+    def get_ancestors(self):
+        ancestors = []
+        category = self
+        while category:
+            ancestors.append(category)
+            category = category.parent
+        return reversed(ancestors)
+
+
 class Product(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("Product Name"))
     description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
@@ -16,6 +45,8 @@ class Product(models.Model):
     active = models.BooleanField(default=True, verbose_name=_("Active"))
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="products", verbose_name=_("Keywords"))
     quantity = models.IntegerField(default=1, verbose_name=_("Quantity"))
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="products",
+                                 verbose_name=_("Category"))
 
     cover = models.ImageField(upload_to="products/", blank=True, null=True, verbose_name=_("Cover Image"))
     image1 = models.ImageField(upload_to="products/gallery/", blank=True, null=True, verbose_name=_("Image 1"))

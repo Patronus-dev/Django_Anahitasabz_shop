@@ -24,6 +24,9 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_interface",
+    "colorfield",
+
     'accounts',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django import forms
 from django.utils.html import format_html
-from .models import Product, Keyword
+
+from .models import Product, Keyword, Category
 
 
 class ProductAdminForm(forms.ModelForm):
@@ -13,33 +14,37 @@ class ProductAdminForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ['keywords']  # فیلد اصلی ManyToMany را از فرم حذف می‌کنیم
+        fields = '__all__'   # بهتر از exclude برای آینده
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # اگر در حال ویرایش محصول هستیم، کلمات کلیدی را در ورودی نمایش بده
+
+        # Keywords initial
         if self.instance.pk:
             self.fields['keyword_text'].initial = ", ".join(
                 [kw.name for kw in self.instance.keywords.all()]
             )
 
+        # Category initial
+        if self.instance.pk and self.instance.category:
+            self.fields['category'].initial = self.instance.category
+
     def save(self, commit=True):
         instance = super().save(commit=False)
 
-        # پردازش رشته‌ی واردشده برای کلمات کلیدی
+        # پردازش keywords
         keywords_str = self.cleaned_data.get('keyword_text', '')
         keyword_names = [k.strip() for k in keywords_str.split(",") if k.strip()]
+
         keywords_objs = []
         for name in keyword_names:
             kw_obj, _ = Keyword.objects.get_or_create(name=name)
             keywords_objs.append(kw_obj)
 
-        # ذخیره شیء اصلی (Product) قبل از تنظیم رابطه ManyToMany
         if commit:
             instance.save()
             instance.keywords.set(keywords_objs)
         else:
-            # اگر commit=False بود، ذخیره‌ی بعدی در admin انجام می‌شود
             self._pending_keywords = keywords_objs
 
         return instance
@@ -48,8 +53,10 @@ class ProductAdminForm(forms.ModelForm):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
+
     list_display = (
         'title',
+        'category',
         'quantity',
         'price',
         'active',
@@ -58,26 +65,33 @@ class ProductAdmin(admin.ModelAdmin):
         'cover_preview',
         'display_keywords',
     )
-    list_filter = ('active', 'datetime_created', 'datetime_modified')
+
+    list_filter = (
+        'active',
+        'category',
+        'datetime_created',
+        'datetime_modified',
+    )
+
     search_fields = ('title', 'description')
 
     def save_model(self, request, obj, form, change):
-        """
-        اطمینان از اینکه کلمات کلیدی حتی اگر commit=False بوده، بعد از ذخیره اضافه شوند
-        """
         super().save_model(request, obj, form, change)
+
+        # sync keywords after save
         if hasattr(form, '_pending_keywords'):
             obj.keywords.set(form._pending_keywords)
 
     def cover_preview(self, obj):
-        """نمایش تصویر کوچک در admin"""
         if obj.cover:
-            return format_html('<img src="{}" style="width:50px; height:auto;" />', obj.cover.url)
+            return format_html(
+                '<img src="{}" style="width:50px; height:auto;" />',
+                obj.cover.url
+            )
         return "-"
     cover_preview.short_description = "Cover"
 
     def display_keywords(self, obj):
-        """نمایش لیست کلمات کلیدی در admin"""
         return ", ".join([kw.name for kw in obj.keywords.all()])
     display_keywords.short_description = "Keywords"
 
@@ -86,3 +100,10 @@ class ProductAdmin(admin.ModelAdmin):
 class KeywordAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent')
+    search_fields = ('name',)
+    list_filter = ('parent',)
